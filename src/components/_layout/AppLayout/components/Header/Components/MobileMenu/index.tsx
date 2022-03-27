@@ -8,21 +8,26 @@ export const MobileMenu = (props: MobileMenuProps) => {
   const { open, closeModal, toggleMode, colorMode } = props;
 
   return (
-    <Modal onClose={closeModal} size={'full'} isOpen={open}>
+    <Modal onClose={closeModal} size={'full'} isOpen={open} motionPreset="slideInRight">
       <ModalOverlay />
       <ModalContent backgroundColor={colorMode === 'dark' ? 'hsla(210deg, 30%, 8%, 0.85)' : 'hsla(0deg, 0%, 100%, 0.85)'}>
         <ModalCloseButton _focus={{ outline: 0 }} p={8} backgroundColor="transparent">
           <CloseIcon w={45} h={45} />
         </ModalCloseButton>
         <ModalBody mt={200} display="flex" flexDir={'column'} gap={8}>
-          <Link href={'/resume'} passHref>
+          <Link href={'/'} passHref>
             <Text fontSize={'3xl'} fontWeight="extrabold">
-              Resume
+              About Me
             </Text>
           </Link>
           <Link href={'/blog'} passHref>
             <Text fontSize={'3xl'} fontWeight="extrabold">
               Blog
+            </Text>
+          </Link>
+          <Link href={'/top-tracks'} passHref>
+            <Text fontSize={'3xl'} fontWeight="extrabold">
+              Top Tracks
             </Text>
           </Link>
         </ModalBody>
