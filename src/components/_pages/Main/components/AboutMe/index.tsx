@@ -71,7 +71,7 @@ const techList: TechListType[] = [
   },
   {
     name: 'ThreeJs',
-    link: 'https://chakra-ui.com/',
+    link: 'https://threejs.org/',
     icon: <SiThreedotjs size="30" />,
     status: 'loading',
   },
