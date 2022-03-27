@@ -97,7 +97,7 @@ export const AboutMe = () => {
         <UnorderedList spacing={3} display="flex" flexDirection={'column'}>
           {techList.map((tech) => (
             <ListItem key={tech.link} as="span">
-              <Link href={tech.link} rel="noopener noreferrer" display="flex" flexDirection={'row'} alignItems="center" gap={4}>
+              <Link href={tech.link} target="_blank" rel="noopener noreferrer" display="flex" flexDirection={'row'} alignItems="center" gap={4}>
                 {tech.icon}
                 {tech.status === 'loading' ? (
                   <Box display="flex" flexDirection="row">
