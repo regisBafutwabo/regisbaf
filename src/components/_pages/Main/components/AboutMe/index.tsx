@@ -71,7 +71,7 @@ const techList: TechListType[] = [
   },
   {
     name: 'ThreeJs',
-    link: 'https://chakra-ui.com/',
+    link: 'https://threejs.org/',
     icon: <SiThreedotjs size="30" />,
     status: 'loading',
   },
@@ -91,7 +91,7 @@ export const AboutMe = () => {
       <Box padding={8} width={['100%', '100%', '100%', '80%']}>
         <UnorderedList spacing={3} display="flex" flexDirection={'column'}>
           {techList.map((tech) => (
-            <ListItem key={tech.link} as="a">
+            <ListItem key={tech.link}>
               <Link href={tech.link} rel="noopener noreferrer" display="flex" flexDirection={'row'} alignItems="center" gap={4}>
                 {tech.icon}
                 {tech.status === 'loading' ? (
