@@ -79,7 +79,7 @@ const techList: TechListType[] = [
 
 export const AboutMe = () => {
   return (
-    <Box marginTop={20} width="80%">
+    <Box marginTop={20} width={['100%', '100%', '100%', '80%']}>
       <Text fontSize={'xl'} fontStyle="italic">
         <span style={{ fontWeight: 'bold' }}>{`Hi, I'm Regis.`}</span>
         {` I'm a software developer and an enthusiast of using tech to solve problems. The list of things I'm incredibly passionate about includes ReactJS, React-native, Typescript, JavaScript, Design
@@ -95,10 +95,10 @@ export const AboutMe = () => {
               <Link href={tech.link} rel="noopener noreferrer" display="flex" flexDirection={'row'} alignItems="center" gap={4}>
                 {tech.icon}
                 {tech.status === 'loading' ? (
-                  <>
+                  <Box display="flex" flexDirection="row">
                     <Text color="grey">{tech.name}</Text>
                     <Text>: loading...</Text>
-                  </>
+                  </Box>
                 ) : (
                   <Text>{tech.name}</Text>
                 )}

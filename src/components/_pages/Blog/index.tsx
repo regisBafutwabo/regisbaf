@@ -2,8 +2,8 @@ import { Box, Img, Text } from '@chakra-ui/react';
 
 export const Blog = () => {
   return (
-    <Box paddingX={4} paddingY={8} height="60vh">
-      <Text fontFamily={'heading'} fontSize="2xl">
+    <Box paddingX={[0, 4, 4, 8]} paddingY={8} height="60vh">
+      <Text fontFamily={'heading'} fontSize="2xl" textAlign={'center'}>
         Welcome To My Blog Section
       </Text>
 

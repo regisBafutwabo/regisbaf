@@ -1,6 +1,5 @@
 import { CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalOverlay, Text } from '@chakra-ui/react';
-import Link from 'next/link';
+import { IconButton, Link, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalOverlay, Text } from '@chakra-ui/react';
 
 import { MobileMenuProps } from './MobileMenu.interface';
 
@@ -15,17 +14,17 @@ export const MobileMenu = (props: MobileMenuProps) => {
           <CloseIcon w={45} h={45} />
         </ModalCloseButton>
         <ModalBody mt={200} display="flex" flexDir={'column'} gap={8}>
-          <Link href={'/'} passHref>
+          <Link href={'/'} onClick={closeModal}>
             <Text fontSize={'3xl'} fontWeight="extrabold">
               About Me
             </Text>
           </Link>
-          <Link href={'/blog'} passHref>
+          <Link href={'/blog'} onClick={closeModal}>
             <Text fontSize={'3xl'} fontWeight="extrabold">
               Blog
             </Text>
           </Link>
-          <Link href={'/top-tracks'} passHref>
+          <Link href={'/top-tracks'} onClick={closeModal}>
             <Text fontSize={'3xl'} fontWeight="extrabold">
               Top Tracks
             </Text>
