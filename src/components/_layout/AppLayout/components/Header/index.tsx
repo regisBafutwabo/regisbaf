@@ -2,12 +2,14 @@ import { HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { Box, IconButton, Text, useBreakpointValue, useColorMode } from '@chakra-ui/react';
 import { MOBILE_SIZES } from 'constants/display';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 import { MobileMenu } from './Components';
 import { Nav } from './styles';
 
 export const Header = () => {
+  const { pathname } = useRouter();
   const { colorMode, toggleColorMode } = useColorMode();
   const variant = useBreakpointValue(['xs', 'sm', 'md', 'lg', 'xl', 'xxl']);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,21 +39,28 @@ export const Header = () => {
         <Box display={['none', 'none', 'none', 'flex']} flexDir="row" alignItems={'center'} mt={2}>
           <Box mr={5}>
             <Link href={'/'} passHref>
-              <Text fontWeight={'semibold'} fontSize="md" cursor={'pointer'}>
+              <Text fontWeight={pathname === '/' ? 700 : 'semibold'} fontSize="md" cursor={'pointer'} textDecoration={pathname === '/' ? 'underline' : 'none'}>
                 About Me
               </Text>
             </Link>
           </Box>
           <Box mr={5}>
             <Link href={'/blog'} passHref>
-              <Text fontWeight={'semibold'} fontSize="md" cursor={'pointer'} animation="linear ">
+              <Text fontWeight={pathname === '/blog' ? 700 : 'semibold'} fontSize="md" cursor={'pointer'} animation="linear" textDecoration={pathname === '/blog' ? 'underline' : 'none'}>
                 Blog
               </Text>
             </Link>
           </Box>
           <Box>
             <Link href={'/top-tracks'} passHref>
-              <Text fontWeight={'semibold'} fontSize="md" cursor={'pointer'} animation="linear ">
+              <Text
+                fontSize="md"
+                fontWeight={pathname === '/top-tracks' ? 700 : 'semibold'}
+                cursor={'pointer'}
+                animation="linear"
+                textDecoration={pathname === '/top-tracks' ? 'underline' : 'none'}
+                style={{ textDecoration: '' }}
+              >
                 Top Tracks
               </Text>
             </Link>
