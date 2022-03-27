@@ -50,6 +50,11 @@ const techList: TechListType[] = [
     icon: <SiHasura color="#1599e5" size="30" />,
   },
   {
+    name: 'eosjs',
+    link: 'https://developers.eos.io/manuals/eosjs/latest/index',
+    icon: <Img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Eos_logo.png" width={30} />,
+  },
+  {
     name: 'Ant Design',
     link: 'https://ant.design/',
     icon: <SiAntdesign color="#158cff" size="30" />,
@@ -91,7 +96,7 @@ export const AboutMe = () => {
       <Box padding={8} width={['100%', '100%', '100%', '80%']}>
         <UnorderedList spacing={3} display="flex" flexDirection={'column'}>
           {techList.map((tech) => (
-            <ListItem key={tech.link}>
+            <ListItem key={tech.link} as="span">
               <Link href={tech.link} rel="noopener noreferrer" display="flex" flexDirection={'row'} alignItems="center" gap={4}>
                 {tech.icon}
                 {tech.status === 'loading' ? (
