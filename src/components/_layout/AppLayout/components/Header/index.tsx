@@ -1,13 +1,11 @@
 import { HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { Box, IconButton, Text, useBreakpointValue, useColorMode } from '@chakra-ui/react';
+import { MOBILE_SIZES } from 'constants/display';
 import Link from 'next/link';
 import { useState } from 'react';
 
 import { MobileMenu } from './Components';
 import { Nav } from './styles';
-
-const MOBILE_SIZES = ['xs', 'sm', 'md'];
-// const MotionText = motion<TextProps>(Text);
 
 export const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -38,16 +36,23 @@ export const Header = () => {
         </Box>
         <Box display={['none', 'none', 'none', 'flex']} flexDir="row" alignItems={'center'} mt={2}>
           <Box mr={5}>
-            <Link href={'/resume'} passHref>
+            <Link href={'/'} passHref>
               <Text fontWeight={'semibold'} fontSize="md" cursor={'pointer'}>
-                Resume
+                About Me
+              </Text>
+            </Link>
+          </Box>
+          <Box mr={5}>
+            <Link href={'/blog'} passHref>
+              <Text fontWeight={'semibold'} fontSize="md" cursor={'pointer'} animation="linear ">
+                Blog
               </Text>
             </Link>
           </Box>
           <Box>
-            <Link href={'/blog'} passHref>
+            <Link href={'/top-tracks'} passHref>
               <Text fontWeight={'semibold'} fontSize="md" cursor={'pointer'} animation="linear ">
-                Blog
+                Top Tracks
               </Text>
             </Link>
           </Box>
