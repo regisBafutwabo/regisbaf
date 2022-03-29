@@ -1,11 +1,8 @@
-import useSWR from 'swr';
-import { useEffect } from 'react';
-import { animate } from 'motion';
-
-import fetcher from 'lib/fetcher';
-import { CurrentlySong } from 'lib/types/spotify';
 import { Box, Link, Text } from '@chakra-ui/react';
+import fetcher from 'lib/fetcher/fetcher';
+import { CurrentlySong } from 'lib/spotify/types/spotify';
 import { BsSpotify } from 'react-icons/bs';
+import useSWR from 'swr';
 
 export default function CurrentlyPlaying() {
   const { data } = useSWR<CurrentlySong>('/api/currently-playing', fetcher);

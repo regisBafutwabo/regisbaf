@@ -1,4 +1,4 @@
-import { getTopTracksParams } from 'lib/types/spotify';
+import { getTopTracksParams } from 'lib/spotify/types/spotify';
 
 const client_id = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || '';
 const client_secret = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET || '';

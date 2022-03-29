@@ -9,7 +9,7 @@ import { MobileMenu } from './Components';
 import { Nav } from './styles';
 
 export const Header = () => {
-  const { pathname } = useRouter();
+  const { pathname, push } = useRouter();
   const { colorMode, toggleColorMode } = useColorMode();
   const variant = useBreakpointValue(['xs', 'sm', 'md', 'lg', 'xl', 'xxl']);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,7 +31,7 @@ export const Header = () => {
   return (
     <Nav mt={[4, 4, 4, 8]} mb={[4, 4, 4, 4]}>
       <Box display={'flex'} alignItems="center" justifyContent={'center'} flexDir={'row'}>
-        <Box mr={10}>
+        <Box mr={10} _hover={{ cursor: 'pointer' }} onClick={() => push('/')}>
           <Text fontFamily={'heading'} bgGradient="linear(to-r,#007BD3, #007311)" bgClip="text" fontSize="2xl" fontWeight="extrabold">
             Regis Bafutwabo
           </Text>

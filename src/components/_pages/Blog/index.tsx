@@ -1,4 +1,4 @@
-import { Box, Img, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 
 export const Blog = () => {
   return (

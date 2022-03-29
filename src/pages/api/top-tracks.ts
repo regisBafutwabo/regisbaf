@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getTopTracks } from 'lib/spotify';
+import { getTopTracks } from 'lib/spotify/spotify';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const offset = +req?.query?.offset;

@@ -1,7 +1,7 @@
 import { Box, Button, Link, ListItem, OrderedList, Spinner, Text } from '@chakra-ui/react';
-import fetcher from 'lib/fetcher';
-import { Song, Tracks } from 'lib/types/spotify';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import fetcher from 'lib/fetcher/fetcher';
+import { Song, Tracks } from 'lib/spotify/types/spotify';
+import { useCallback, useEffect, useState } from 'react';
 import useSWR from 'swr';
 
 export const TopTracks = () => {
