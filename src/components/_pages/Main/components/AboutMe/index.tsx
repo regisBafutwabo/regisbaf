@@ -1,6 +1,7 @@
 import { Box, Img, Link, ListItem, Text, UnorderedList } from '@chakra-ui/react';
 import { DiReact } from 'react-icons/di';
-import { SiChakraui, SiStyledcomponents, SiThreedotjs, SiNestjs, SiVercel, SiTypescript, SiApollographql, SiMaterialui, SiGraphql, SiAntdesign, SiHasura } from 'react-icons/si';
+import { SiAntdesign, SiApollographql, SiChakraui, SiGraphql, SiHasura, SiMaterialui, SiNestjs, SiStyledcomponents, SiThreedotjs, SiTypescript, SiVercel } from 'react-icons/si';
+
 import { TechListType } from './AboutMe.interface';
 
 const techList: TechListType[] = [
@@ -37,7 +38,7 @@ const techList: TechListType[] = [
   {
     name: 'RelayJS',
     link: 'https://relay.dev/',
-    icon: <Img src={'https://relay.dev/img/relay.svg'} width={30} />,
+    icon: <Img src={'https://relay.dev/img/relay.svg'} width={30} alt="relay" />,
   },
   {
     name: 'GraphQL',
@@ -52,7 +53,7 @@ const techList: TechListType[] = [
   {
     name: 'eosjs',
     link: 'https://developers.eos.io/manuals/eosjs/latest/index',
-    icon: <Img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Eos_logo.png" width={30} />,
+    icon: <Img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Eos_logo.png" width={30} alt="eos" />,
   },
   {
     name: 'Ant Design',
@@ -96,12 +97,12 @@ export const AboutMe = () => {
       <Box padding={8} width={['100%', '100%', '100%', '80%']}>
         <UnorderedList spacing={3} display="flex" flexDirection={'column'}>
           {techList.map((tech) => (
-            <ListItem key={tech.link} as="span">
+            <ListItem key={tech.link} as="span" role={'listitem'}>
               <Link href={tech.link} target="_blank" rel="noopener noreferrer" display="flex" flexDirection={'row'} alignItems="center" gap={4}>
                 {tech.icon}
                 {tech.status === 'loading' ? (
                   <Box display="flex" flexDirection="row">
-                    <Text color="grey">{tech.name}</Text>
+                    <Text color="#ababab">{tech.name}</Text>
                     <Text>: loading...</Text>
                   </Box>
                 ) : (
