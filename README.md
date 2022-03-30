@@ -1,8 +1,14 @@
-### This is my personal website
+# Intro
 
-It is build with:
-- Nextjs
-- Chakra UI
-- Spotify API
+This is my personal website but I plan to start writing articles so be on the lookout 👀
 
-I plan to start writing blogs so be on the lookout👀!
+## 🛠 Built with:
+
+- [NextJS](https://nextjs.org)
+- [Chakra UI](https://chakra-ui.com/)
+- [Spotify API](https://developer.spotify.com/)
+
+## License
+
+MIT
+
