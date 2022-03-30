@@ -16,3 +16,14 @@ a {
 * {
   box-sizing: border-box;
 }
+
+::-webkit-scrollbar {
+  display: block;
+  width: 8;
+  height: 8;
+};
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 7;
+};

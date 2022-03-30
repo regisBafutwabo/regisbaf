@@ -1,4 +1,4 @@
-import 'config/theme/styles/globals.css';
+import 'styles/globals.css';
 
 import { ChakraProvider, extendTheme, ThemeConfig } from '@chakra-ui/react';
 import { AppLayout } from 'components/_layout';
