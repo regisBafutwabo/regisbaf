@@ -1,6 +1,6 @@
 # Intro
 
-This is my personal website but I plan to start writing some articles in the blog page on it so be on the lookout 👀. Meanwhile you can be checking my current top songs in the `top-tracks` page 😉
+This is my personal website but I plan to start writing some articles in the `blog` page on it so be on the lookout 👀. Meanwhile you can be checking my current top songs in the `top-tracks` page 😉
 
 ## 🛠 Built with:
 
