@@ -9,6 +9,7 @@ export default function Document() {
     <Html>
       <Head>
         <link rel="preload" href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@400;600;700&family=Nunito:wght@400;500;600;700&display=swap" as="font" />
+        <link rel="preload" href="api/top-tracks?offset=0" as="fetch" crossOrigin="anonymous" />
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:title" content={title} />
         <meta name="twitter:title" content={title} />
