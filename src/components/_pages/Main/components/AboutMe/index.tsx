@@ -1,4 +1,5 @@
-import { Box, Img, Link, ListItem, Text, UnorderedList } from '@chakra-ui/react';
+import { Box, Img, Link, Text, UnorderedList } from '@chakra-ui/react';
+import { MotionBox, MotionListItem, MotionText } from 'lib/Motion';
 import { DiReact } from 'react-icons/di';
 import { SiAntdesign, SiApollographql, SiChakraui, SiGraphql, SiHasura, SiMaterialui, SiNestjs, SiStyledcomponents, SiThreedotjs, SiTypescript, SiVercel } from 'react-icons/si';
 
@@ -85,19 +86,19 @@ const techList: TechListType[] = [
 
 export const AboutMe = () => {
   return (
-    <Box marginTop={20} width={['100%', '100%', '100%', '80%']}>
-      <Text fontSize={'xl'} fontStyle="italic">
+    <MotionBox animate={{ marginTop: 20 }} width={['100%', '100%', '100%', '80%']}>
+      <MotionText fontStyle="italic" fontSize="xl">
         <span style={{ fontWeight: 'bold' }}>{`Hi, I'm Regis.`}</span>
         {` I'm a software developer and an enthusiast of using tech to solve problems. The list of things I'm incredibly passionate about includes ReactJS, React-native, Typescript, JavaScript, Design
         Pattern, web development, software architecture, and clean code. I also enjoy music, video games and exploring new places.`}
-      </Text>
-      <Text fontSize="xl" paddingTop={8}>
+      </MotionText>
+      <MotionText fontSize="xl" animate={{ paddingTop: 32 }}>
         Some of the technologies that I have used include but not limited to:
-      </Text>
-      <Box padding={8} width={['100%', '100%', '100%', '80%']}>
+      </MotionText>
+      <MotionBox animate={{ padding: 32 }} width={['100%', '100%', '100%', '80%']}>
         <UnorderedList spacing={3} display="flex" flexDirection={'column'}>
           {techList.map((tech) => (
-            <ListItem key={tech.link} as="span" role={'listitem'}>
+            <MotionListItem key={tech.link} as="span" role={'listitem'} transition={{ type: 'spring', stiffness: 300 }} whileHover={{ scale: 1.3, originX: 0 }} whileTap={{ scale: 0.99 }}>
               <Link href={tech.link} target="_blank" rel="noopener noreferrer" display="flex" flexDirection={'row'} alignItems="center" gap={4}>
                 {tech.icon}
                 {tech.status === 'loading' ? (
@@ -109,10 +110,10 @@ export const AboutMe = () => {
                   <Text>{tech.name}</Text>
                 )}
               </Link>
-            </ListItem>
+            </MotionListItem>
           ))}
         </UnorderedList>
-      </Box>
-    </Box>
+      </MotionBox>
+    </MotionBox>
   );
 };
