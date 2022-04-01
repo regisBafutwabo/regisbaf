@@ -1,5 +1,5 @@
-import { CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { IconButton, Link, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalOverlay, Text } from '@chakra-ui/react';
+import { Link, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalOverlay } from '@chakra-ui/react';
+import { MotionCloseIcon, MotionIconButton, MotionMoonIcon, MotionSunIcon, MotionText } from 'lib/Motion';
 
 import { MobileMenuProps } from './MobileMenu.interface';
 
@@ -11,29 +11,41 @@ export const MobileMenu = (props: MobileMenuProps) => {
       <ModalOverlay />
       <ModalContent backgroundColor={colorMode === 'dark' ? 'hsla(210deg, 30%, 8%, 0.85)' : 'hsla(0deg, 0%, 100%, 0.85)'}>
         <ModalCloseButton _focus={{ outline: 0 }} p={8} backgroundColor="transparent">
-          <CloseIcon w={45} h={45} />
+          <MotionCloseIcon _focus={{ outline: 0 }} animate={{ opacity: 1, width: 45, height: 45 }} initial={{ opacity: 0, height: 0, width: 0 }} transition={{ type: 'spring', stiffness: 600 }} />
         </ModalCloseButton>
         <ModalBody mt={200} display="flex" flexDir={'column'} gap={8}>
           <Link href={'/'} onClick={closeModal}>
-            <Text fontSize={'3xl'} fontWeight="extrabold">
+            <MotionText initial={{ x: '100vw' }} animate={{ x: 0 }} transition={{ delay: 0.2 }} fontSize={'3xl'} fontWeight="extrabold">
               About Me
-            </Text>
+            </MotionText>
           </Link>
           <Link href={'/blog'} onClick={closeModal}>
-            <Text fontSize={'3xl'} fontWeight="extrabold">
+            <MotionText initial={{ x: '100vw' }} animate={{ x: 0 }} transition={{ delay: 0.5 }} fontSize={'3xl'} fontWeight="extrabold">
               Blog
-            </Text>
+            </MotionText>
           </Link>
           <Link href={'/top-tracks'} onClick={closeModal}>
-            <Text fontSize={'3xl'} fontWeight="extrabold">
+            <MotionText initial={{ x: '100vw' }} animate={{ x: 0 }} transition={{ delay: 0.8 }} fontSize={'3xl'} fontWeight="extrabold">
               Top Tracks
-            </Text>
+            </MotionText>
           </Link>
         </ModalBody>
         <ModalFooter display={'flex'} justifyContent="flex-start">
-          <IconButton aria-label="color-mode" _focus={{ outline: 0 }} backgroundColor="transparent" onClick={toggleMode}>
-            {colorMode === 'light' ? <MoonIcon w={5} h={5} /> : <SunIcon w={5} h={5} />}
-          </IconButton>
+          <MotionIconButton
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ delay: 1.1 }}
+            aria-label="color-mode"
+            _focus={{ outline: 0, backgroundColor: 'transparent' }}
+            backgroundColor="transparent"
+            onClick={toggleMode}
+          >
+            {colorMode === 'light' ? (
+              <MotionMoonIcon animate={{ y: 0, width: 20, height: 20 }} initial={{ y: '-10vh', height: 0, width: 0 }} transition={{ type: 'spring', stiffness: 600 }} />
+            ) : (
+              <MotionSunIcon animate={{ y: 0, width: 20, height: 20 }} initial={{ y: '-10vh', height: 0, width: 0 }} transition={{ type: 'spring', stiffness: 600 }} />
+            )}
+          </MotionIconButton>
         </ModalFooter>
       </ModalContent>
     </Modal>

@@ -1,15 +1,18 @@
-import { Box, Button, Link, ListItem, OrderedList, Spinner, Text } from '@chakra-ui/react';
+import { SpinnerIcon } from '@chakra-ui/icons';
+import { Box, Link, Spinner, Text } from '@chakra-ui/react';
 import fetcher from 'lib/fetcher/fetcher';
+import { MotionButton, MotionListItem, MotionOrderedList } from 'lib/Motion';
 import { Song, Tracks } from 'lib/spotify/types/spotify';
 import { useCallback, useEffect, useState } from 'react';
 import useSWR from 'swr';
 
 export const TopTracks = () => {
-  const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
-  const [tracks, setTracks] = useState<Song[]>([]);
+  const { data, error } = useSWR<Tracks>(`api/top-tracks?offset=${offset || 0}`, fetcher);
 
-  const { data, error } = useSWR<Tracks>(`api/top-tracks?offset=${offset}`, fetcher);
+  const [loading, setLoading] = useState(false);
+
+  const [tracks, setTracks] = useState<Song[]>([]);
 
   const onClick = () => {
     setLoading(true);
@@ -17,14 +20,13 @@ export const TopTracks = () => {
   };
 
   const loadMore = useCallback(() => {
-    if (data?.tracks) {
-      setTracks([...tracks, ...data?.tracks]);
-    }
-  }, [tracks, setTracks, data?.tracks]);
+    setTracks([...tracks, ...(data?.tracks || [])]);
+    setLoading(false);
+  }, [data?.tracks, tracks, setTracks]);
 
+  // TODO: needs a better way to handle this
   useEffect(() => {
     if (data?.tracks) {
-      setLoading(false);
       loadMore();
     }
   }, [data?.tracks]);
@@ -41,19 +43,31 @@ export const TopTracks = () => {
           <Text>Oops! Something went wrong. Please Try again Later</Text>
         ) : (
           <>
-            <OrderedList spacing={4} display="flex" flexDirection="column">
-              {tracks.map((track: Song) => (
-                <ListItem key={track.songUrl}>
-                  <Link href={track.songUrl} rel="noopener noreferrer">
-                    {`${track.title} - ${track.artist}`}
-                  </Link>
-                </ListItem>
-              ))}
-            </OrderedList>
+            {tracks ? (
+              <MotionOrderedList initial={{ x: '-100vw' }} animate={{ x: 0 }} spacing={4} display="flex" flexDirection="column">
+                {tracks?.map((track: Song) => (
+                  <MotionListItem transition={{ type: 'spring', stiffness: 300 }} key={track.songUrl} whileHover={{ scale: 1.3, originX: 0 }} whileTap={{ scale: 0.99 }}>
+                    <Link href={track.songUrl} rel="noopener noreferrer">
+                      {`${track.title} - ${track.artist}`}
+                    </Link>
+                  </MotionListItem>
+                ))}
+              </MotionOrderedList>
+            ) : (
+              <SpinnerIcon />
+            )}
             {data?.next ? (
-              <Button marginTop={8} disabled={loading} bgGradient="linear(to-r,#007BD3, #007311)" _hover={{ backgroundColor: '#007311' }} onClick={onClick}>
+              <MotionButton
+                marginTop={8}
+                _hover={{ backgroundImage: 'linear-gradient(to right, #007BD3, #007311)' }}
+                bgGradient="linear(to-r, #007BD3, #007311)"
+                disabled={loading}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={onClick}
+              >
                 {loading ? <Spinner /> : 'Load More'}
-              </Button>
+              </MotionButton>
             ) : undefined}
           </>
         )}
