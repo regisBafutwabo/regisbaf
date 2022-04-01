@@ -1,6 +1,6 @@
 # Intro
 
-This is my personal website but I plan to start writing articles so be on the lookout 👀
+This is my personal website but I plan to start writing blog on it so be on the lookout 👀
 
 ## 🛠 Built with:
 
