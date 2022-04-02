@@ -15,7 +15,13 @@ export default class Tracking {
   };
 
   // log specific events happening.
-  static event = ({ action, params }: { action: string; params: Record<string, unknown> }) => {
+  static event = ({
+    action,
+    params,
+  }: {
+    action: string;
+    params: Record<string, unknown>;
+  }) => {
     if (!Tracking.isProduction()) {
       return;
     }

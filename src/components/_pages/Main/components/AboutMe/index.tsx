@@ -1,7 +1,19 @@
 import { Box, Img, Link, Text, UnorderedList } from '@chakra-ui/react';
 import { MotionBox, MotionListItem, MotionText } from 'lib/Motion';
 import { DiReact } from 'react-icons/di';
-import { SiAntdesign, SiApollographql, SiChakraui, SiGraphql, SiHasura, SiMaterialui, SiNestjs, SiStyledcomponents, SiThreedotjs, SiTypescript, SiVercel } from 'react-icons/si';
+import {
+  SiAntdesign,
+  SiApollographql,
+  SiChakraui,
+  SiGraphql,
+  SiHasura,
+  SiMaterialui,
+  SiNestjs,
+  SiStyledcomponents,
+  SiThreedotjs,
+  SiTypescript,
+  SiVercel,
+} from 'react-icons/si';
 
 import { TechListType } from './AboutMe.interface';
 
@@ -39,7 +51,9 @@ const techList: TechListType[] = [
   {
     name: 'RelayJS',
     link: 'https://relay.dev/',
-    icon: <Img src={'https://relay.dev/img/relay.svg'} width={30} alt="relay" />,
+    icon: (
+      <Img src={'https://relay.dev/img/relay.svg'} width={30} alt="relay" />
+    ),
   },
   {
     name: 'GraphQL',
@@ -54,7 +68,13 @@ const techList: TechListType[] = [
   {
     name: 'eosjs',
     link: 'https://developers.eos.io/manuals/eosjs/latest/index',
-    icon: <Img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Eos_logo.png" width={30} alt="eos" />,
+    icon: (
+      <Img
+        src="https://upload.wikimedia.org/wikipedia/commons/8/81/Eos_logo.png"
+        width={30}
+        alt="eos"
+      />
+    ),
   },
   {
     name: 'Ant Design',
@@ -86,7 +106,10 @@ const techList: TechListType[] = [
 
 export const AboutMe = () => {
   return (
-    <MotionBox animate={{ marginTop: 20 }} width={['100%', '100%', '100%', '80%']}>
+    <MotionBox
+      animate={{ marginTop: 20 }}
+      width={['100%', '100%', '100%', '80%']}
+    >
       <MotionText fontStyle="italic" fontSize="xl">
         <span style={{ fontWeight: 'bold' }}>{`Hi, I'm Regis.`}</span>
         {` I'm a software developer and an enthusiast of using tech to solve problems. The list of things I'm incredibly passionate about includes ReactJS, React-native, Typescript, JavaScript, Design
@@ -95,11 +118,29 @@ export const AboutMe = () => {
       <MotionText fontSize="xl" animate={{ paddingTop: 32 }}>
         Some of the technologies that I have used include but not limited to:
       </MotionText>
-      <MotionBox animate={{ padding: 32 }} width={['100%', '100%', '100%', '80%']}>
+      <MotionBox
+        animate={{ padding: 32 }}
+        width={['100%', '100%', '100%', '80%']}
+      >
         <UnorderedList spacing={3} display="flex" flexDirection={'column'}>
           {techList.map((tech) => (
-            <MotionListItem key={tech.link} as="span" role={'listitem'} transition={{ type: 'spring', stiffness: 300 }} whileHover={{ scale: 1.3, originX: 0 }} whileTap={{ scale: 0.99 }}>
-              <Link href={tech.link} target="_blank" rel="noopener noreferrer" display="flex" flexDirection={'row'} alignItems="center" gap={4}>
+            <MotionListItem
+              key={tech.link}
+              as="span"
+              role={'listitem'}
+              transition={{ type: 'spring', stiffness: 300 }}
+              whileHover={{ scale: 1.05, originX: 0 }}
+              whileTap={{ scale: 0.99 }}
+            >
+              <Link
+                href={tech.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                display="flex"
+                flexDirection={'row'}
+                alignItems="center"
+                gap={4}
+              >
                 {tech.icon}
                 {tech.status === 'loading' ? (
                   <Box display="flex" flexDirection="row">

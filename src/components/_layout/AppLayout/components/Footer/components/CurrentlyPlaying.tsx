@@ -10,12 +10,36 @@ export default function CurrentlyPlaying() {
   const { data } = useSWR<CurrentlySong>('/api/currently-playing', fetcher);
 
   return (
-    <Box display="flex" flexDirection="row" alignItems={['flex-start', 'center']} gap={2}>
+    <Box
+      display="flex"
+      flexDirection="row"
+      alignItems={['flex-start', 'center']}
+      gap={2}
+    >
       <BsSpotify color="#1ED760" size={20} />
-      <Box display="flex" flexDirection={['column', 'row']} alignItems={['flex-start', 'center']} gap={2}>
+      <Box
+        display="flex"
+        flexDirection={['column', 'row']}
+        alignItems={['flex-start', 'center']}
+        gap={2}
+      >
         {data?.songUrl ? (
-          <Link href={data.songUrl} target="_blank" rel="noopener noreferrer" fontWeight={'bold'}>
-            <MotionText whileHover={{ scale: 1.1, textShadow: `0px 0px 8px ${colorMode === 'light' ? 'rgb(0,0,0)' : 'rgb(255,255,255)'}` }} fontSize="md" cursor={'pointer'}>
+          <Link
+            href={data.songUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            fontWeight={'bold'}
+          >
+            <MotionText
+              whileHover={{
+                scale: 1.1,
+                textShadow: `0px 0px 8px ${
+                  colorMode === 'light' ? 'rgb(0,0,0)' : 'rgb(255,255,255)'
+                }`,
+              }}
+              fontSize="md"
+              cursor={'pointer'}
+            >
               {data.title}
             </MotionText>
           </Link>

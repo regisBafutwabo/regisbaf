@@ -4,6 +4,21 @@ import { useState } from 'react';
 import { DesktopMenu, MobileMenu } from './Components';
 import { Nav } from './styles';
 
+const IconVariant = {
+  hidden: {
+    y: '-10vh',
+    height: 0,
+    width: 0,
+  },
+
+  visible: {
+    y: 0,
+    width: 20,
+    height: 20,
+    transition: { type: 'spring', stiffness: 600 },
+  },
+};
+
 export const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,8 +39,19 @@ export const Header = () => {
 
   return (
     <Nav mt={[4, 4, 4, 8]} mb={[4, 4, 4, 4]}>
-      <DesktopMenu toggleMode={toggleMode} colorMode={colorMode} openModal={openModal} />
-      <MobileMenu open={isModalOpen} closeModal={() => setIsModalOpen(false)} toggleMode={toggleMode} colorMode={colorMode} />
+      <DesktopMenu
+        toggleMode={toggleMode}
+        colorMode={colorMode}
+        openModal={openModal}
+        IconVariant={IconVariant}
+      />
+      <MobileMenu
+        open={isModalOpen}
+        closeModal={() => setIsModalOpen(false)}
+        toggleMode={toggleMode}
+        colorMode={colorMode}
+        IconVariant={IconVariant}
+      />
     </Nav>
   );
 };

@@ -35,13 +35,23 @@ export const getNowPlaying = async () => {
   });
 };
 
-export const getTopTracks = async ({ limit, time_range, offset, nextList }: getTopTracksParams) => {
+export const getTopTracks = async ({
+  limit,
+  time_range,
+  offset,
+  nextList,
+}: getTopTracksParams) => {
   const { access_token } = await getAccessToken();
 
-  return fetch(nextList ? nextList : `${TOP_TRACKS_ENDPOINT}?offset=${offset}&limit=${limit}&time_range=${time_range}`, {
-    headers: {
-      Authorization: `Bearer ${access_token}`,
-      'Content-Type': 'application/json',
-    },
-  });
+  return fetch(
+    nextList
+      ? nextList
+      : `${TOP_TRACKS_ENDPOINT}?offset=${offset}&limit=${limit}&time_range=${time_range}`,
+    {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+        'Content-Type': 'application/json',
+      },
+    }
+  );
 };
