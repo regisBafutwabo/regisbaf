@@ -10,8 +10,12 @@ export default function Document() {
       <Head>
         <link
           rel="preload"
-          href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@400;600;700&family=Nunito:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Martel&display=swap"
           as="font"
+        />
+        <link
+          rel="font"
+          href="https://fonts.googleapis.com/css2?family=Martel&display=swap"
         />
         <link
           rel="preload"
