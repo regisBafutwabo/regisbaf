@@ -8,9 +8,13 @@ export default class Tracking {
       return;
     }
     if (window) {
-      window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
-        page_path: url,
-      });
+      window.gtag(
+        'config',
+        process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS?.toString(),
+        {
+          page_path: url,
+        }
+      );
     }
   };
 
