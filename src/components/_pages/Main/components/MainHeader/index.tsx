@@ -11,8 +11,9 @@ export const MainHeader = () => {
         borderRadius="full"
         objectFit="contain"
         boxSize={['100px', '200px', '200px', '200px']}
-        src="/profile.jpeg"
+        src="/profile.webp"
         alt="Regis"
+        loading="lazy"
       />
     </Box>
   );
