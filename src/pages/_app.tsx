@@ -29,7 +29,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     useSystemColorMode: false,
   };
 
-  const updatedTheme = extendTheme({ ...theme, config: { ...theme.config, config } });
+  const updatedTheme = extendTheme({
+    ...theme,
+    config: { ...theme.config, config },
+  });
 
   useEffect(() => {
     const routeChangeComplete = (url: string) => {

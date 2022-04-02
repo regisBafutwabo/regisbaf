@@ -4,4 +4,8 @@ export type DesktopMenuProps = {
   toggleMode: () => void;
   colorMode: ColorMode;
   openModal: () => void;
+  IconVariant: {
+    hidden: any;
+    visible: any;
+  };
 };

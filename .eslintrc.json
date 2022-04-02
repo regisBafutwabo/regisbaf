@@ -1,8 +1,14 @@
 {
-  "plugins": ["@typescript-eslint", "prettier"],
-  "extends": ["plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended", 
-    "plugin:prettier/recommended","next/core-web-vitals"],
+  "plugins": [
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "extends": [
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "next/core-web-vitals"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2018,
@@ -17,7 +23,10 @@
       "version": "detect"
     }
   },
-  "ignorePatterns": ["node_modules/", ".next/*"],
+  "ignorePatterns": [
+    "node_modules/",
+    ".next/*"
+  ],
   "rules": {
     "react/react-in-jsx-scope": 0,
     "react/prefer-stateless-function": 0,
@@ -28,13 +37,16 @@
     "no-undef": "off",
     "/no-useless-escape": "off",
     "prettier/prettier": [
-      "error",
+      "warn",
       {
         "endOfLine": "auto",
-        "useTabs": false
+        "printWidth": 80
       }
     ],
-    "indent": ["error", 2],
+    "indent": [
+      "error",
+      2
+    ],
     "@typescript-eslint/no-empty-interface": "off",
     "no-empty-interface": "off"
   }

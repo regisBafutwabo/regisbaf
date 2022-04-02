@@ -3,4 +3,8 @@ export type MobileMenuProps = {
   colorMode: 'dark' | 'light';
   closeModal: () => void;
   toggleMode: () => void;
+  IconVariant: {
+    hidden: any;
+    visible: any;
+  };
 };

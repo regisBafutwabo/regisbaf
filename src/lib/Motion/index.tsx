@@ -1,5 +1,15 @@
 import { CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { Box, Button, IconButton, Img, Link, List, ListItem, OrderedList, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  IconButton,
+  Img,
+  Link,
+  List,
+  ListItem,
+  OrderedList,
+  Text,
+} from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 
 export const MotionBox = motion(Box);

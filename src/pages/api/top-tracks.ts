@@ -2,10 +2,17 @@ import { getTopTracks } from 'lib/spotify/spotify';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const offset = +req?.query?.offset;
 
-  const response = await getTopTracks({ limit: 10, offset: offset ? offset : 0, time_range: 'short_term' });
+  const response = await getTopTracks({
+    limit: 10,
+    offset: offset ? offset : 0,
+    time_range: 'short_term',
+  });
   const { items, next } = await response.json();
 
   const tracks = items.map((track: any) => ({
@@ -14,7 +21,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     title: track.name,
   }));
 
-  res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=43200');
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=86400, stale-while-revalidate=43200'
+  );
 
   return res.status(200).json({ tracks, next });
 }

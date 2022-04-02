@@ -1,5 +1,4 @@
-import { SpinnerIcon } from '@chakra-ui/icons';
-import { Box, Link, Spinner, Text } from '@chakra-ui/react';
+import { Box, Link, Skeleton, Spinner, Stack, Text } from '@chakra-ui/react';
 import fetcher from 'lib/fetcher/fetcher';
 import { MotionButton, MotionListItem, MotionOrderedList } from 'lib/Motion';
 import { Song, Tracks } from 'lib/spotify/types/spotify';
@@ -8,9 +7,12 @@ import useSWR from 'swr';
 
 export const TopTracks = () => {
   const [offset, setOffset] = useState(0);
-  const { data, error } = useSWR<Tracks>(`api/top-tracks?offset=${offset || 0}`, fetcher);
+  const { data, error } = useSWR<Tracks>(
+    `api/top-tracks?offset=${offset || 0}`,
+    fetcher
+  );
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [tracks, setTracks] = useState<Song[]>([]);
 
@@ -26,10 +28,10 @@ export const TopTracks = () => {
 
   // TODO: needs a better way to handle this
   useEffect(() => {
-    if (data?.tracks) {
+    if (data?.tracks && loading) {
       loadMore();
     }
-  }, [data?.tracks]);
+  }, [data?.tracks, loading, loadMore]);
 
   return (
     <Box padding={[4, 4, 0, 10]}>
@@ -44,9 +46,20 @@ export const TopTracks = () => {
         ) : (
           <>
             {tracks ? (
-              <MotionOrderedList initial={{ x: '-100vw' }} animate={{ x: 0 }} spacing={4} display="flex" flexDirection="column">
+              <MotionOrderedList
+                initial={{ x: '-100vw' }}
+                animate={{ x: 0 }}
+                spacing={4}
+                display="flex"
+                flexDirection="column"
+              >
                 {tracks?.map((track: Song) => (
-                  <MotionListItem transition={{ type: 'spring', stiffness: 300 }} key={track.songUrl} whileHover={{ scale: 1.3, originX: 0 }} whileTap={{ scale: 0.99 }}>
+                  <MotionListItem
+                    transition={{ type: 'spring', stiffness: 300 }}
+                    key={track.songUrl}
+                    whileHover={{ scale: 1.03, originX: 0 }}
+                    whileTap={{ scale: 0.8 }}
+                  >
                     <Link href={track.songUrl} rel="noopener noreferrer">
                       {`${track.title} - ${track.artist}`}
                     </Link>
@@ -54,12 +67,19 @@ export const TopTracks = () => {
                 ))}
               </MotionOrderedList>
             ) : (
-              <SpinnerIcon />
+              <Stack>
+                <Skeleton height="20px" />
+                <Skeleton height="20px" />
+                <Skeleton height="20px" />
+              </Stack>
             )}
             {data?.next ? (
               <MotionButton
                 marginTop={8}
-                _hover={{ backgroundImage: 'linear-gradient(to right, #007BD3, #007311)' }}
+                _hover={{
+                  backgroundImage:
+                    'linear-gradient(to right, #007BD3, #007311)',
+                }}
                 bgGradient="linear(to-r, #007BD3, #007311)"
                 disabled={loading}
                 whileHover={{ scale: 1.1 }}
