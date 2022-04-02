@@ -68,13 +68,7 @@ const techList: TechListType[] = [
   {
     name: 'eosjs',
     link: 'https://developers.eos.io/manuals/eosjs/latest/index',
-    icon: (
-      <Img
-        src="https://upload.wikimedia.org/wikipedia/commons/8/81/Eos_logo.png"
-        width={30}
-        alt="eos"
-      />
-    ),
+    icon: <Img src="/eos-logo.svg" width={30} alt="eos" />,
   },
   {
     name: 'Ant Design',
