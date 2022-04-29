@@ -42,13 +42,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     router.events.on('routeChangeComplete', routeChangeComplete);
   }, [router.events]);
 
-  useEffect(() => {
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js');
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  // if ('serviceWorker' in navigator) {
+  //   window.addEventListener('load', () => {
+  //     navigator.serviceWorker.register('/sw.js');
+  //   });
+  // }
+  // }, []);
 
   return (
     <ChakraProvider theme={updatedTheme}>

@@ -1,5 +1,6 @@
 import { Box, Img, Link, Text, UnorderedList } from '@chakra-ui/react';
 import { MotionBox, MotionListItem, MotionText } from 'lib/Motion';
+import Image from 'next/image';
 import { DiReact } from 'react-icons/di';
 import {
   SiAntdesign,
@@ -52,7 +53,12 @@ const techList: TechListType[] = [
     name: 'RelayJS',
     link: 'https://relay.dev/',
     icon: (
-      <Img src={'https://relay.dev/img/relay.svg'} width={30} alt="relay" />
+      <Img
+        src={'https://relay.dev/img/relay.svg'}
+        width={30}
+        height={30}
+        alt="relay"
+      />
     ),
   },
   {
@@ -68,7 +74,7 @@ const techList: TechListType[] = [
   {
     name: 'eosjs',
     link: 'https://developers.eos.io/manuals/eosjs/latest/index',
-    icon: <Img src="/eos-logo.svg" width={30} alt="eos" />,
+    icon: <Image src="/eos-logo.svg" width={30} height={30} alt="eos" />,
   },
   {
     name: 'Ant Design',
