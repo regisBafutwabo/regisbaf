@@ -9,20 +9,25 @@ export default function Document() {
     <Html>
       <Head>
         <link
-          rel="preload"
+          rel="stylesheet preload prefetch"
           href="https://fonts.googleapis.com/css2?family=Martel&display=swap"
-          as="font"
+          as="style"
+          type="text/css"
+          crossOrigin="anonymous"
         />
         <link
-          rel="font"
+          rel="stylesheet preload prefetch"
           href="https://fonts.googleapis.com/css2?family=Martel&display=swap"
+          as="style"
+          type="text/css"
+          crossOrigin="anonymous"
         />
-        <link
+        {/* <link
           rel="preload"
           href="api/top-tracks?offset=0"
           as="fetch"
           crossOrigin="anonymous"
-        />
+        /> */}
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:title" content={title} />
         <meta name="twitter:title" content={title} />
