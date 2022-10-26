@@ -12,18 +12,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [colorMode, setColorMode] = useState<'dark' | 'light'>('dark');
   const router = useRouter();
 
-  useEffect(() => {
-    if (window) {
-      const isDark = window.localStorage.getItem('prefers-dark');
-      if (!isDark) {
-        window.localStorage.setItem('prefers-dark', 'false');
-        setColorMode('light');
-      } else {
-        setColorMode(isDark === 'false' ? 'light' : 'dark');
-      }
-    }
-  }, []);
-
   const config: ThemeConfig = {
     initialColorMode: colorMode,
     useSystemColorMode: false,
@@ -35,20 +23,25 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   useEffect(() => {
+    if (window) {
+      const isDark = window.localStorage.getItem('prefers-dark');
+
+      if (!isDark) {
+        window.localStorage.setItem('prefers-dark', 'false');
+        setColorMode('light');
+      } else {
+        setColorMode('dark');
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     const routeChangeComplete = (url: string) => {
       Tracking.pageView(url);
     };
 
     router.events.on('routeChangeComplete', routeChangeComplete);
   }, [router.events]);
-
-  // useEffect(() => {
-  // if ('serviceWorker' in navigator) {
-  //   window.addEventListener('load', () => {
-  //     navigator.serviceWorker.register('/sw.js');
-  //   });
-  // }
-  // }, []);
 
   return (
     <ChakraProvider theme={updatedTheme}>

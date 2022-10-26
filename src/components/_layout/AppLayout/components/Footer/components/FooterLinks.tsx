@@ -17,19 +17,17 @@ export const FooterLinks = () => {
       <Box display="flex" flexDirection="column" gap={2}>
         {LINKS_DATA.map((link) => (
           <Link href={link.value} passHref key={link.value}>
-            <a>
-              <MotionText
-                whileHover={{
-                  scale: 1.1,
-                  textShadow: `0px 0px 8px ${
-                    colorMode === 'light' ? 'rgb(0,0,0)' : 'rgb(255,255,255)'
-                  }`,
-                  textDecoration: 'underline',
-                }}
-              >
-                {link.title}
-              </MotionText>
-            </a>
+            <MotionText
+              whileHover={{
+                scale: 1.1,
+                textShadow: `0px 0px 8px ${
+                  colorMode === 'light' ? 'rgb(0,0,0)' : 'rgb(255,255,255)'
+                }`,
+                textDecoration: 'underline',
+              }}
+            >
+              {link.title}
+            </MotionText>
           </Link>
         ))}
       </Box>

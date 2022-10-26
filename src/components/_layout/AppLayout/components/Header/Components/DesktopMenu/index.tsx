@@ -46,26 +46,22 @@ export const DesktopMenu = (props: DesktopMenuProps) => {
           {LINKS_DATA.map((linkData) => (
             <Box mr={5} key={linkData.value}>
               <Link href={linkData.value} passHref>
-                <a>
-                  <MotionText
-                    whileHover={{
-                      scale: 1.1,
-                      textShadow: `0px 0px 8px ${
-                        colorMode === 'light'
-                          ? 'rgb(0,0,0)'
-                          : 'rgb(255,255,255)'
-                      }`,
-                    }}
-                    fontWeight={pathname === linkData.value ? 700 : 'semibold'}
-                    fontSize="md"
-                    cursor={'pointer'}
-                    textDecoration={
-                      pathname === linkData.value ? 'underline' : 'none'
-                    }
-                  >
-                    {linkData.title}
-                  </MotionText>
-                </a>
+                <MotionText
+                  whileHover={{
+                    scale: 1.1,
+                    textShadow: `0px 0px 8px ${
+                      colorMode === 'light' ? 'rgb(0,0,0)' : 'rgb(255,255,255)'
+                    }`,
+                  }}
+                  fontWeight={pathname === linkData.value ? 700 : 'semibold'}
+                  fontSize="md"
+                  cursor={'pointer'}
+                  textDecoration={
+                    pathname === linkData.value ? 'underline' : 'none'
+                  }
+                >
+                  {linkData.title}
+                </MotionText>
               </Link>
             </Box>
           ))}
