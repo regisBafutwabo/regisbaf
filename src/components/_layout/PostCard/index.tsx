@@ -13,7 +13,13 @@ export const PostCard = ({ post }: PostCardProps) => {
   const { colorMode } = useColorMode();
 
   return (
-    <Box borderWidth="1px" borderRadius="lg" textAlign="left" padding={8}>
+    <Box
+      borderWidth="1px"
+      borderRadius="lg"
+      textAlign="left"
+      padding={8}
+      margin={4}
+    >
       <Link href={`/blog/${post?.slug?.current}`}>
         <Text
           fontSize="2xl"
@@ -27,7 +33,7 @@ export const PostCard = ({ post }: PostCardProps) => {
         {post?.description}
       </Text>
       <Box flexDirection="row" flexWrap="wrap" display="flex">
-        {post?.tags.length &&
+        {post?.tags?.length &&
           post?.tags.map(
             (tag: { label: string; value: string; _type: string }) => (
               <MotionBox
