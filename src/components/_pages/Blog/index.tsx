@@ -17,7 +17,7 @@ export const Blog = ({ posts }: BlogProps) => {
       </Text>
 
       <Box paddingY={8} textAlign="center">
-        {!posts.length && <p>No posts to show</p>}
+        {posts.length === 0 && <p>No posts to show</p>}
         {posts.length > 0 &&
           posts.map((post: any) => <PostCard post={post} key={post._id} />)}
       </Box>

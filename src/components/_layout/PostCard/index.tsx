@@ -15,18 +15,20 @@ export const PostCard = ({ post }: PostCardProps) => {
       <Text color="gray.400">{post?.description}</Text>
       <Box flexDirection="row" flexWrap="wrap" display="flex">
         {post?.tags.length &&
-          post?.tags.map((tag: string) => (
-            <Box
-              padding={1}
-              margin={2}
-              key={tag}
-              borderRadius="lg"
-              backgroundColor={colorMode === 'dark' ? 'gray.700' : 'gray.200'}
-              width="fit-content"
-            >
-              <Text>{tag}</Text>
-            </Box>
-          ))}
+          post?.tags.map(
+            (tag: { label: string; value: string; _type: string }) => (
+              <Box
+                padding={1}
+                margin={2}
+                key={tag.label}
+                borderRadius="lg"
+                backgroundColor={colorMode === 'dark' ? 'gray.700' : 'gray.200'}
+                width="fit-content"
+              >
+                <Text>{tag.value}</Text>
+              </Box>
+            )
+          )}
       </Box>
     </Box>
   );
