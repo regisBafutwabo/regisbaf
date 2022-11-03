@@ -3,16 +3,16 @@ import { Blog } from 'components/_pages/Blog';
 import { SANITY_API_VERSION, SANITY_DATA_SETS, SANITY_ID } from 'constants/env';
 import { createClient } from 'next-sanity';
 
-export default function BlogPage({ posts }: { posts: any[] }) {
+function BlogPage({ posts }: { posts: any[] }) {
   return (
     <>
-      <HeadTitle title="Regis Bafutwabo - Blog" />
+      <HeadTitle title="Blog" />
       <Blog posts={posts} />
     </>
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const client = createClient({
     projectId: SANITY_ID,
     dataset: SANITY_DATA_SETS,
@@ -28,3 +28,5 @@ export async function getStaticProps() {
     },
   };
 }
+
+export default BlogPage;
