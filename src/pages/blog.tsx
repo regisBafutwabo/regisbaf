@@ -12,7 +12,7 @@ function BlogPage({ posts }: { posts: any[] }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const client = createClient({
     projectId: SANITY_ID,
     dataset: SANITY_DATA_SETS,
