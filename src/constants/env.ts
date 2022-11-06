@@ -1,5 +1,15 @@
-export const SPOTIFY_PLAYING_LINK = process.env.NEXT_PUBLIC_CURRENTLY_PLAYING_API || '';
+// SPOTIFY
+export const SPOTIFY_PLAYING_LINK =
+  process.env.NEXT_PUBLIC_CURRENTLY_PLAYING_API || '';
 export const SPOTIFY_TOKEN = process.env.NEXT_PUBLIC_SPOTIFY_TOKEN || '';
-export const SPOTIFY_REFRESH_TOKEN = process.env.NEXT_PUBLIC_SPOTIFY_REFRESH_TOKEN || '';
-export const SPOTIFY_CLIENT_ID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || '';
-export const SPOTIFY_CLIENT_SECRET = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET || '';
+export const SPOTIFY_REFRESH_TOKEN =
+  process.env.NEXT_PUBLIC_SPOTIFY_REFRESH_TOKEN || '';
+export const SPOTIFY_CLIENT_ID =
+  process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || '';
+export const SPOTIFY_CLIENT_SECRET =
+  process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET || '';
+
+// SANITY
+export const SANITY_ID = process.env.NEXT_PUBLIC_SANITY_ID;
+export const SANITY_DATA_SETS = process.env.NEXT_PUBLIC_SANITY_DATA_SETS;
+export const SANITY_API_VERSION = process.env.NEXT_PUBLIC_SANITY_API_VERSION;

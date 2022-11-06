@@ -1,4 +1,4 @@
-import { HeadTitle } from 'components/_common/HeadTitle';
+import { HeadTitle } from 'components/common/HeadTitle';
 import { Main } from 'components/_pages/Main';
 import type { NextPage } from 'next';
 

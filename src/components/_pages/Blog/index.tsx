@@ -1,7 +1,9 @@
 import { Box, Text } from '@chakra-ui/react';
+import { PostCard } from 'components/layout/PostCard';
 import { MotionBox } from 'lib/Motion';
+import { BlogProps } from './Blog.types';
 
-export const Blog = () => {
+export const Blog = ({ posts }: BlogProps) => {
   return (
     <MotionBox
       animate={{ x: 0 }}
@@ -10,15 +12,19 @@ export const Blog = () => {
       paddingY={8}
       height="60vh"
     >
-      <Text fontFamily={'heading'} fontSize="2xl" textAlign={'center'}>
-        Welcome To My Blog Section
+      <Text
+        fontWeight="bold"
+        fontFamily={'heading'}
+        fontSize="4xl"
+        textAlign={'center'}
+      >
+        All Posts
       </Text>
 
       <Box paddingY={8} textAlign="center">
-        <Text> Please come back later.</Text>
-        {/* <Box style={{ textAlign: '-webkit-center' }}>
-          <Img src="/sailor3.svg" objectFit={'fill'} width={500} />
-        </Box> */}
+        {posts.length === 0 && <p>No posts to show</p>}
+        {posts.length > 0 &&
+          posts.map((post: any) => <PostCard post={post} key={post._id} />)}
       </Box>
     </MotionBox>
   );
