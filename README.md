@@ -8,7 +8,7 @@ This is my personal website but I plan to start writing some articles in the `bl
 - [Chakra UI](https://chakra-ui.com/)
 - [Spotify API](https://developer.spotify.com/)
 - [Motion](https://www.framer.com/)
-- [Sanity](https://sanity.io
+- [Sanity](https://sanity.io)
 
 ## License
 
