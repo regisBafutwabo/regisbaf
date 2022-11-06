@@ -29,7 +29,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/components/_pages/Blog/index.mdx",
+    "src/components/_pages/Blogs/index.mdx",
     "src/pages/blog/index.mdx"
   ],
   "exclude": [

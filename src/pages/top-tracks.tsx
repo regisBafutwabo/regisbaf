@@ -1,4 +1,4 @@
-import { HeadTitle } from 'components/_common/HeadTitle';
+import { HeadTitle } from 'components/common/HeadTitle';
 import { TopTracks } from 'components/_pages/TopTracks';
 import { NextPage } from 'next';
 
