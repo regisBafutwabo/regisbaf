@@ -1,5 +1,5 @@
 import { Box, Text } from '@chakra-ui/react';
-import { PostCard } from 'components/_layout/PostCard';
+import { PostCard } from 'components/layout/PostCard';
 import { MotionBox } from 'lib/Motion';
 import { BlogProps } from './Blog.types';
 
@@ -12,7 +12,12 @@ export const Blog = ({ posts }: BlogProps) => {
       paddingY={8}
       height="60vh"
     >
-      <Text fontFamily={'heading'} fontSize="2xl" textAlign={'center'}>
+      <Text
+        fontWeight="bold"
+        fontFamily={'heading'}
+        fontSize="4xl"
+        textAlign={'center'}
+      >
         All Posts
       </Text>
 
