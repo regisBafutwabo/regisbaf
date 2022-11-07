@@ -14,7 +14,11 @@ const BlogSlug: NextPage = (props: any) => {
 
   return (
     <>
-      <HeadTitle title={post[0].title} />
+      <HeadTitle title={post[0].title}>
+        <meta name="description" content={post[0].title} />
+        <meta name="og:title" property="og:title" content={post[0].title} />
+        <meta name="twitter:card" content={post[0].title} />
+      </HeadTitle>
       <Box>
         {post[0] ? (
           <Post readingTime={readingTime} post={post[0]} source={content} />
