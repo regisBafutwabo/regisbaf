@@ -1,4 +1,5 @@
 import { Box } from '@chakra-ui/react';
+import { HeadTitle } from 'components/common/HeadTitle';
 import { PostSkeleton } from 'components/common/Skeletons/postSkeleton';
 import { Post } from 'components/_pages/Post';
 import { SANITY_API_VERSION, SANITY_DATA_SETS, SANITY_ID } from 'constants/env';
@@ -12,13 +13,16 @@ const BlogSlug: NextPage = (props: any) => {
   const { post, content, readingTime, tweets } = props;
 
   return (
-    <Box paddingInline="8">
-      {post[0] ? (
-        <Post readingTime={readingTime} post={post[0]} source={content} />
-      ) : (
-        <PostSkeleton />
-      )}
-    </Box>
+    <>
+      <HeadTitle title={post[0].title} />
+      <Box>
+        {post[0] ? (
+          <Post readingTime={readingTime} post={post[0]} source={content} />
+        ) : (
+          <PostSkeleton />
+        )}
+      </Box>
+    </>
   );
 };
 
