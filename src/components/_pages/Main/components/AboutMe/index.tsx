@@ -107,7 +107,7 @@ const techList: TechListType[] = [
 export const AboutMe = () => {
   return (
     <MotionBox
-      animate={{ marginTop: 20 }}
+      animate={{ marginTop: 50 }}
       width={['100%', '100%', '100%', '80%']}
     >
       <MotionText fontStyle="italic" fontSize="xl">

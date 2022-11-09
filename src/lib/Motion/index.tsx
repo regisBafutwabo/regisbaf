@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   IconButton,
-  Img,
   Link,
   List,
   ListItem,
@@ -11,6 +10,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export const MotionBox = motion(Box);
 
@@ -26,7 +26,7 @@ export const MotionLink = motion(Link);
 
 export const MotionText = motion(Text);
 
-export const MotionImage = motion(Img);
+export const MotionImage = motion(Image);
 
 export const MotionIconButton = motion(IconButton);
 
