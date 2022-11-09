@@ -1,12 +1,7 @@
-import {
-  Box,
-  Container,
-  Text,
-  textDecoration,
-  useColorMode,
-} from '@chakra-ui/react';
+import { Box, Text, useColorMode } from '@chakra-ui/react';
 import { MotionBox } from 'lib/Motion';
 import Link from 'next/link';
+
 import { PostCardProps } from './PostCard.types';
 
 export const PostCard = ({ post }: PostCardProps) => {
@@ -20,7 +15,7 @@ export const PostCard = ({ post }: PostCardProps) => {
       padding={8}
       margin={4}
     >
-      <Link href={`/blog/${post?.slug?.current}`}>
+      <Link href={`/blog/${post?.slug?.current}`} passHref>
         <Text
           fontSize="2xl"
           fontWeight="bold"
