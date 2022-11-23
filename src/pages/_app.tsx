@@ -2,6 +2,7 @@ import 'styles/globals.css';
 
 import { ChakraProvider, extendTheme, ThemeConfig } from '@chakra-ui/react';
 import { MDXProvider } from '@mdx-js/react';
+import { Analytics } from '@vercel/analytics/react';
 import { AppLayout } from 'components/layout';
 import { theme } from 'config/theme';
 import Tracking from 'lib/ga';
@@ -49,6 +50,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <AppLayout>
         <MDXProvider>
           <Component {...pageProps} />
+          <Analytics />
         </MDXProvider>
       </AppLayout>
     </ChakraProvider>
