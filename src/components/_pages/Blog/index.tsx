@@ -1,6 +1,7 @@
 import { Box, Text } from '@chakra-ui/react';
 import { PostCard } from 'components/layout/PostCard';
 import { MotionBox } from 'lib/Motion';
+
 import { BlogProps } from './Blog.types';
 
 export const Blog = ({ posts }: BlogProps) => {

@@ -17,7 +17,7 @@ export const AppLayout = ({ children }: { children: ReactNode }) => {
       pl={[0, 0, 0, 8]}
     >
       <Header />
-      <Box marginBottom={8} minHeight="80vh">
+      <Box marginBottom={8} minHeight="100vh">
         {children}
       </Box>
       <Footer />
