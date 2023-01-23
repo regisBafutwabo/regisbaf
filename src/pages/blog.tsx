@@ -1,5 +1,5 @@
-import { HeadTitle } from 'components/common/HeadTitle';
 import { Blog } from 'components/_pages/Blog';
+import { HeadTitle } from 'components/common/HeadTitle';
 import { SANITY_API_VERSION, SANITY_DATA_SETS, SANITY_ID } from 'constants/env';
 import { createClient } from 'next-sanity';
 
