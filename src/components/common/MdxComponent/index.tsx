@@ -1,16 +1,19 @@
 import { MDXRemote } from 'next-mdx-remote';
-import Image from 'next/image';
+
+import { Header } from './components/Header';
+import { Link } from './components/Link';
+import { RoundedImage } from './components/RoundedImage';
+import { UList } from './components/UnorderedList';
 import { ConsCard } from './ConsCard';
 import ProsCard from './ProsCard';
-
-function RoundedImage(props: any) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />;
-}
 
 const MDXComponents = {
   Image: RoundedImage,
   ConsCard,
   ProsCard,
+  h3: Header,
+  ul: UList,
+  a: Link,
 };
 
 export const RenderHtml = ({ content }: { content: any }) => {
