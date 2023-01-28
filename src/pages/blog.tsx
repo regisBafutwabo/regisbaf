@@ -1,9 +1,17 @@
 import { Blog } from 'components/Organisms/Blog';
 import { SANITY_API_VERSION, SANITY_DATA_SETS, SANITY_ID } from 'constants/env';
 import { createClient } from 'next-sanity';
+import Head from 'next/head';
 
 function BlogPage({ posts }: { posts: any[] }) {
-  return <Blog posts={posts} />;
+  return (
+    <>
+      <Head>
+        <title>{`Blog - Regis Bafutwabo`}</title>
+      </Head>
+      <Blog posts={posts} />
+    </>
+  );
 }
 
 export async function getStaticProps() {

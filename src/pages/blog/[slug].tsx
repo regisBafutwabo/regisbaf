@@ -14,6 +14,7 @@ const BlogSlug: NextPage = (props: any) => {
   return (
     <>
       <Head>
+        <title>{`${post.title} - Regis Bafutwabo`}</title>
         <meta property="article:published_time" content={post._updatedAt} />
       </Head>
       <Box>
