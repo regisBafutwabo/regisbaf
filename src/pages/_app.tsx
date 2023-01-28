@@ -3,7 +3,7 @@ import 'styles/globals.css';
 import { ChakraProvider, extendTheme, ThemeConfig } from '@chakra-ui/react';
 import { MDXProvider } from '@mdx-js/react';
 import { Analytics } from '@vercel/analytics/react';
-import { AppLayout } from 'components/layout';
+import { AppLayout } from 'components/Templates';
 import { theme } from 'config/theme';
 import Tracking from 'lib/ga';
 import type { AppProps } from 'next/app';

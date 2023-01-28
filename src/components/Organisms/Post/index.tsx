@@ -1,5 +1,5 @@
 import { Box, Text, useColorMode } from '@chakra-ui/react';
-import { RenderHtml } from 'components/common/MdxComponent';
+import { RenderHtml } from 'components/Molecules/Mdx';
 import { format } from 'date-fns';
 import { MotionBox } from 'lib/Motion';
 import { PostProps } from './Post.types';

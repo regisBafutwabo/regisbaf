@@ -1,11 +1,8 @@
+import { Header, Link, RoundedImage, UList } from 'components/Atoms/Mdx';
 import { MDXRemote } from 'next-mdx-remote';
 
-import { Header } from './components/Header';
-import { Link } from './components/Link';
-import { RoundedImage } from './components/RoundedImage';
-import { UList } from './components/UnorderedList';
-import { ConsCard } from './ConsCard';
-import ProsCard from './ProsCard';
+import { ConsCard } from '../../Atoms/Mdx/ConsCard';
+import ProsCard from '../../Atoms/Mdx/ProsCard';
 
 const MDXComponents = {
   Image: RoundedImage,
