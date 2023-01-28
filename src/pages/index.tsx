@@ -1,14 +1,8 @@
-import { HeadTitle } from 'components/common/HeadTitle';
-import { Main } from 'components/_pages/Main';
+import { Main } from 'components/Organisms/Main';
 import type { NextPage } from 'next';
 
 const HomePage: NextPage = () => {
-  return (
-    <>
-      <HeadTitle title="Regis Bafutwabo - Home" />
-      <Main />
-    </>
-  );
+  return <Main />;
 };
 
 export default HomePage;

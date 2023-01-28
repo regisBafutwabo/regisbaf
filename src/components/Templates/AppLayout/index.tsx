@@ -1,4 +1,5 @@
 import { Box } from '@chakra-ui/react';
+import { Meta } from 'components/Atoms/Container';
 import { MotionBox } from 'lib/Motion';
 import { ReactNode } from 'react';
 
@@ -16,6 +17,7 @@ export const AppLayout = ({ children }: { children: ReactNode }) => {
       ml={[4, 4, 4, 'auto']}
       pl={[0, 0, 0, 8]}
     >
+      <Meta />
       <Header />
       <Box marginBottom={8} minHeight="100vh">
         {children}

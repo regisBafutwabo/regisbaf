@@ -1,6 +1,6 @@
 import { Box, Spinner } from '@chakra-ui/react';
 
-export const LoadingScreen = () => {
+export const LoadingSpinner = () => {
   return (
     <Box
       display={'flex'}
