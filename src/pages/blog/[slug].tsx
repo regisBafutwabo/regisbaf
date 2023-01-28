@@ -13,10 +13,15 @@ const BlogSlug: NextPage = (props: any) => {
 
   return (
     <>
-      <Head>
-        <title>{`${post.title} - Regis Bafutwabo`}</title>
-        <meta property="article:published_time" content={post._updatedAt} />
-      </Head>
+      {post[0]?.title && (
+        <Head>
+          <title>{`${post[0].title} - Regis Bafutwabo`}</title>
+          <meta
+            property="article:published_time"
+            content={post[0]._updatedAt}
+          />
+        </Head>
+      )}
       <Box>
         {post[0] ? (
           <Post readingTime={readingTime} post={post[0]} source={content} />
