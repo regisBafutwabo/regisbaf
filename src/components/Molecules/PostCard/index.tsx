@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { PostCardProps } from './PostCard.types';
 
 export const PostCard = ({ post }: PostCardProps) => {
-  console.log('POSTY', post);
   const { colorMode } = useColorMode();
 
   return (
