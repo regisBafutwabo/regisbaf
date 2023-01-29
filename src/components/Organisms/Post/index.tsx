@@ -17,19 +17,21 @@ export const Post = ({ post, source, readingTime }: PostProps) => {
           {post.title}
         </Text>
       </Box>
-      <Box
-        display="flex"
-        justifyContent="center"
-        marginBottom={16}
-        rounded="md"
-      >
-        <Image
-          src={urlForImage(post.cover).url()}
-          alt="cover"
-          width={500}
-          height={500}
-        />
-      </Box>
+      {post.cover && (
+        <Box
+          display="flex"
+          justifyContent="center"
+          marginBottom={16}
+          rounded="md"
+        >
+          <Image
+            src={urlForImage(post.cover).url()}
+            alt="cover"
+            width={500}
+            height={500}
+          />
+        </Box>
+      )}
       <Box
         display="flex"
         flexDirection="row"
