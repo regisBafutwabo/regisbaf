@@ -1,37 +1,54 @@
 import { Box, Link, Skeleton, Spinner, Stack, Text } from '@chakra-ui/react';
-import fetcher from 'lib/fetcher/fetcher';
 import { MotionButton, MotionListItem, MotionOrderedList } from 'lib/Motion';
-import { Song, Tracks } from 'lib/spotify/types/spotify';
-import { useCallback, useEffect, useState } from 'react';
-import useSWR from 'swr';
+import { getTopTracks, getTracks } from 'lib/spotify/spotify';
+import { Song } from 'lib/spotify/types/spotify';
+import { useState } from 'react';
 
-export const TopTracks = () => {
-  const [offset, setOffset] = useState(0);
-  const { data, error } = useSWR<Tracks>(
-    `api/top-tracks?offset=${offset || 0}`,
-    fetcher
-  );
+import { TopTracksProps } from './TopTracks.types';
 
-  const [loading, setLoading] = useState(true);
+export const TopTracks = (props: TopTracksProps) => {
+  const { items, next } = props;
 
-  const [tracks, setTracks] = useState<Song[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [nextOffset, setNextOffset] = useState(next);
+  const [tracks, setTracks] = useState<Song[]>(items);
 
-  const onClick = () => {
-    setLoading(true);
-    setOffset(offset + 10);
+  const getNextParams = () => {
+    const url = new URL(nextOffset);
+    const params = new URLSearchParams(url.href);
+    const offset = parseInt(params.get('offset') as string, 10);
+    const limit = parseInt(params.get('limit') as string, 10);
+    const time_range = params.get('time_range') as
+      | 'short_term'
+      | 'long_term'
+      | 'medium_term';
+
+    return {
+      offset,
+      limit,
+      time_range,
+    };
   };
 
-  const loadMore = useCallback(() => {
-    setTracks([...tracks, ...(data?.tracks || [])]);
-    setLoading(false);
-  }, [data?.tracks, tracks, setTracks]);
+  const loadMore = async () => {
+    try {
+      setLoading(true);
+      setHasError(false);
 
-  // TODO: needs a better way to handle this
-  useEffect(() => {
-    if (data?.tracks && loading) {
-      loadMore();
+      const params = getNextParams();
+      const res = await getTopTracks({ nextList: nextOffset, ...params });
+      const { items, next } = (await res.json()) as any;
+      const newTracks = getTracks(items);
+
+      setTracks([...tracks, ...(newTracks || [])]);
+      setNextOffset(next);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      setHasError(true);
     }
-  }, [data?.tracks, loading, loadMore]);
+  };
 
   return (
     <Box padding={[4, 4, 0, 10]}>
@@ -41,7 +58,7 @@ export const TopTracks = () => {
         </Text>
       </Box>
       <Box marginTop={8}>
-        {error ? (
+        {hasError ? (
           <Text>Oops! Something went wrong. Please Try again Later</Text>
         ) : (
           <>
@@ -73,7 +90,7 @@ export const TopTracks = () => {
                 <Skeleton height="20px" />
               </Stack>
             )}
-            {data?.next ? (
+            {nextOffset ? (
               <MotionButton
                 marginTop={8}
                 _hover={{
@@ -84,7 +101,7 @@ export const TopTracks = () => {
                 disabled={loading}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                onClick={onClick}
+                onClick={loadMore}
               >
                 {loading ? <Spinner /> : 'Load More'}
               </MotionButton>
