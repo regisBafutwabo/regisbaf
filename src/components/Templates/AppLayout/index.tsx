@@ -19,7 +19,7 @@ export const AppLayout = ({ children }: { children: ReactNode }) => {
     >
       <Meta />
       <Header />
-      <Box marginBottom={8} minHeight="100vh">
+      <Box marginBottom={8} minHeight="100vh" overflowY="scroll">
         {children}
       </Box>
       <Footer />
