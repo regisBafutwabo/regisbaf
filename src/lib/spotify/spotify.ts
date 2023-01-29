@@ -55,3 +55,13 @@ export const getTopTracks = async ({
     }
   );
 };
+
+export const getTracks = (items: any[]) => {
+  const tracks = items.map((track: any) => ({
+    artist: track.artists.map((_artist: any) => _artist?.name).join(', '),
+    songUrl: track.external_urls.spotify,
+    title: track.name,
+  }));
+
+  return tracks;
+};
