@@ -1,16 +1,15 @@
 import { Box } from '@chakra-ui/react';
 import { PostSkeleton } from 'components/Molecules/Skeletons';
 import { Post } from 'components/Organisms/Post';
-import { SANITY_API_VERSION, SANITY_DATA_SETS, SANITY_ID } from 'constants/env';
 import { mdxToHtml } from 'lib/Mdx';
+import { getClient, sanityClient } from 'lib/sanity';
 import { getTweets } from 'lib/twitter';
 import { NextPage } from 'next';
-import { createClient } from 'next-sanity';
 import Head from 'next/head';
 
 const BlogSlug: NextPage = (props: any) => {
   const { post, content, readingTime } = props;
-
+  console.log('POST', post);
   return (
     <>
       {post[0]?.title && (
@@ -34,14 +33,7 @@ const BlogSlug: NextPage = (props: any) => {
 };
 
 export async function getStaticPaths() {
-  const client = createClient({
-    projectId: SANITY_ID,
-    dataset: SANITY_DATA_SETS,
-    apiVersion: SANITY_API_VERSION,
-    useCdn: false,
-  });
-
-  const posts = await client.fetch(`*[_type == "post"]`);
+  const posts = await sanityClient.fetch(`*[_type == "post"]`);
 
   return {
     paths: posts.map((p: any) => ({ params: { slug: `${p?.slug?.current}` } })),
@@ -49,13 +41,8 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }: any) {
-  const client = createClient({
-    projectId: SANITY_ID,
-    dataset: SANITY_DATA_SETS,
-    apiVersion: SANITY_API_VERSION,
-    useCdn: false,
-  });
+export async function getStaticProps({ params, preview = false }: any) {
+  const client = getClient(preview);
 
   const posts = await client.fetch(
     `*[_type == "post" && slug.current=="${params.slug}"]`

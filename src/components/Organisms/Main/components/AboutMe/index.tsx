@@ -3,15 +3,17 @@ import { MotionBox, MotionListItem, MotionText } from 'lib/Motion';
 import Image from 'next/image';
 import { DiReact } from 'react-icons/di';
 import {
+  SiAmazonaws,
   SiAntdesign,
   SiApollographql,
   SiChakraui,
   SiGraphql,
   SiHasura,
+  SiJest,
   SiMaterialui,
   SiNestjs,
   SiStyledcomponents,
-  SiThreedotjs,
+  SiTailwindcss,
   SiTypescript,
   SiVercel,
 } from 'react-icons/si';
@@ -92,15 +94,24 @@ const techList: TechListType[] = [
     icon: <SiStyledcomponents color="#9f673f" size="30" />,
   },
   {
+    name: 'Tailwind-css',
+    link: 'https://tailwindcss.com/',
+    icon: <SiTailwindcss color="#37bcf8" size="30" />,
+  },
+  {
     name: 'Chakra UI',
     link: 'https://chakra-ui.com/',
     icon: <SiChakraui color="#38b2ab" size="30" />,
   },
   {
-    name: 'ThreeJs',
-    link: 'https://threejs.org/',
-    icon: <SiThreedotjs size="30" />,
-    status: 'loading',
+    name: 'Jest',
+    link: 'https://jestjs.io/',
+    icon: <SiJest color="#15c213" size="30" />,
+  },
+  {
+    name: 'AWS-CDK',
+    link: 'https://aws.amazon.com/cdk/',
+    icon: <SiAmazonaws color="#ec7211" size="30" />,
   },
 ];
 

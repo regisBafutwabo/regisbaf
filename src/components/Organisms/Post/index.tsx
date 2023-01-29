@@ -2,6 +2,9 @@ import { Box, Text, useColorMode } from '@chakra-ui/react';
 import { RenderHtml } from 'components/Molecules/Mdx';
 import { format } from 'date-fns';
 import { MotionBox } from 'lib/Motion';
+import { urlForImage } from 'lib/sanity';
+import Image from 'next/image';
+
 import { PostProps } from './Post.types';
 
 export const Post = ({ post, source, readingTime }: PostProps) => {
@@ -13,6 +16,19 @@ export const Post = ({ post, source, readingTime }: PostProps) => {
         <Text fontSize={'4xl'} fontWeight="bold">
           {post.title}
         </Text>
+      </Box>
+      <Box
+        display="flex"
+        justifyContent="center"
+        marginBottom={16}
+        rounded="md"
+      >
+        <Image
+          src={urlForImage(post.cover).url()}
+          alt="cover"
+          width={500}
+          height={500}
+        />
       </Box>
       <Box
         display="flex"
