@@ -3,11 +3,7 @@ import { getTopTracks, getTracks } from 'lib/spotify/spotify';
 import { NextPage } from 'next';
 import Head from 'next/head';
 
-const Tracks: NextPage<{ items: any[]; next: string; error: any }> = ({
-  items,
-  next,
-  error,
-}) => {
+const Tracks: NextPage<{ items: any[]; next: string }> = ({ items, next }) => {
   const tracks = getTracks(items);
 
   return (
@@ -15,11 +11,7 @@ const Tracks: NextPage<{ items: any[]; next: string; error: any }> = ({
       <Head>
         <title>{`Top Tracks - Regis Bafutwabo`}</title>
       </Head>
-      {error ? (
-        <TopTracks items={tracks} next={next} />
-      ) : (
-        'OOps!! something went wrong. Please Try again later!'
-      )}
+      <TopTracks items={tracks} next={next} />
     </>
   );
 };
@@ -30,13 +22,10 @@ export async function getServerSideProps() {
     offset: 0,
     time_range: 'short_term',
   });
-  try {
-    const { items, next } = await res.json();
 
-    return { props: { items, next } };
-  } catch (error) {
-    return { props: error };
-  }
+  const { items, next } = await res.json();
+
+  return { props: { items, next } };
 }
 
 export default Tracks;
