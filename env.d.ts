@@ -10,5 +10,6 @@ namespace NodeJS {
     NEXT_PUBLIC_SANITY_ID: string;
     NEXT_PUBLIC_SANITY_DATA_SETS: string;
     NEXT_PUBLIC_SANITY_API_VERSION: string;
+    NEXT_PUBLIC_DATABASE_URL: string;
   }
 }
