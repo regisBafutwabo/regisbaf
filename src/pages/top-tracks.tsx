@@ -22,6 +22,7 @@ export async function getServerSideProps() {
     offset: 0,
     time_range: 'short_term',
   });
+
   const { items, next } = await res.json();
 
   return { props: { items, next } };
