@@ -9,7 +9,6 @@ import Head from 'next/head';
 
 const BlogSlug: NextPage = (props: any) => {
   const { post, content, readingTime } = props;
-  console.log('POST', post);
   return (
     <>
       {post[0]?.title && (

@@ -13,3 +13,6 @@ export const SPOTIFY_CLIENT_SECRET =
 export const SANITY_ID = process.env.NEXT_PUBLIC_SANITY_ID;
 export const SANITY_DATA_SETS = process.env.NEXT_PUBLIC_SANITY_DATA_SETS;
 export const SANITY_API_VERSION = process.env.NEXT_PUBLIC_SANITY_API_VERSION;
+
+// PRISMA
+export const DATABASE_URL = process.env.NEXT_PUBLIC_DATABASE_URL;
