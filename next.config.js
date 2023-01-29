@@ -13,6 +13,9 @@ const withMDX = require('@next/mdx')({
 
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    domains: ['cdn.sanity.io'],
+  },
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
 };
 

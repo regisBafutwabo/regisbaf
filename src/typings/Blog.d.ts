@@ -7,6 +7,13 @@ export type Post = {
   author: string;
   content: string;
   description: string;
+  cover: {
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+    _type: string;
+  };
   slug: {
     _type: string;
     current: string;

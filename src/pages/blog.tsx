@@ -1,6 +1,5 @@
 import { Blog } from 'components/Organisms/Blog';
-import { SANITY_API_VERSION, SANITY_DATA_SETS, SANITY_ID } from 'constants/env';
-import { createClient } from 'next-sanity';
+import { getClient } from 'lib/sanity';
 import Head from 'next/head';
 
 function BlogPage({ posts }: { posts: any[] }) {
@@ -14,13 +13,8 @@ function BlogPage({ posts }: { posts: any[] }) {
   );
 }
 
-export async function getStaticProps() {
-  const client = createClient({
-    projectId: SANITY_ID,
-    dataset: SANITY_DATA_SETS,
-    apiVersion: SANITY_API_VERSION,
-    useCdn: false,
-  });
+export async function getStaticProps({ preview = false }) {
+  const client = getClient(preview);
 
   const posts = await client.fetch(`*[_type == "post"]`);
 
