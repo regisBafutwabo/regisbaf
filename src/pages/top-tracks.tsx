@@ -11,7 +11,7 @@ const Tracks: NextPage<{ items: any[]; next: string }> = ({ items, next }) => {
       <Head>
         <title>{`Top Tracks - Regis Bafutwabo`}</title>
       </Head>
-      <TopTracks items={tracks} next={next} />
+      {tracks.length > 0 && <TopTracks items={tracks} next={next} />}
     </>
   );
 };
