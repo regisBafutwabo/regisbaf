@@ -17,6 +17,7 @@ const nextConfig = {
     domains: ['cdn.sanity.io'],
   },
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+  experimental: { appDir: false },
 };
 
 module.exports = withMDX(nextConfig);

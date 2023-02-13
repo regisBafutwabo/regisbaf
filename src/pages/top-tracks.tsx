@@ -1,31 +1,23 @@
-import { TopTracks } from 'components/Organisms/TopTracks';
-import { getTopTracks, getTracks } from 'lib/spotify/spotify';
+import { TopTracks } from 'components/Organisms';
+import fetcher from 'lib/fetcher/fetcher';
+import { Tracks } from 'lib/spotify/types/spotify';
 import { NextPage } from 'next';
 import Head from 'next/head';
+import useSWR from 'swr';
 
-const Tracks: NextPage<{ items: any[]; next: string }> = ({ items, next }) => {
-  const tracks = getTracks(items);
+const TracksPage: NextPage<{ items: any[]; next: string }> = () => {
+  const { data } = useSWR<Tracks>(`api/top-tracks?offset=0`, fetcher);
 
   return (
     <>
       <Head>
         <title>{`Top Tracks - Regis Bafutwabo`}</title>
       </Head>
-      {tracks.length > 0 && <TopTracks items={tracks} next={next} />}
+      {data && data?.tracks.length > 0 && (
+        <TopTracks items={data?.tracks} next={data?.next} />
+      )}
     </>
   );
 };
 
-export async function getServerSideProps() {
-  const res = await getTopTracks({
-    limit: 10,
-    offset: 0,
-    time_range: 'short_term',
-  });
-
-  const { items, next } = await res.json();
-
-  return { props: { items, next } };
-}
-
-export default Tracks;
+export default TracksPage;

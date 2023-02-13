@@ -1,5 +1,6 @@
-import { useColorMode } from '@chakra-ui/react';
 import { useState } from 'react';
+
+import { useColorMode } from '@chakra-ui/react';
 
 import { DesktopMenu, MobileMenu } from './Components';
 import { Nav } from './styles';
@@ -47,7 +48,9 @@ export const Header = () => {
       />
       <MobileMenu
         open={isModalOpen}
-        closeModal={() => setIsModalOpen(false)}
+        closeModal={() => {
+          setIsModalOpen(false);
+        }}
         toggleMode={toggleMode}
         colorMode={colorMode}
         IconVariant={IconVariant}
