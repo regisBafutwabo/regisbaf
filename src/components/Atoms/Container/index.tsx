@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 export const Meta = (props: any) => {
   const { ...customMeta } = props;
   const router = useRouter();
-
   const meta = {
     title: 'Regis Bafutwabo – Software Developer',
     description: `Front-end developer, and sometimes Full-stack developer`,

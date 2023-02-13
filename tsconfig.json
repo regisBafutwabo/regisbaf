@@ -23,6 +23,11 @@
       "./global.d.ts",
       "./node_modules/@types",
       "./env.d.ts"
+    ],
+    "plugins": [
+      {
+        "name": "next"
+      }
     ]
   },
   "include": [
@@ -30,9 +35,10 @@
     "**/*.ts",
     "**/*.tsx",
     "src/components/Organisms/Blogs/index.mdx",
-    "src/pages/blog/index.mdx"
+    "src/pages/blog/index.mdx",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
-  ],
+  ]
 }

@@ -1,5 +1,3 @@
-import { HamburgerIcon } from '@chakra-ui/icons';
-import { Box, Text, useBreakpointValue } from '@chakra-ui/react';
 import { MOBILE_SIZES } from 'constants/display';
 import { LINKS_DATA } from 'constants/links';
 import {
@@ -10,6 +8,9 @@ import {
 } from 'lib/Motion';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+
+import { HamburgerIcon } from '@chakra-ui/icons';
+import { Box, Text, useBreakpointValue } from '@chakra-ui/react';
 
 import { DesktopMenuProps } from './DesktopMenu.interface';
 
