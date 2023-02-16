@@ -1,11 +1,10 @@
 import { serialize } from 'next-mdx-remote/serialize';
-import { Box } from '@chakra-ui/react';
-import remarkGfm from 'remark-gfm';
-import rehypeSlug from 'rehype-slug';
+import readingTime from 'reading-time';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeCodeTitles from 'rehype-code-titles';
 import rehypePrism from 'rehype-prism-plus';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import readingTime from 'reading-time';
+import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm';
 
 export async function mdxToHtml(content: any) {
   const mdxSource = await serialize(content, {
