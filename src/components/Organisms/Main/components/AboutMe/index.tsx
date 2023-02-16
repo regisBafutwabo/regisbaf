@@ -1,4 +1,3 @@
-import { Box, Img, Link, Text, UnorderedList } from '@chakra-ui/react';
 import { MotionBox, MotionListItem, MotionText } from 'lib/Motion';
 import Image from 'next/image';
 import { DiReact } from 'react-icons/di';
@@ -17,6 +16,8 @@ import {
   SiTypescript,
   SiVercel,
 } from 'react-icons/si';
+
+import { Box, Img, Link, Text, UnorderedList } from '@chakra-ui/react';
 
 import { TechListType } from './AboutMe.interface';
 
@@ -47,9 +48,18 @@ const techList: TechListType[] = [
     icon: <SiTypescript color="#3077c6" size="30" />,
   },
   {
-    name: 'Apollo Graphql',
+    name: 'Apollo-Client',
     link: 'https://www.apollographql.com/',
     icon: <SiApollographql size="30" />,
+  },
+  {
+    name: 'Zustand',
+    link: 'https://www.npmjs.com/package/zustand',
+    icon: (
+      <>
+        <span style={{ fontSize: 30 }}>🐻</span>
+      </>
+    ),
   },
   {
     name: 'RelayJS',
