@@ -1,14 +1,16 @@
 import 'styles/globals.css';
 
-import { ChakraProvider, extendTheme, ThemeConfig } from '@chakra-ui/react';
-import { MDXProvider } from '@mdx-js/react';
-import { Analytics } from '@vercel/analytics/react';
+import { useEffect, useState } from 'react';
+
 import { AppLayout } from 'components/Templates';
 import { theme } from 'config/theme';
 import Tracking from 'lib/ga';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+
+import { ChakraProvider, extendTheme, ThemeConfig } from '@chakra-ui/react';
+import { MDXProvider } from '@mdx-js/react';
+import { Analytics } from '@vercel/analytics/react';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [colorMode, setColorMode] = useState<'dark' | 'light'>('dark');
