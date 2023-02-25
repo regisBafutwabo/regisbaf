@@ -1,4 +1,12 @@
 import {
+  MotionCloseIcon,
+  MotionIconButton,
+  MotionMoonIcon,
+  MotionSunIcon,
+  MotionText,
+} from 'lib/Motion';
+
+import {
   Link,
   Modal,
   ModalBody,
@@ -7,16 +15,26 @@ import {
   ModalFooter,
   ModalOverlay,
 } from '@chakra-ui/react';
-import {
-  MotionCloseIcon,
-  MotionIconButton,
-  MotionMoonIcon,
-  MotionSunIcon,
-  MotionText,
-} from 'lib/Motion';
 
 import { MobileMenuProps } from './MobileMenu.interface';
 
+const links = [
+  {
+    label: 'About Me',
+    href: '/about',
+    delay: 0.2,
+  },
+  {
+    label: 'Blog',
+    href: '/blog',
+    delay: 0.5,
+  },
+  {
+    label: 'Top Tracks',
+    href: '/top-tracks',
+    delay: 0.8,
+  },
+];
 export const MobileMenu = (props: MobileMenuProps) => {
   const { open, closeModal, toggleMode, colorMode, IconVariant } = props;
 
@@ -48,39 +66,19 @@ export const MobileMenu = (props: MobileMenuProps) => {
           />
         </ModalCloseButton>
         <ModalBody mt={200} display="flex" flexDir={'column'} gap={8}>
-          <Link href={'/'} onClick={closeModal}>
-            <MotionText
-              initial={{ x: '100vw' }}
-              animate={{ x: 0 }}
-              transition={{ delay: 0.2 }}
-              fontSize={'3xl'}
-              fontWeight="extrabold"
-            >
-              About Me
-            </MotionText>
-          </Link>
-          <Link href={'/blog'} onClick={closeModal}>
-            <MotionText
-              initial={{ x: '100vw' }}
-              animate={{ x: 0 }}
-              transition={{ delay: 0.5 }}
-              fontSize={'3xl'}
-              fontWeight="extrabold"
-            >
-              Blog
-            </MotionText>
-          </Link>
-          <Link href={'/top-tracks'} onClick={closeModal}>
-            <MotionText
-              initial={{ x: '100vw' }}
-              animate={{ x: 0 }}
-              transition={{ delay: 0.8 }}
-              fontSize={'3xl'}
-              fontWeight="extrabold"
-            >
-              Top Tracks
-            </MotionText>
-          </Link>
+          {links.map((link) => (
+            <Link href={link.href} onClick={closeModal} key={link.href}>
+              <MotionText
+                initial={{ x: '100vw' }}
+                animate={{ x: 0 }}
+                transition={{ delay: link.delay }}
+                fontSize={'3xl'}
+                fontWeight="extrabold"
+              >
+                {link.label}
+              </MotionText>
+            </Link>
+          ))}
         </ModalBody>
         <ModalFooter display={'flex'} justifyContent="flex-start">
           <MotionIconButton
