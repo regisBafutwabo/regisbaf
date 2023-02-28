@@ -1,14 +1,15 @@
-import { Bold, Header, Link, RoundedImage, UList } from 'components/Atoms/Mdx';
-import { Paragraph } from 'components/Atoms/Mdx/Paragraph';
+import {
+  Bold,
+  Header,
+  Link,
+  RoundedImage,
+  UList,
+} from 'components/Common/Mdx/components';
+import { Paragraph } from 'components/Common/Mdx/components/Paragraph';
 import { MDXRemote } from 'next-mdx-remote';
-
-import { ConsCard } from '../../Atoms/Mdx/ConsCard';
-import ProsCard from '../../Atoms/Mdx/ProsCard';
 
 const MDXComponents = {
   img: RoundedImage,
-  ConsCard,
-  ProsCard,
   h3: Header,
   ul: UList,
   a: Link,

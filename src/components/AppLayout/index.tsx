@@ -1,7 +1,9 @@
-import { Box } from '@chakra-ui/react';
-import { Meta } from 'components/Atoms/Container';
-import { MotionBox } from 'lib/Motion';
 import { ReactNode } from 'react';
+
+import { Meta } from 'components/MetaTags';
+import { MotionBox } from 'lib/Motion';
+
+import { Box } from '@chakra-ui/react';
 
 import { Footer, Header } from './components';
 

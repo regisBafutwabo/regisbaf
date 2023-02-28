@@ -1,4 +1,4 @@
-import { Main } from 'components/Organisms/Main';
+import { Main } from 'components/Main';
 import type { NextPage } from 'next';
 
 const HomePage: NextPage = () => {

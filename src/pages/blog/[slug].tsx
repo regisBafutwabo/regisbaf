@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
-import { PostSkeleton } from 'components/Molecules/Skeletons';
-import { Post } from 'components/Organisms/Post';
+import { PostSkeleton } from 'components/Common/Skeletons';
+import { Post } from 'components/Post';
 import { mdxToHtml } from 'lib/Mdx';
 import { getClient, sanityClient } from 'lib/sanity';
 import { getTweets } from 'lib/twitter';
