@@ -1,4 +1,4 @@
-import { Blog } from 'components/Organisms/Blog';
+import { Blog } from 'components/Blog';
 import { getClient } from 'lib/sanity';
 import Head from 'next/head';
 

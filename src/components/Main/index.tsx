@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
-import { AboutMe } from './components/AboutMe';
 
+import { AboutMe } from './components/AboutMe';
 import { MainHeader } from './components/MainHeader';
 
 export const Main = () => {

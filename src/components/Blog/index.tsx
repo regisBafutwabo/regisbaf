@@ -1,5 +1,5 @@
 import { Box, Text } from '@chakra-ui/react';
-import { PostCard } from 'components/Molecules/PostCard';
+import { PostCard } from 'components/Common/PostCard';
 import { MotionBox } from 'lib/Motion';
 
 import { BlogProps } from './Blog.types';
