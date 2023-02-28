@@ -1,4 +1,4 @@
-import { TopTracks } from 'components/Organisms';
+import { TopTracks } from 'components/TopTracks';
 import fetcher from 'lib/fetcher/fetcher';
 import { Tracks } from 'lib/spotify/types/spotify';
 import { NextPage } from 'next';
