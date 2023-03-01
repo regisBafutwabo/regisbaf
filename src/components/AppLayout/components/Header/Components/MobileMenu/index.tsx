@@ -80,7 +80,11 @@ export const MobileMenu = (props: MobileMenuProps) => {
             </Link>
           ))}
         </ModalBody>
-        <ModalFooter display={'flex'} justifyContent="flex-start">
+        <ModalFooter
+          marginBottom={10}
+          display={'flex'}
+          justifyContent="flex-start"
+        >
           <MotionIconButton
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
