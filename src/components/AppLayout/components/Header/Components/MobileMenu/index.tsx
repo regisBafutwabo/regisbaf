@@ -21,7 +21,7 @@ import { MobileMenuProps } from './MobileMenu.interface';
 const links = [
   {
     label: 'About Me',
-    href: '/about',
+    href: '/',
     delay: 0.2,
   },
   {
@@ -65,7 +65,7 @@ export const MobileMenu = (props: MobileMenuProps) => {
             transition={{ type: 'spring', stiffness: 600 }}
           />
         </ModalCloseButton>
-        <ModalBody mt={200} display="flex" flexDir={'column'} gap={8}>
+        <ModalBody mt={100} display="flex" flexDir={'column'} gap={8}>
           {links.map((link) => (
             <Link href={link.href} onClick={closeModal} key={link.href}>
               <MotionText
