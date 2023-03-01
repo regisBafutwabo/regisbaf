@@ -81,7 +81,7 @@ export const MobileMenu = (props: MobileMenuProps) => {
           ))}
         </ModalBody>
         <ModalFooter
-          marginBottom={10}
+          marginBottom={20}
           display={'flex'}
           justifyContent="flex-start"
         >
