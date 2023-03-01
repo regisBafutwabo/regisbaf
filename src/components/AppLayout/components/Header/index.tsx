@@ -2,7 +2,10 @@ import { useState } from 'react';
 
 import { useColorMode } from '@chakra-ui/react';
 
-import { DesktopMenu, MobileMenu } from './Components';
+import {
+  DesktopMenu,
+  MobileMenu,
+} from './Components';
 import { Nav } from './styles';
 
 const IconVariant = {
