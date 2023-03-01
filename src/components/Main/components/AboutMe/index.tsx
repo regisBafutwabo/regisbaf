@@ -17,7 +17,14 @@ import {
   SiVercel,
 } from 'react-icons/si';
 
-import { Box, Img, Link, Text, UnorderedList } from '@chakra-ui/react';
+import {
+  Box,
+  Img,
+  Link,
+  ListItem,
+  Text,
+  UnorderedList,
+} from '@chakra-ui/react';
 
 import { TechListType } from './AboutMe.interface';
 
@@ -124,7 +131,16 @@ const techList: TechListType[] = [
     icon: <SiAmazonaws color="#ec7211" size="30" />,
   },
 ];
-
+const expertiseList = [
+  'Developing reusable and scalable React components using atomic design patterns',
+  'Writing reliable code using TDD, Jest, and E2E libraries',
+  'Optimizing web applications using Chrome Lighthouse best practices',
+  'Building complex web applications, including a cohort-based learning platform and a human-accelerating platform',
+  'Creating blockchain-related projects, such as a blockchain explorer and wallet mobile application',
+  'Improving team productivity by creating a React and react-native boilerplates',
+  'Introducing opinionated folder structures to improve the introduction of new features',
+  'Using Behavior-Driven Development (BDD) with CucumberJS to improve the flow and function of features between project managers and teams',
+];
 export const AboutMe = () => {
   return (
     <MotionBox
@@ -132,10 +148,20 @@ export const AboutMe = () => {
       width={['100%', '100%', '100%', '80%']}
     >
       <MotionText fontStyle="italic" fontSize="xl">
-        <span style={{ fontWeight: 'bold' }}>{`Hi, I'm Regis.`}</span>
-        {` I'm a software developer and an enthusiast of using tech to solve problems. The list of things I'm incredibly passionate about includes ReactJS, React-native, Typescript, JavaScript, Design
-        Pattern, web development, software architecture, and clean code. I also enjoy music, video games and exploring new places.`}
+        <span style={{ fontWeight: 'bold' }}>{`Hi, I'm Regis,`}</span>
+        {` a front-end developer with experience working on complex web applications and blockchain-related projects, I have a strong technical background and a broad range of skills. My expertise includes:`}
+        <UnorderedList
+          marginTop={4}
+          spacing={3}
+          display="flex"
+          flexDirection={'column'}
+        >
+          {expertiseList.map((expertise) => (
+            <ListItem key={expertise}>{expertise}</ListItem>
+          ))}
+        </UnorderedList>
       </MotionText>
+
       <MotionText fontSize="xl" animate={{ paddingTop: 32 }}>
         Some of the technologies that I have used include but not limited to:
       </MotionText>
@@ -143,11 +169,16 @@ export const AboutMe = () => {
         animate={{ padding: 32 }}
         width={['100%', '100%', '100%', '80%']}
       >
-        <UnorderedList spacing={3} display="flex" flexDirection={'column'}>
+        <UnorderedList
+          spacing={3}
+          display="flex"
+          flexDirection={'column'}
+          flexWrap="wrap"
+        >
           {techList.map((tech) => (
             <MotionListItem
               key={tech.link}
-              as="span"
+              as="div"
               role={'listitem'}
               transition={{ type: 'spring', stiffness: 300 }}
               whileHover={{ scale: 1.05, originX: 0 }}
@@ -176,6 +207,9 @@ export const AboutMe = () => {
           ))}
         </UnorderedList>
       </MotionBox>
+      <MotionText>
+        {`I am always eager to take on new challenges and expand my skills in the ever-changing world of technology.I also enjoy music, video games and exploring new places.`}
+      </MotionText>
     </MotionBox>
   );
 };
