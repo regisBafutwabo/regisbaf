@@ -1,11 +1,15 @@
-import { Box } from '@chakra-ui/react';
 import { PostSkeleton } from 'components/Common/Skeletons';
 import { Post } from 'components/Post';
 import { mdxToHtml } from 'lib/Mdx';
-import { getClient, sanityClient } from 'lib/sanity';
+import {
+  getClient,
+  sanityClient,
+} from 'lib/sanity';
 import { getTweets } from 'lib/twitter';
 import { NextPage } from 'next';
 import Head from 'next/head';
+
+import { Box } from '@chakra-ui/react';
 
 const BlogSlug: NextPage = (props: any) => {
   const { post, content, readingTime } = props;
@@ -18,6 +22,25 @@ const BlogSlug: NextPage = (props: any) => {
             property="article:published_time"
             content={post[0]._updatedAt}
           />
+          <meta
+            property="og:title"
+            content={`${post[0].title} - Regis Bafutwabo`}
+          />
+          <meta property="og:type" content="article" />
+          <meta
+            property="og:image:url"
+            content="https://regisbaf.com/profile.webp"
+          />
+          <meta property="og:description" content={`${post[0].description}`} />
+          <meta
+            property="twitter:title"
+            content={`${post[0].title} - Regis Bafutwabo`}
+          />
+          <meta
+            name="twitter:image"
+            content="https://regisbaf.com/profile.webp"
+          />
+          <meta property="twitter:description" content={`${post[0].description}`} />
         </Head>
       )}
       <Box>
