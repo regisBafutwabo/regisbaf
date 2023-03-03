@@ -1,10 +1,9 @@
-import { ColorModeScript } from '@chakra-ui/react';
 import { theme } from 'config/theme';
 import { Head, Html, Main, NextScript } from 'next/document';
 
+import { ColorModeScript } from '@chakra-ui/react';
+
 export default function Document() {
-  const socialImage = '/profile.jpeg';
-  const title = 'Regis Bafutwabo';
   return (
     <Html>
       <Head>
@@ -15,29 +14,7 @@ export default function Document() {
           type="text/css"
           crossOrigin="anonymous"
         />
-        <link
-          rel="stylesheet preload prefetch"
-          href="https://fonts.googleapis.com/css2?family=Martel&display=swap"
-          as="style"
-          type="text/css"
-          crossOrigin="anonymous"
-        />
-        {/* <link
-          rel="preload"
-          href="api/top-tracks?offset=0"
-          as="fetch"
-          crossOrigin="anonymous"
-        /> */}
         <link rel="icon" href="/favicon.ico" />
-        <meta property="og:title" content={title} />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:creator" content="@regiswareja" />
-        <meta name="description" content="My Personal Website" />
-        <meta property="og:description" content="My Personal Website" />
-        <meta name="twitter:description" content="My Personal Website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content={socialImage} />
-        <meta property="og:image" content={socialImage} />
         <meta
           name="keywords"
           content="HTML, CSS, JavaScript, NextJS, React, Nextjs, react, React-native"
