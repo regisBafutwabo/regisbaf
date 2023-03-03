@@ -1,10 +1,7 @@
 import { PostSkeleton } from 'components/Common/Skeletons';
 import { Post } from 'components/Post';
 import { mdxToHtml } from 'lib/Mdx';
-import {
-  getClient,
-  sanityClient,
-} from 'lib/sanity';
+import { getClient, sanityClient, urlForImage } from 'lib/sanity';
 import { getTweets } from 'lib/twitter';
 import { NextPage } from 'next';
 import Head from 'next/head';
@@ -29,7 +26,11 @@ const BlogSlug: NextPage = (props: any) => {
           <meta property="og:type" content="article" />
           <meta
             property="og:image:url"
-            content="https://regisbaf.com/profile.webp"
+            content={
+              post[0].cover
+                ? urlForImage(post[0].cover).url()
+                : 'https://regisbaf.com/profile.webp'
+            }
           />
           <meta property="og:description" content={`${post[0].description}`} />
           <meta
@@ -38,9 +39,16 @@ const BlogSlug: NextPage = (props: any) => {
           />
           <meta
             name="twitter:image"
-            content="https://regisbaf.com/profile.webp"
+            content={
+              post[0].cover
+                ? urlForImage(post[0].cover).url()
+                : 'https://regisbaf.com/profile.webp'
+            }
           />
-          <meta property="twitter:description" content={`${post[0].description}`} />
+          <meta
+            property="twitter:description"
+            content={`${post[0].description}`}
+          />
         </Head>
       )}
       <Box>
