@@ -24,6 +24,7 @@
     "axios": "^0.26.1",
     "date-fns": "^2.29.3",
     "framer-motion": "^6.2.8",
+    "husky": "^8.0.3",
     "motion": "^10.7.0",
     "next": "^13.0.0",
     "next-mdx-remote": "^4.1.0",
