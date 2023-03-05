@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 
-import { Meta } from 'components/MetaTags';
 import { MotionBox } from 'lib/Motion';
 
 import { Box } from '@chakra-ui/react';
@@ -19,7 +18,6 @@ export const AppLayout = ({ children }: { children: ReactNode }) => {
       ml={[4, 4, 4, 'auto']}
       pl={[0, 0, 0, 8]}
     >
-      <Meta />
       <Header />
       <Box marginBottom={8} minHeight="100vh" overflowY="scroll">
         {children}

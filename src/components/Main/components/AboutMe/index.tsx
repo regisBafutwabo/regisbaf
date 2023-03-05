@@ -1,8 +1,21 @@
-import { MotionBox, MotionListItem, MotionText } from 'lib/Motion';
+import {
+  MotionBox,
+  MotionListItem,
+  MotionText,
+} from 'lib/Motion';
 
-import { Box, Link, ListItem, Text, UnorderedList } from '@chakra-ui/react';
+import {
+  Box,
+  Link,
+  ListItem,
+  Text,
+  UnorderedList,
+} from '@chakra-ui/react';
 
-import { expertiseList, techList } from './data';
+import {
+  expertiseList,
+  techList,
+} from './data';
 
 export const AboutMe = () => {
   return (
@@ -10,8 +23,10 @@ export const AboutMe = () => {
       animate={{ marginTop: 50 }}
       width={['100%', '100%', '100%', '80%']}
     >
-      <MotionText fontStyle="italic" fontSize="xl">
-        <span style={{ fontWeight: 'bold' }}>{`Hi, I'm Regis,`}</span>
+      <MotionBox fontSize="xl">
+        <span
+          style={{ fontWeight: 'bold', fontStyle: 'italic' }}
+        >{`Hi, I'm Regis,`}</span>
         {` a front-end developer with experience working on complex web applications and blockchain-related projects, I have a strong technical background and a broad range of skills. My expertise includes:`}
         <UnorderedList
           marginTop={4}
@@ -24,15 +39,13 @@ export const AboutMe = () => {
             <ListItem key={expertise}>{expertise}</ListItem>
           ))}
         </UnorderedList>
-      </MotionText>
+      </MotionBox>
 
-      <MotionText fontSize="xl" animate={{ paddingTop: 32 }}>
-        Some of the technologies that I have used include but not limited to:
-      </MotionText>
-      <MotionBox
-        animate={{ padding: 32 }}
-        width={['100%', '100%', '100%', '80%']}
-      >
+      <MotionBox fontSize="xl" width={['100%', '100%', '100%', '80%']}>
+        <p style={{ padding: '32px 0px' }}>
+          Some of the technologies that I have used include but not limited to:
+        </p>
+
         <UnorderedList
           spacing={3}
           display="flex"
@@ -70,10 +83,10 @@ export const AboutMe = () => {
             </MotionListItem>
           ))}
         </UnorderedList>
+        <MotionText paddingTop={8}>
+          {`I am always eager to take on new challenges and expand my skills in the ever-changing world of technology.I also enjoy music, video games and exploring new places.`}
+        </MotionText>
       </MotionBox>
-      <MotionText>
-        {`I am always eager to take on new challenges and expand my skills in the ever-changing world of technology.I also enjoy music, video games and exploring new places.`}
-      </MotionText>
     </MotionBox>
   );
 };

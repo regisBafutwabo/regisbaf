@@ -11,6 +11,7 @@ export const Meta = (props: any) => {
     type: 'website',
     ...customMeta,
   };
+  console.log('META', meta);
   return (
     <Head>
       <title>{meta.title}</title>
@@ -31,6 +32,9 @@ export const Meta = (props: any) => {
       <meta name="twitter:title" content={meta.title} />
       <meta name="twitter:description" content={meta.description} />
       <meta name="twitter:image" content={meta.image} />
+      {meta.publishedAt && (
+        <meta property="article:published_time" content={meta.publishedAt} />
+      )}
     </Head>
   );
 };
