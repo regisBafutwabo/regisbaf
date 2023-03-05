@@ -1,15 +1,13 @@
 import { Blog } from 'components/Blog';
+import { Meta } from 'components/MetaTags';
 import { getClient } from 'lib/sanity';
-import Head from 'next/head';
 
 import { Text } from '@chakra-ui/react';
 
 function BlogPage({ posts, error }: { posts: any[]; error: any }) {
   return (
     <>
-      <Head>
-        <title>{`Blog - Regis Bafutwabo`}</title>
-      </Head>
+      <Meta title={`Blog - Regis Bafutwabo`} />
       {error && (
         <Text marginTop={200} textAlign="center" color="red.500">
           Oops! {error}
