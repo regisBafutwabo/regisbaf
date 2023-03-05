@@ -11,7 +11,7 @@ export const Meta = (props: any) => {
     type: 'website',
     ...customMeta,
   };
-  console.log('META', meta);
+
   return (
     <Head>
       <title>{meta.title}</title>
