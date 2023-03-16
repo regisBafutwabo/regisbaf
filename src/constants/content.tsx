@@ -15,12 +15,29 @@ import {
   SiTypescript,
   SiVercel,
 } from 'react-icons/si';
+import { TechListType } from 'typings/techList';
 
 import { Img } from '@chakra-ui/react';
 
-import { TechListType } from './AboutMe.interface';
+const links = [
+  {
+    value: '/',
+    title: 'About Me',
+    delay: 0.2,
+  },
+  {
+    value: '/blog',
+    title: 'Blog',
+    delay: 0.5,
+  },
+  {
+    value: '/top-tracks',
+    title: 'Top Tracks',
+    delay: 0.8,
+  },
+];
 
-export const techList: TechListType[] = [
+const techList: TechListType[] = [
   {
     name: 'React',
     link: 'https://reactjs.org/',
@@ -124,13 +141,30 @@ export const techList: TechListType[] = [
   },
 ];
 
-export const expertiseList = [
-  'Developing reusable and scalable React components using atomic design patterns',
-  'Writing reliable code using TDD, Jest, and E2E libraries',
-  'Optimizing web applications using Chrome Lighthouse best practices',
-  'Building complex web applications, including a cohort-based learning platform and a human-accelerating platform',
-  'Creating blockchain-related projects, such as a blockchain explorer and wallet mobile application',
-  'Improving team productivity by creating a React and react-native boilerplates',
-  'Introducing opinionated folder structures to improve the introduction of new features',
-  'Using Behavior-Driven Development (BDD) with CucumberJS to improve the flow and function of features between project managers and teams',
-];
+export const CONTENTS = {
+  navbar: {
+    links,
+    logo: 'Regis Bafutwabo',
+  },
+  footer: {
+    links,
+    linkedin: 'https://www.linkedin.com/in/regis-bafutwabo/',
+    github: 'https://github.com/regisBafutwabo',
+  },
+  about: {
+    profilePic: '/profile.webp',
+    profileAlt: 'Regis Bafutwabo',
+    salutation: `Hi, I'm Regis,`,
+    briefDescription:
+      ' a front-end developer with experience working on complex web applications and blockchain-related projects, I have a strong technical background and a broad range of skills',
+    hobbies:
+      'I am always eager to take on new challenges and expand my skills in the ever-changing world of technology.I also enjoy music, video games and exploring new places.',
+    skills: techList,
+  },
+  blog: {
+    title: 'All Posts',
+  },
+  topTracks: {
+    title: 'My Current Top Tracks List',
+  },
+};

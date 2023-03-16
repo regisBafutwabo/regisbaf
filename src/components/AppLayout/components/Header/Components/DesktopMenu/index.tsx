@@ -1,5 +1,5 @@
+import { CONTENTS } from 'constants/content';
 import { MOBILE_SIZES } from 'constants/display';
-import { LINKS_DATA } from 'constants/links';
 import {
   MotionIconButton,
   MotionMoonIcon,
@@ -35,7 +35,7 @@ export const DesktopMenu = (props: DesktopMenuProps) => {
             fontSize="2xl"
             fontWeight="extrabold"
           >
-            Regis Bafutwabo
+            {CONTENTS.navbar.logo}
           </Text>
         </Box>
         <Box
@@ -44,7 +44,7 @@ export const DesktopMenu = (props: DesktopMenuProps) => {
           alignItems={'center'}
           mt={2}
         >
-          {LINKS_DATA.map((linkData) => (
+          {CONTENTS.navbar.links.map((linkData) => (
             <Box mr={5} key={linkData.value}>
               <Link href={linkData.value} passHref>
                 <MotionText

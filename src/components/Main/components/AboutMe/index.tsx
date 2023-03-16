@@ -1,3 +1,4 @@
+import { CONTENTS } from 'constants/content';
 import {
   MotionBox,
   MotionListItem,
@@ -7,38 +8,24 @@ import {
 import {
   Box,
   Link,
-  ListItem,
   Text,
   UnorderedList,
 } from '@chakra-ui/react';
 
-import {
-  expertiseList,
-  techList,
-} from './data';
-
 export const AboutMe = () => {
+  const {
+    about: { salutation, briefDescription, hobbies, skills },
+  } = CONTENTS;
   return (
     <MotionBox
       animate={{ marginTop: 50 }}
       width={['100%', '100%', '100%', '80%']}
     >
       <MotionBox fontSize="xl">
-        <span
-          style={{ fontWeight: 'bold', fontStyle: 'italic' }}
-        >{`Hi, I'm Regis,`}</span>
-        {` a front-end developer with experience working on complex web applications and blockchain-related projects, I have a strong technical background and a broad range of skills. My expertise includes:`}
-        <UnorderedList
-          marginTop={4}
-          spacing={3}
-          display="flex"
-          paddingLeft={8}
-          flexDirection={'column'}
-        >
-          {expertiseList.map((expertise) => (
-            <ListItem key={expertise}>{expertise}</ListItem>
-          ))}
-        </UnorderedList>
+        <span style={{ fontWeight: 'bold', fontStyle: 'italic' }}>
+          {salutation}
+        </span>
+        {briefDescription}
       </MotionBox>
 
       <MotionBox fontSize="xl" width={['100%', '100%', '100%', '80%']}>
@@ -52,7 +39,7 @@ export const AboutMe = () => {
           flexDirection={'column'}
           flexWrap="wrap"
         >
-          {techList.map((tech) => (
+          {skills.map((tech) => (
             <MotionListItem
               key={tech.link}
               as="div"
@@ -83,9 +70,7 @@ export const AboutMe = () => {
             </MotionListItem>
           ))}
         </UnorderedList>
-        <MotionText paddingTop={8}>
-          {`I am always eager to take on new challenges and expand my skills in the ever-changing world of technology.I also enjoy music, video games and exploring new places.`}
-        </MotionText>
+        <MotionText paddingTop={8}>{hobbies}</MotionText>
       </MotionBox>
     </MotionBox>
   );

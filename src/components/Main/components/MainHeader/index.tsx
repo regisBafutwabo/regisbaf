@@ -1,7 +1,9 @@
+import { CONTENTS } from 'constants/content';
 import { MotionBox } from 'lib/Motion';
 import Image from 'next/image';
 
 export const MainHeader = () => {
+  const {about:{profileAlt, profilePic}} =CONTENTS;
   return (
     <MotionBox
       initial={{ opacity: 0 }}
@@ -13,8 +15,8 @@ export const MainHeader = () => {
         width={150}
         height={150}
         style={{ borderRadius: 100 }}
-        src="/profile.webp"
-        alt="Regis"
+        src={profilePic}
+        alt={profileAlt}
         loading="lazy"
       />
     </MotionBox>
