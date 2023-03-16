@@ -1,3 +1,4 @@
+import { CONTENTS } from 'constants/content';
 import {
   MotionCloseIcon,
   MotionIconButton,
@@ -18,23 +19,6 @@ import {
 
 import { MobileMenuProps } from './MobileMenu.interface';
 
-const links = [
-  {
-    label: 'About Me',
-    href: '/',
-    delay: 0.2,
-  },
-  {
-    label: 'Blog',
-    href: '/blog',
-    delay: 0.5,
-  },
-  {
-    label: 'Top Tracks',
-    href: '/top-tracks',
-    delay: 0.8,
-  },
-];
 export const MobileMenu = (props: MobileMenuProps) => {
   const { open, closeModal, toggleMode, colorMode, IconVariant } = props;
 
@@ -66,8 +50,8 @@ export const MobileMenu = (props: MobileMenuProps) => {
           />
         </ModalCloseButton>
         <ModalBody mt={100} display="flex" flexDir={'column'} gap={8}>
-          {links.map((link) => (
-            <Link href={link.href} onClick={closeModal} key={link.href}>
+          {CONTENTS.navbar.links.map((link) => (
+            <Link href={link.value} onClick={closeModal} key={link.value}>
               <MotionText
                 initial={{ x: '100vw' }}
                 animate={{ x: 0 }}
@@ -75,7 +59,7 @@ export const MobileMenu = (props: MobileMenuProps) => {
                 fontSize={'3xl'}
                 fontWeight="extrabold"
               >
-                {link.label}
+                {link.title}
               </MotionText>
             </Link>
           ))}

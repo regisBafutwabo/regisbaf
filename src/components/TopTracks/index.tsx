@@ -1,13 +1,31 @@
-import { Box, Link, Skeleton, Spinner, Stack, Text } from '@chakra-ui/react';
-import { MotionButton, MotionListItem, MotionOrderedList } from 'lib/Motion';
-import { getTopTracks, getTracks } from 'lib/spotify/spotify';
-import { Song } from 'lib/spotify/types/spotify';
 import { useState } from 'react';
+
+import { CONTENTS } from 'constants/content';
+import {
+  MotionButton,
+  MotionListItem,
+  MotionOrderedList,
+} from 'lib/Motion';
+import {
+  getTopTracks,
+  getTracks,
+} from 'lib/spotify/spotify';
+import { Song } from 'lib/spotify/types/spotify';
+
+import {
+  Box,
+  Link,
+  Skeleton,
+  Spinner,
+  Stack,
+  Text,
+} from '@chakra-ui/react';
 
 import { TopTracksProps } from './TopTracks.types';
 
 export const TopTracks = (props: TopTracksProps) => {
   const { items, next } = props;
+  const {topTracks:{title}} = CONTENTS
 
   const [loading, setLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -54,7 +72,7 @@ export const TopTracks = (props: TopTracksProps) => {
     <Box padding={[4, 4, 0, 10]}>
       <Box>
         <Text fontFamily={'heading'} fontSize={'2xl'}>
-          My Current Top Tracks List
+          {title}
         </Text>
       </Box>
       <Box marginTop={8}>

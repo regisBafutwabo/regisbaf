@@ -1,10 +1,18 @@
-import { Box, Link as ExternalLink, useColorMode } from '@chakra-ui/react';
-import { LINKS_DATA } from 'constants/links';
+import { CONTENTS } from 'constants/content';
 import { MotionText } from 'lib/Motion';
 import Link from 'next/link';
 
+import {
+  Box,
+  Link as ExternalLink,
+  useColorMode,
+} from '@chakra-ui/react';
+
 export const FooterLinks = () => {
   const { colorMode } = useColorMode();
+  const {
+    footer: { links, linkedin, github },
+  } = CONTENTS;
 
   return (
     <Box
@@ -15,7 +23,7 @@ export const FooterLinks = () => {
       gap={[8, 8, 32, 32]}
     >
       <Box display="flex" flexDirection="column" gap={2}>
-        {LINKS_DATA.map((link) => (
+        {links.map((link) => (
           <Link href={link.value} passHref key={link.value}>
             <MotionText
               whileHover={{
@@ -33,7 +41,7 @@ export const FooterLinks = () => {
       </Box>
       <Box display="flex" flexDirection="column" gap={2}>
         <ExternalLink
-          href={'https://github.com/regisBafutwabo'}
+          href={github}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -50,7 +58,7 @@ export const FooterLinks = () => {
           </MotionText>
         </ExternalLink>
         <ExternalLink
-          href={'https://linkedin.com/in/regis-bafutwabo'}
+          href={linkedin}
           target="_blank"
           rel="noopener noreferrer"
         >
