@@ -3,7 +3,9 @@ import { MotionBox } from 'lib/Motion';
 import Image from 'next/image';
 
 export const MainHeader = () => {
-  const {about:{profileAlt, profilePic}} =CONTENTS;
+  const {
+    about: { profileAlt, profilePic },
+  } = CONTENTS;
   return (
     <MotionBox
       initial={{ opacity: 0 }}
@@ -14,10 +16,15 @@ export const MainHeader = () => {
       <Image
         width={150}
         height={150}
-        style={{ borderRadius: 100 }}
         src={profilePic}
         alt={profileAlt}
-        loading="lazy"
+        priority
+        // fill
+        style={{
+          borderRadius: 100,
+          height: 'auto',
+          width: '150px',
+        }}
       />
     </MotionBox>
   );

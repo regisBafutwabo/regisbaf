@@ -33,7 +33,7 @@ export async function mdxToHtml(content: any) {
   return {
     html: mdxSource,
     tweetIDs: tweetIDs || [],
-    wordCount: content.split(/\s+/gu).length,
+    // wordCount: content.split(/\s+/gu).length,
     readingTime: readingTime(content).text,
   };
 }

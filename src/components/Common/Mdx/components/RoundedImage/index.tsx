@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/image";
 
 export function RoundedImage(props: any) {
   return (
@@ -7,14 +7,15 @@ export function RoundedImage(props: any) {
       width={400}
       height={400}
       priority
+      className="rounded-lg"
+      {...props}
       style={{
         alignSelf: 'center',
         borderRadius: 5,
         marginRight: 'auto',
         marginLeft: 'auto',
-      }}
-      className="rounded-lg"
-      {...props}
-    />
+        maxWidth: "100%",
+        height: "auto"
+      }} />
   );
 }

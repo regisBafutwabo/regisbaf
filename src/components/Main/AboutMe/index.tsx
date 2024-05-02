@@ -21,14 +21,14 @@ export const AboutMe = () => {
       animate={{ marginTop: 50 }}
       width={['100%', '100%', '100%', '80%']}
     >
-      <MotionBox fontSize="xl">
+      <MotionBox>
         <span style={{ fontWeight: 'bold', fontStyle: 'italic' }}>
           {salutation}
         </span>
         {briefDescription}
       </MotionBox>
 
-      <MotionBox fontSize="xl" width={['100%', '100%', '100%', '80%']}>
+      <MotionBox width={['100%', '100%', '100%', '80%']}>
         <p style={{ padding: '32px 0px' }}>
           Some of the technologies that I have used include but not limited to:
         </p>

@@ -1,3 +1,4 @@
+'use client';
 import { CONTENTS } from 'constants/content';
 import { MOBILE_SIZES } from 'constants/display';
 import {
@@ -7,18 +8,26 @@ import {
   MotionText,
 } from 'lib/Motion';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import {
+  usePathname,
+  useRouter,
+} from 'next/navigation';
 
 import { HamburgerIcon } from '@chakra-ui/icons';
-import { Box, Text, useBreakpointValue } from '@chakra-ui/react';
+import {
+  Box,
+  Text,
+  useBreakpointValue,
+} from '@chakra-ui/react';
 
 import { DesktopMenuProps } from './DesktopMenu.interface';
 
 export const DesktopMenu = (props: DesktopMenuProps) => {
   const { toggleMode, colorMode, openModal, IconVariant } = props;
-  const { pathname, push } = useRouter();
-  const variant = useBreakpointValue(['xs', 'sm', 'md', 'lg', 'xl', 'xxl']);
-
+  const { push } = useRouter();
+  const pathname = usePathname();
+  const variant = useBreakpointValue(['xl', 'xxl', 'xs', 'sm', 'md', 'lg']);
+  
   return (
     <>
       <Box
@@ -58,7 +67,10 @@ export const DesktopMenu = (props: DesktopMenuProps) => {
                   fontSize="md"
                   cursor={'pointer'}
                   textDecoration={
-                    pathname === linkData.value ? 'underline' : 'none'
+                    pathname === linkData.value ||
+                    (pathname?.includes('/blog') && linkData.value === '/blog')
+                      ? 'underline'
+                      : 'none'
                   }
                 >
                   {linkData.title}
@@ -68,7 +80,7 @@ export const DesktopMenu = (props: DesktopMenuProps) => {
           ))}
         </Box>
       </Box>
-      {MOBILE_SIZES.includes(variant as string) ? (
+      {variant && MOBILE_SIZES.includes(variant as string) ? (
         <MotionIconButton
           aria-label="hamburger-icon"
           _focus={{ outline: 0 }}
