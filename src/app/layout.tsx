@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 
 import { Footer, Header } from 'components/AppLayout/components';
 import { theme } from 'config/theme';
+import { Metadata, Viewport } from 'next';
 import { Martel } from 'next/font/google';
 import Script from 'next/script';
 
@@ -16,6 +17,38 @@ const martel = Martel({
   variable: '--chakra-fonts-body',
   weight: '200',
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
+
+export const metadata: Metadata = {
+  metadataBase: new URL(`${process.env.NEXT_PUBLIC_URL}`),
+  alternates: {
+    canonical: '/',
+    languages: {
+      'ko-KR': '/',
+    },
+  },
+  title: 'Regis Bafutwabo – Software Developer',
+  description: 'Front-end Developer, and sometimes Full-stack Seveloper',
+  robots: 'follow, index',
+  openGraph: {
+    type: 'website',
+    url: `${process.env.NEXT_PUBLIC_URL}`,
+    title: 'Regis Bafutwabo – Software Developer',
+    description: 'Front-end Developer, and sometimes Full-stack Seveloper',
+    images: [{ url: '/profile.webp', alt: 'Regis Baf' }],
+  },
+  twitter: {
+    siteId: '@regiswareja',
+    site: `${process.env.NEXT_PUBLIC_URL}`,
+    title: 'Regis Bafutwabo – Software Developer',
+    description: 'Front-end Developer, and sometimes Full-stack Seveloper',
+    images: [{ url: '/profile.webp', alt: 'Regis Baf' }],
+  },
+};
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
