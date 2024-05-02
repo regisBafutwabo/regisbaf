@@ -1,16 +1,7 @@
 import { CONTENTS } from 'constants/content';
-import {
-  MotionBox,
-  MotionListItem,
-  MotionText,
-} from 'lib/Motion';
+import { MotionBox, MotionListItem, MotionText } from 'lib/Motion';
 
-import {
-  Box,
-  Link,
-  Text,
-  UnorderedList,
-} from '@chakra-ui/react';
+import { Box, Link, Text, UnorderedList } from '@chakra-ui/react';
 
 export const AboutMe = () => {
   const {
@@ -42,11 +33,12 @@ export const AboutMe = () => {
           {skills.map((tech) => (
             <MotionListItem
               key={tech.link}
-              as="div"
+              as="li"
               role={'listitem'}
               transition={{ type: 'spring', stiffness: 300 }}
               whileHover={{ scale: 1.05, originX: 0 }}
               whileTap={{ scale: 0.99 }}
+              style={{ listStyleType: 'none', display: 'flex' }}
             >
               <Link
                 href={tech.link}
