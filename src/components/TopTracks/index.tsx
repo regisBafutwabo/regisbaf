@@ -1,10 +1,10 @@
+'use client';
 import { useState } from 'react';
 
 import { CONTENTS } from 'constants/content';
 import {
   MotionButton,
   MotionListItem,
-  MotionOrderedList,
 } from 'lib/Motion';
 import {
   getTopTracks,
@@ -15,9 +15,8 @@ import { Song } from 'lib/spotify/types/spotify';
 import {
   Box,
   Link,
-  Skeleton,
+  OrderedList,
   Spinner,
-  Stack,
   Text,
 } from '@chakra-ui/react';
 
@@ -25,7 +24,9 @@ import { TopTracksProps } from './TopTracks.types';
 
 export const TopTracks = (props: TopTracksProps) => {
   const { items, next } = props;
-  const {topTracks:{title}} = CONTENTS
+  const {
+    topTracks: { title },
+  } = CONTENTS;
 
   const [loading, setLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -81,9 +82,7 @@ export const TopTracks = (props: TopTracksProps) => {
         ) : (
           <>
             {tracks ? (
-              <MotionOrderedList
-                initial={{ x: '-100vw' }}
-                animate={{ x: 0 }}
+              <OrderedList
                 spacing={4}
                 display="flex"
                 flexDirection="column"
@@ -100,13 +99,9 @@ export const TopTracks = (props: TopTracksProps) => {
                     </Link>
                   </MotionListItem>
                 ))}
-              </MotionOrderedList>
+              </OrderedList>
             ) : (
-              <Stack>
-                <Skeleton height="20px" />
-                <Skeleton height="20px" />
-                <Skeleton height="20px" />
-              </Stack>
+              <Spinner />
             )}
             {nextOffset ? (
               <MotionButton

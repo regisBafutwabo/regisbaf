@@ -1,6 +1,12 @@
-import { Box, Text, useColorMode } from '@chakra-ui/react';
+'use client';
 import { MotionBox } from 'lib/Motion';
 import Link from 'next/link';
+
+import {
+  Box,
+  Text,
+  useColorMode,
+} from '@chakra-ui/react';
 
 import { PostCardProps } from './PostCard.types';
 

@@ -1,19 +1,26 @@
+import 'styles/globals.css';
+
+import { ReactNode } from 'react';
+
+import { Footer, Header } from 'components/AppLayout/components';
 import { theme } from 'config/theme';
-import { Head, Html, Main, NextScript } from 'next/document';
+import { Martel } from 'next/font/google';
+import Script from 'next/script';
 
-import { ColorModeScript } from '@chakra-ui/react';
+import { Box, ColorModeScript } from '@chakra-ui/react';
 
-export default function Document() {
+import Providers from './providers';
+
+const martel = Martel({
+  subsets: ['latin'],
+  variable: '--chakra-fonts-body',
+  weight: '200',
+});
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <Html>
-      <Head>
-        <link
-          rel="stylesheet preload prefetch"
-          href="https://fonts.googleapis.com/css2?family=Martel&display=swap"
-          as="style"
-          type="text/css"
-          crossOrigin="anonymous"
-        />
+    <html lang="en" className={martel.variable}>
+      <head>
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="keywords"
@@ -21,11 +28,12 @@ export default function Document() {
         />
         <meta name="author" content="Regis Bafutwabo" />
         {/* Global Site Tag (gtag.js) - Google Analytics */}
-        <script
+        <Script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
         />
-        <script
+        <Script
+          id="google-analytics"
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -33,12 +41,17 @@ export default function Document() {
           gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');`,
           }}
         />
-      </Head>
+      </head>
       <body>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <Main />
-        <NextScript />
+        <Providers>
+          <Header />
+          <Box marginBottom={8} minHeight="100vh" overflowY="scroll">
+            {children}
+          </Box>
+          <Footer />
+        </Providers>
       </body>
-    </Html>
+    </html>
   );
 }

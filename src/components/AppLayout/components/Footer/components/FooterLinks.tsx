@@ -1,12 +1,9 @@
+'use client';
 import { CONTENTS } from 'constants/content';
 import { MotionText } from 'lib/Motion';
 import Link from 'next/link';
 
-import {
-  Box,
-  Link as ExternalLink,
-  useColorMode,
-} from '@chakra-ui/react';
+import { Box, Link as ExternalLink, useColorMode } from '@chakra-ui/react';
 
 export const FooterLinks = () => {
   const { colorMode } = useColorMode();
@@ -40,11 +37,7 @@ export const FooterLinks = () => {
         ))}
       </Box>
       <Box display="flex" flexDirection="column" gap={2}>
-        <ExternalLink
-          href={github}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <ExternalLink href={github} target="_blank" rel="noopener noreferrer">
           <MotionText
             whileHover={{
               scale: 1.1,
@@ -57,11 +50,7 @@ export const FooterLinks = () => {
             Github
           </MotionText>
         </ExternalLink>
-        <ExternalLink
-          href={linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <ExternalLink href={linkedin} target="_blank" rel="noopener noreferrer">
           <MotionText
             whileHover={{
               scale: 1.1,

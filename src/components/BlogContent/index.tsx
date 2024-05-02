@@ -1,13 +1,15 @@
-import { Box, Text, useColorMode } from '@chakra-ui/react';
+'use client';
 import { RenderHtml } from 'components/Common/Mdx';
 import { format } from 'date-fns';
 import { MotionBox } from 'lib/Motion';
 import { urlForImage } from 'lib/sanity';
 import Image from 'next/image';
 
+import { Box, Text, useColorMode } from '@chakra-ui/react';
+
 import { PostProps } from './Post.types';
 
-export const Post = ({ post, source, readingTime }: PostProps) => {
+export const BlogContent = ({ post, source, readingTime }: PostProps) => {
   const { colorMode } = useColorMode();
 
   return (
@@ -29,6 +31,10 @@ export const Post = ({ post, source, readingTime }: PostProps) => {
             alt="cover"
             width={500}
             height={500}
+            style={{
+              maxWidth: '100%',
+              height: 'auto',
+            }}
           />
         </Box>
       )}

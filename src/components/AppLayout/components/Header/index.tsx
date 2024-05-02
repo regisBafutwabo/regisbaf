@@ -1,9 +1,12 @@
+'use client';
 import { useState } from 'react';
 
 import { useColorMode } from '@chakra-ui/react';
 
 import { DesktopMenu, MobileMenu } from './Components';
 import { Nav } from './styles';
+
+('use-client');
 
 const IconVariant = {
   hidden: {
@@ -39,22 +42,37 @@ export const Header = () => {
   };
 
   return (
-    <Nav mt={[4, 4, 4, 8]} mb={[4, 4, 4, 4]}>
-      <DesktopMenu
-        toggleMode={toggleMode}
-        colorMode={colorMode}
-        openModal={openModal}
-        IconVariant={IconVariant}
-      />
-      <MobileMenu
-        open={isModalOpen}
-        closeModal={() => {
-          setIsModalOpen(false);
-        }}
-        toggleMode={toggleMode}
-        colorMode={colorMode}
-        IconVariant={IconVariant}
-      />
-    </Nav>
+    <div style={{ width: '100%' }}>
+      <Nav
+        mt={[4, 4, 4, 8]}
+        mb={[4, 4, 4, 4]}
+        mx={4}
+        justifyContent={[
+          'space-between',
+          'space-between',
+          'space-between',
+          'space-between',
+          'space-around',
+        ]}
+      >
+        <DesktopMenu
+          toggleMode={toggleMode}
+          colorMode={colorMode}
+          openModal={openModal}
+          IconVariant={IconVariant}
+        />
+        {isModalOpen && (
+          <MobileMenu
+            open={isModalOpen}
+            closeModal={() => {
+              setIsModalOpen(false);
+            }}
+            toggleMode={toggleMode}
+            colorMode={colorMode}
+            IconVariant={IconVariant}
+          />
+        )}
+      </Nav>
+    </div>
   );
 };

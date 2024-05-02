@@ -1,9 +1,16 @@
-import { Box, Link, Text, useColorMode } from '@chakra-ui/react';
+'use client';
 import fetcher from 'lib/fetcher/fetcher';
 import { MotionText } from 'lib/Motion';
 import { CurrentlySong } from 'lib/spotify/types/spotify';
 import { BsSpotify } from 'react-icons/bs';
 import useSWR from 'swr';
+
+import {
+  Box,
+  Link,
+  Text,
+  useColorMode,
+} from '@chakra-ui/react';
 
 export default function CurrentlyPlaying() {
   const { colorMode } = useColorMode();
