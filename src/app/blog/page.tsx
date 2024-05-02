@@ -11,7 +11,15 @@ type Props = {
 };
 
 export function generateMetadata(): Metadata {
-  return { title: 'Regis Bafutwabo - Blog' };
+  return {
+    title: 'Regis Bafutwabo - Blog',
+    alternates: {
+      canonical: '/blog',
+      languages: {
+        'en-US': '/blog',
+      },
+    },
+  };
 }
 
 export default async function BlogPage() {
