@@ -8,17 +8,10 @@ import {
   MotionText,
 } from 'lib/Motion';
 import Link from 'next/link';
-import {
-  usePathname,
-  useRouter,
-} from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 import { HamburgerIcon } from '@chakra-ui/icons';
-import {
-  Box,
-  Text,
-  useBreakpointValue,
-} from '@chakra-ui/react';
+import { Box, Text, useBreakpointValue } from '@chakra-ui/react';
 
 import { DesktopMenuProps } from './DesktopMenu.interface';
 
@@ -26,8 +19,8 @@ export const DesktopMenu = (props: DesktopMenuProps) => {
   const { toggleMode, colorMode, openModal, IconVariant } = props;
   const { push } = useRouter();
   const pathname = usePathname();
-  const variant = useBreakpointValue(['xl', 'xxl', 'xs', 'sm', 'md', 'lg']);
-  
+  const variant = useBreakpointValue(['xs', 'sm', 'md', 'lg', 'xl', 'xxl']);
+
   return (
     <>
       <Box
@@ -80,7 +73,7 @@ export const DesktopMenu = (props: DesktopMenuProps) => {
           ))}
         </Box>
       </Box>
-      {variant && MOBILE_SIZES.includes(variant as string) ? (
+      {MOBILE_SIZES.includes(variant as string) ? (
         <MotionIconButton
           aria-label="hamburger-icon"
           _focus={{ outline: 0 }}
