@@ -5,11 +5,6 @@ import { Post } from 'typings/Blog';
 
 import { Text } from '@chakra-ui/react';
 
-type Props = {
-  params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
 export function generateMetadata(): Metadata {
   return {
     title: 'Regis Bafutwabo - Blog',
