@@ -3,7 +3,11 @@ import { CONTENTS } from 'constants/content';
 import { MotionText } from 'lib/Motion';
 import Link from 'next/link';
 
-import { Box, Link as ExternalLink, useColorMode } from '@chakra-ui/react';
+import {
+  Box,
+  Link as ExternalLink,
+  useColorMode,
+} from '@chakra-ui/react';
 
 export const FooterLinks = () => {
   const { colorMode } = useColorMode();
@@ -19,7 +23,7 @@ export const FooterLinks = () => {
       width="100%"
       gap={[8, 8, 32, 32]}
     >
-      <Box display="flex" flexDirection="column" gap={2}>
+      <Box display="flex" flexDirection="column" gap={4}>
         {links.map((link) => (
           <Link href={link.value} passHref key={link.value}>
             <MotionText
@@ -36,7 +40,7 @@ export const FooterLinks = () => {
           </Link>
         ))}
       </Box>
-      <Box display="flex" flexDirection="column" gap={2}>
+      <Box display="flex" flexDirection="column" gap={4}>
         <ExternalLink href={github} target="_blank" rel="noopener noreferrer">
           <MotionText
             whileHover={{

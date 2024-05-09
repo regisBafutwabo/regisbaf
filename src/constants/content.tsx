@@ -168,7 +168,7 @@ export const CONTENTS = {
     profileAlt: 'Regis Bafutwabo',
     salutation: `Hi, I'm Regis,`,
     briefDescription:
-      ' a front-end developer with experience working on complex web applications and blockchain-related projects, I have a strong technical background and a broad range of skills',
+      ' a Software developer with experience working on complex web applications and blockchain-related projects, I have a strong technical background and a broad range of skills',
     hobbies:
       'I am always eager to take on new challenges and expand my skills in the ever-changing world of technology.I also enjoy music, video games and exploring new places.',
     skills: techList,
