@@ -2,23 +2,13 @@ import 'styles/globals.css';
 
 import { ReactNode } from 'react';
 
-import {
-  Footer,
-  Header,
-} from 'components/AppLayout/components';
+import { Footer, Header } from 'components/AppLayout/components';
 import { theme } from 'config/theme';
-import {
-  Metadata,
-  Viewport,
-} from 'next';
+import { Metadata, Viewport } from 'next';
 import { Martel } from 'next/font/google';
 import Script from 'next/script';
 
-import {
-  Box,
-  ColorModeScript,
-  Container,
-} from '@chakra-ui/react';
+import { Box, ColorModeScript, Container } from '@chakra-ui/react';
 
 import Providers from './providers';
 

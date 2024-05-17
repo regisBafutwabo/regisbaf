@@ -1,16 +1,7 @@
 import { CONTENTS } from 'constants/content';
-import {
-  MotionBox,
-  MotionListItem,
-  MotionText,
-} from 'lib/Motion';
+import { MotionBox, MotionListItem, MotionText } from 'lib/Motion';
 
-import {
-  Box,
-  Link,
-  Text,
-  UnorderedList,
-} from '@chakra-ui/react';
+import { Box, Link, Text, UnorderedList } from '@chakra-ui/react';
 
 export const AboutMe = () => {
   const {
