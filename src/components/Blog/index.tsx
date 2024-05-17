@@ -2,10 +2,7 @@ import { PostCard } from 'components/Common/PostCard';
 import { CONTENTS } from 'constants/content';
 import { MotionBox } from 'lib/Motion';
 
-import {
-  Box,
-  Text,
-} from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 
 import { BlogProps } from './Blog.types';
 
@@ -34,7 +31,7 @@ export const Blog = ({ posts }: BlogProps) => {
       <Box paddingY={8} textAlign="center">
         {posts.length === 0 && <p>No posts to show</p>}
         {posts.length > 0 &&
-          posts.map(post => <PostCard post={post} key={post._id} />)}
+          posts.map((post) => <PostCard post={post} key={post._id} />)}
       </Box>
     </MotionBox>
   );

@@ -3,11 +3,7 @@ import { CONTENTS } from 'constants/content';
 import { MotionText } from 'lib/Motion';
 import Link from 'next/link';
 
-import {
-  Box,
-  Link as ExternalLink,
-  useColorMode,
-} from '@chakra-ui/react';
+import { Box, Link as ExternalLink, useColorMode } from '@chakra-ui/react';
 
 export const FooterLinks = () => {
   const { colorMode } = useColorMode();
