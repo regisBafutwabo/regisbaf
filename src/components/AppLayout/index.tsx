@@ -1,11 +1,13 @@
 import { ReactNode } from 'react';
 
 import { MotionBox } from 'lib/Motion';
-import { Metadata, Viewport } from 'next';
 
 import { Box } from '@chakra-ui/react';
 
-import { Footer, Header } from './components';
+import {
+  Footer,
+  Header,
+} from './components';
 
 export const AppLayout = ({ children }: { children: ReactNode }) => {
   return (
