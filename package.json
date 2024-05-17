@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettify": "prettier --write ./src/**/*.{ts,tsx}"
+    "prettify": "prettier --write './src/**/*.{ts,tsx}'"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",

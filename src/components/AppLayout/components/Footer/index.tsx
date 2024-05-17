@@ -5,8 +5,9 @@ import { FooterLinks } from './components/FooterLinks';
 
 export const Footer = () => {
   return (
-    <footer
+    <div
       style={{
+        position: 'relative',
         paddingTop: 8,
         // marginRight: 'auto',
         // marginLeft: 'auto',
@@ -14,7 +15,7 @@ export const Footer = () => {
         // flexDirection: 'column',
         // alignItems: 'center',
         // justifyContent: 'center',
-        borderTopColor: 'gray[700]',
+        // borderTopColor: 'gray[700]',
         borderTopWidth: '1px',
         backgroundColor: 'inherit',
       }}
@@ -23,6 +24,6 @@ export const Footer = () => {
         <CurrentlyPlaying />
         <FooterLinks />
       </Container>
-    </footer>
+    </div>
   );
 };

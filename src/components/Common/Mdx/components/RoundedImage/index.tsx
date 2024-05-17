@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 export function RoundedImage(props: any) {
   return (
@@ -14,8 +14,9 @@ export function RoundedImage(props: any) {
         borderRadius: 5,
         marginRight: 'auto',
         marginLeft: 'auto',
-        maxWidth: "100%",
-        height: "auto"
-      }} />
+        maxWidth: '100%',
+        height: 'auto',
+      }}
+    />
   );
 }
