@@ -1,17 +1,6 @@
-import { Spinner } from '@chakra-ui/react';
+'use client';
+import { Spinner } from 'components/Common/Spinner';
 
 export default function Loading() {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-      }}
-    >
-      <Spinner />
-    </div>
-  );
+  return <Spinner />;
 }
