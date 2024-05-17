@@ -51,6 +51,7 @@ export const getTopTracks = async ({
       ? nextList
       : `${TOP_TRACKS_ENDPOINT}?offset=${offset}&limit=${limit}&time_range=${time_range}`,
     {
+      cache: 'no-cache',
       headers: {
         Authorization: `Bearer ${access_token}`,
         'Content-Type': 'application/json',

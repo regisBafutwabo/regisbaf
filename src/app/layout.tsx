@@ -17,6 +17,7 @@ import Script from 'next/script';
 import {
   Box,
   ColorModeScript,
+  Container,
 } from '@chakra-ui/react';
 
 import Providers from './providers';
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
     },
   },
   title: 'Regis Bafutwabo – Software Developer',
-  description: 'Front-end Developer, and sometimes Full-stack Seveloper',
+  description: 'Front-end Developer, and sometimes Full-stack Developer',
   robots: 'follow, index',
   openGraph: {
     type: 'website',
@@ -88,10 +89,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <Providers>
           <Header />
-          <Box marginBottom={8} minHeight="100vh" overflowY="scroll">
-            {children}
+          <Box display="flex" flexDirection="column" minHeight="100vh">
+            <Container maxW="container.lg" flex={1} overflowY="auto">
+              {children}
+            </Container>
+            <Footer />
           </Box>
-          <Footer />
         </Providers>
       </body>
     </html>

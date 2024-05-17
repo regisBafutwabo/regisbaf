@@ -1,18 +1,5 @@
 import { TopTracks } from 'components/TopTracks';
 import { getTopTracks } from 'lib/spotify/spotify';
-import { Metadata } from 'next';
-
-export function generateMetadata(): Metadata {
-  return {
-    title: 'Regis Bafutwabo - Top Tracks',
-    alternates: {
-      canonical: '/top-tracks',
-      languages: {
-        'en-US': '/top-tracks',
-      },
-    },
-  };
-}
 
 export default async function TracksPage() {
   const data = await getTopTracks({

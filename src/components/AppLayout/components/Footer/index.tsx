@@ -16,6 +16,7 @@ export const Footer = () => {
         // justifyContent: 'center',
         borderTopColor: 'gray[700]',
         borderTopWidth: '1px',
+        backgroundColor: 'inherit',
       }}
     >
       <Container maxW="container.lg">

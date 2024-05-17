@@ -3,10 +3,11 @@ import { useState } from 'react';
 
 import { useColorMode } from '@chakra-ui/react';
 
-import { DesktopMenu, MobileMenu } from './Components';
+import {
+  DesktopMenu,
+  MobileMenu,
+} from './Components';
 import { Nav } from './styles';
-
-('use-client');
 
 const IconVariant = {
   hidden: {
@@ -42,10 +43,10 @@ export const Header = () => {
   };
 
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '100%', position: 'sticky' }}>
       <Nav
-        mt={[4, 4, 4, 8]}
-        mb={[4, 4, 4, 4]}
+        pt={[4, 4, 4, 8]}
+        pb={[4, 4, 4, 4]}
         mx={4}
         justifyContent={[
           'space-between',

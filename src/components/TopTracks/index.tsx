@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 
+import { Spinner } from 'components/Common/Spinner';
 import { CONTENTS } from 'constants/content';
 import {
   MotionButton,
@@ -16,7 +17,6 @@ import {
   Box,
   Link,
   OrderedList,
-  Spinner,
   Text,
 } from '@chakra-ui/react';
 
@@ -81,12 +81,8 @@ export const TopTracks = (props: TopTracksProps) => {
           <Text>Oops! Something went wrong. Please Try again Later</Text>
         ) : (
           <>
-            {tracks ? (
-              <OrderedList
-                spacing={4}
-                display="flex"
-                flexDirection="column"
-              >
+            {tracks && (
+              <OrderedList spacing={4} display="flex" flexDirection="column">
                 {tracks?.map((track: Song) => (
                   <MotionListItem
                     transition={{ type: 'spring', stiffness: 300 }}
@@ -100,8 +96,6 @@ export const TopTracks = (props: TopTracksProps) => {
                   </MotionListItem>
                 ))}
               </OrderedList>
-            ) : (
-              <Spinner />
             )}
             {nextOffset ? (
               <MotionButton
@@ -116,7 +110,7 @@ export const TopTracks = (props: TopTracksProps) => {
                 whileTap={{ scale: 0.9 }}
                 onClick={loadMore}
               >
-                {loading ? <Spinner /> : 'Load More'}
+                {loading ? <Spinner height={100} width={100} /> : 'Load More'}
               </MotionButton>
             ) : undefined}
           </>

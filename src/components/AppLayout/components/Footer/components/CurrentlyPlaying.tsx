@@ -14,7 +14,10 @@ import {
 
 export default function CurrentlyPlaying() {
   const { colorMode } = useColorMode();
-  const { data } = useSWR<CurrentlySong>('/api/currently-playing', fetcher);
+  const { data } = useSWR<CurrentlySong>('/api/currently-playing', fetcher, {
+    refreshWhenHidden: false,
+    refreshWhenOffline: false,
+  });
 
   return (
     <Box
