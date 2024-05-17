@@ -1,7 +1,16 @@
 import { CONTENTS } from 'constants/content';
-import { MotionBox, MotionListItem, MotionText } from 'lib/Motion';
+import {
+  MotionBox,
+  MotionListItem,
+  MotionText,
+} from 'lib/Motion';
 
-import { Box, Link, Text, UnorderedList } from '@chakra-ui/react';
+import {
+  Box,
+  Link,
+  Text,
+  UnorderedList,
+} from '@chakra-ui/react';
 
 export const AboutMe = () => {
   const {
@@ -13,7 +22,12 @@ export const AboutMe = () => {
       width={['100%', '100%', '100%', '80%']}
     >
       <MotionBox>
-        <span style={{ fontWeight: 'bold', fontStyle: 'italic' }}>
+        <span
+          style={{
+            fontWeight: 'bold',
+            fontStyle: 'italic',
+          }}
+        >
           {salutation}
         </span>
         {briefDescription}
