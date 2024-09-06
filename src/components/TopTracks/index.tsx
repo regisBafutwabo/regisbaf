@@ -89,7 +89,7 @@ export const TopTracks = ({ items, next }: TopTracksProps) => {
                 ))}
               </OrderedList>
             )}
-            {nextOffset && (
+            {nextOffset && tracks?.length < 50 && (
               <MotionButton
                 marginTop={8}
                 _hover={{

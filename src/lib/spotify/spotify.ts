@@ -45,7 +45,6 @@ export const getTopTracks = async ({
   nextList,
 }: getTopTracksParams) => {
   const { access_token } = await getAccessToken();
-  console.log('Acess Token', access_token);
   return fetch(
     nextList
       ? nextList
