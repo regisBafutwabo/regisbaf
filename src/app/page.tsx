@@ -1,7 +1,4 @@
-import {
-  AboutMe,
-  MainHeader,
-} from 'components/Main';
+import { AboutMe, MainHeader } from 'components/Main';
 
 import { Box } from '@chakra-ui/react';
 

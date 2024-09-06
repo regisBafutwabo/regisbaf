@@ -1,15 +1,10 @@
-import {
-  Box,
-  Text,
-  UnorderedList,
-} from '@chakra-ui/react';
+import { Box, Text, UnorderedList } from '@chakra-ui/react';
 import { MDXComponents } from '@mdx-js/react/lib';
 
 // This file is required to use @next/mdx in the `app` directory.
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   // Allows customizing built-in components, e.g. to add styling.
   return {
-    
     h3: (props) => (
       <Text as="b" {...props}>
         {props.children}

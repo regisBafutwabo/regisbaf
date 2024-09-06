@@ -13,7 +13,12 @@ export const AboutMe = () => {
       width={['100%', '100%', '100%', '80%']}
     >
       <MotionBox>
-        <span style={{ fontWeight: 'bold', fontStyle: 'italic' }}>
+        <span
+          style={{
+            fontWeight: 'bold',
+            fontStyle: 'italic',
+          }}
+        >
           {salutation}
         </span>
         {briefDescription}

@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 
 import { MotionBox } from 'lib/Motion';
-import { Metadata, Viewport } from 'next';
 
 import { Box } from '@chakra-ui/react';
 

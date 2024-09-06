@@ -3,10 +3,7 @@ import { useState } from 'react';
 
 import { useColorMode } from '@chakra-ui/react';
 
-import {
-  DesktopMenu,
-  MobileMenu,
-} from './Components';
+import { DesktopMenu, MobileMenu } from './Components';
 import { Nav } from './styles';
 
 const IconVariant = {
@@ -43,11 +40,21 @@ export const Header = () => {
   };
 
   return (
-    <div style={{ width: '100%', position: 'sticky' }}>
+    <div
+      className="header"
+      style={{
+        width: '100%',
+        maxWidth: '100vw',
+        position: 'sticky',
+        top: 0,
+        backgroundColor: 'inherit',
+        zIndex: 2,
+      }}
+    >
       <Nav
         pt={[4, 4, 4, 8]}
         pb={[4, 4, 4, 4]}
-        mx={4}
+        // mx={[2, 2, '16px !important', '16px !important']}
         justifyContent={[
           'space-between',
           'space-between',

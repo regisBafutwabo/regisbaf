@@ -2,7 +2,6 @@ import { BlogContent } from 'components/BlogContent';
 import { PostSkeleton } from 'components/Common/Skeletons';
 import { mdxToHtml } from 'lib/Mdx';
 import { getClient } from 'lib/sanity';
-import { getTweets } from 'lib/twitter';
 import { Metadata } from 'next';
 import { Post } from 'typings/Blog';
 
@@ -51,8 +50,8 @@ export default async function SlugPage({ params }: any) {
     `*[_type == "post" && slug.current=="${params.slug}"]`
   );
   const post = posts[0];
-  const { html, tweetIDs, readingTime } = await mdxToHtml(post.content);
-  const tweets = await getTweets(tweetIDs);
+  const { html, readingTime } = await mdxToHtml(post.content);
+  // const tweets = await getTweets(tweetIDs);
 
   return (
     <>

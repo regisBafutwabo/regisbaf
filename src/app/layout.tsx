@@ -2,23 +2,13 @@ import 'styles/globals.css';
 
 import { ReactNode } from 'react';
 
-import {
-  Footer,
-  Header,
-} from 'components/AppLayout/components';
+import { Footer, Header } from 'components/AppLayout/components';
 import { theme } from 'config/theme';
-import {
-  Metadata,
-  Viewport,
-} from 'next';
+import { Metadata, Viewport } from 'next';
 import { Martel } from 'next/font/google';
 import Script from 'next/script';
 
-import {
-  Box,
-  ColorModeScript,
-  Container,
-} from '@chakra-ui/react';
+import { Box, ColorModeScript, Container } from '@chakra-ui/react';
 
 import Providers from './providers';
 
@@ -62,9 +52,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={martel.variable}>
+    <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" />
         <meta
           name="keywords"
           content="HTML, CSS, JavaScript, NextJS, React, Nextjs, react, React-native"
@@ -88,9 +77,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <Providers>
-          <Header />
-          <Box display="flex" flexDirection="column" minHeight="100vh">
-            <Container maxW="container.lg" flex={1} overflowY="auto">
+          <Box display="flex" flexDirection="column" overflowY="auto">
+            <Header />
+            <Container maxW="container.lg" flex={1}>
               {children}
             </Container>
             <Footer />

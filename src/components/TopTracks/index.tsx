@@ -1,29 +1,20 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Spinner } from 'components/Common/Spinner';
 import { CONTENTS } from 'constants/content';
-import {
-  MotionButton,
-  MotionListItem,
-} from 'lib/Motion';
-import {
-  getTopTracks,
-  getTracks,
-} from 'lib/spotify/spotify';
+import { MotionButton, MotionListItem } from 'lib/Motion';
+import { getTopTracks, getTracks } from 'lib/spotify/spotify';
 import { Song } from 'lib/spotify/types/spotify';
 
-import {
-  Box,
-  Link,
-  OrderedList,
-  Text,
-} from '@chakra-ui/react';
+import { Box, Link, OrderedList, Text } from '@chakra-ui/react';
 
-import { TopTracksProps } from './TopTracks.types';
+type TopTracksProps = {
+  items: Song[];
+  next: string;
+};
 
-export const TopTracks = (props: TopTracksProps) => {
-  const { items, next } = props;
+export const TopTracks = ({ items, next }: TopTracksProps) => {
   const {
     topTracks: { title },
   } = CONTENTS;
@@ -33,60 +24,61 @@ export const TopTracks = (props: TopTracksProps) => {
   const [nextOffset, setNextOffset] = useState(next);
   const [tracks, setTracks] = useState<Song[]>(items);
 
+  useEffect(() => {
+    setTracks(items);
+  }, [items]);
+
   const getNextParams = () => {
     const url = new URL(nextOffset);
-    const params = new URLSearchParams(url.href);
-    const offset = parseInt(params.get('offset') as string, 10);
-    const limit = parseInt(params.get('limit') as string, 10);
-    const time_range = params.get('time_range') as
-      | 'short_term'
-      | 'long_term'
-      | 'medium_term';
-
+    const params = new URLSearchParams(url.search);
     return {
-      offset,
-      limit,
-      time_range,
+      offset: parseInt(params.get('offset') || '0', 10),
+      limit: parseInt(params.get('limit') || '10', 10),
+      time_range: params.get('time_range') as
+        | 'short_term'
+        | 'long_term'
+        | 'medium_term',
     };
   };
 
   const loadMore = async () => {
-    try {
-      setLoading(true);
-      setHasError(false);
+    setLoading(true);
+    setHasError(false);
 
+    try {
       const params = getNextParams();
       const res = await getTopTracks({ nextList: nextOffset, ...params });
-      const { items, next } = (await res.json()) as any;
+      const { items, next } = await res.json();
       const newTracks = getTracks(items);
 
-      setTracks([...tracks, ...(newTracks || [])]);
+      setTracks((prevTracks) => [...prevTracks, ...(newTracks || [])]);
       setNextOffset(next);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
+    } catch {
       setHasError(true);
+    } finally {
+      setLoading(false);
     }
   };
 
+  // Ensure consistent rendering between server and client
+  const isLoading = loading || hasError;
+
   return (
     <Box padding={[4, 4, 0, 10]}>
-      <Box>
-        <Text fontFamily={'heading'} fontSize={'2xl'}>
-          {title}
-        </Text>
-      </Box>
+      <Text fontFamily="heading" fontSize="2xl">
+        {title}
+      </Text>
       <Box marginTop={8}>
         {hasError ? (
-          <Text>Oops! Something went wrong. Please Try again Later</Text>
+          <Text>Oops! Something went wrong. Please try again later.</Text>
         ) : (
           <>
-            {tracks && (
+            {tracks.length > 0 && (
               <OrderedList spacing={4} display="flex" flexDirection="column">
-                {tracks?.map((track: Song) => (
+                {tracks.map((track: Song) => (
                   <MotionListItem
-                    transition={{ type: 'spring', stiffness: 300 }}
                     key={track.songUrl}
+                    transition={{ type: 'spring', stiffness: 300 }}
                     whileHover={{ scale: 1.03, originX: 0 }}
                     whileTap={{ scale: 0.8 }}
                   >
@@ -97,7 +89,7 @@ export const TopTracks = (props: TopTracksProps) => {
                 ))}
               </OrderedList>
             )}
-            {nextOffset ? (
+            {nextOffset && (
               <MotionButton
                 marginTop={8}
                 _hover={{
@@ -105,14 +97,14 @@ export const TopTracks = (props: TopTracksProps) => {
                     'linear-gradient(to right, #007BD3, #007311)',
                 }}
                 bgGradient="linear(to-r, #007BD3, #007311)"
-                disabled={loading}
+                disabled={isLoading}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={loadMore}
               >
-                {loading ? <Spinner height={100} width={100} /> : 'Load More'}
+                {isLoading ? <Spinner height={100} width={100} /> : 'Load More'}
               </MotionButton>
-            ) : undefined}
+            )}
           </>
         )}
       </Box>

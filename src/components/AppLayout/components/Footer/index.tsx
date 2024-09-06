@@ -8,15 +8,9 @@ export const Footer = () => {
     <footer
       style={{
         paddingTop: 8,
-        // marginRight: 'auto',
-        // marginLeft: 'auto',
-        // display: 'flex',
-        // flexDirection: 'column',
-        // alignItems: 'center',
-        // justifyContent: 'center',
-        borderTopColor: 'gray[700]',
         borderTopWidth: '1px',
         backgroundColor: 'inherit',
+        marginTop: '32px',
       }}
     >
       <Container maxW="container.lg">
