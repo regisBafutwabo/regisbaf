@@ -167,8 +167,7 @@ export const CONTENTS = {
     profilePic: '/profile.webp',
     profileAlt: 'Regis Bafutwabo',
     salutation: `Hi, I'm Regis,`,
-    briefDescription:
-      ' a Software developer with experience working on complex web applications and blockchain-related projects, I have a strong technical background and a broad range of skills',
+    briefDescription: ` a dedicated software developer specializing in web application development using React and Next.js. I strive to write clean, readable code that even my dog could understand (if he cared to look). Passionate about staying updated on the latest web technologies, I'm like a sponge for new features - though I promise not to squeeze this knowledge over your head uninvited. Comfortable with both frontend and backend, but I have a soft spot for frontend work. After all, someone needs to make sure our apps don't look like they're straight out of the 90s!`,
     hobbies:
       'I am always eager to take on new challenges and expand my skills in the ever-changing world of technology.I also enjoy music, video games and exploring new places.',
     skills: techList,
