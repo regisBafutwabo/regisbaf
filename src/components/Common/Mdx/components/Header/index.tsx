@@ -7,3 +7,11 @@ export function Header(props: any) {
     </Text>
   );
 }
+
+export function Header2(props: any) {
+  return (
+    <Text as="h2" fontSize="22.4px" fontWeight="bold" {...props}>
+      {props.children}
+    </Text>
+  );
+}

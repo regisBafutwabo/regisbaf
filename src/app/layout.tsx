@@ -52,9 +52,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={martel.variable}>
+    <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" />
         <meta
           name="keywords"
           content="HTML, CSS, JavaScript, NextJS, React, Nextjs, react, React-native"
@@ -78,9 +77,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <Providers>
-          <Header />
-          <Box display="flex" flexDirection="column">
-            <Container maxW="container.lg" flex={1} overflowY="auto">
+          <Box display="flex" flexDirection="column" overflowY="auto">
+            <Header />
+            <Container maxW="container.lg" flex={1}>
               {children}
             </Container>
             <Footer />

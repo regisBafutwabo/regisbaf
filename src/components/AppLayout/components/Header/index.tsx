@@ -41,8 +41,10 @@ export const Header = () => {
 
   return (
     <div
+      className="header"
       style={{
         width: '100%',
+        maxWidth: '100vw',
         position: 'sticky',
         top: 0,
         backgroundColor: 'inherit',
@@ -52,7 +54,7 @@ export const Header = () => {
       <Nav
         pt={[4, 4, 4, 8]}
         pb={[4, 4, 4, 4]}
-        mx={4}
+        // mx={[2, 2, '16px !important', '16px !important']}
         justifyContent={[
           'space-between',
           'space-between',

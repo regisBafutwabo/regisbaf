@@ -5,7 +5,7 @@ body {
   /* font-size: 100%; */
   padding: 0;
   margin: 0;
-  font-family: 'Martel Sans', 'Nunito', sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: 'Geist Sans', 'Martel Sans', 'Nunito', sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
@@ -198,4 +198,20 @@ pre[class*='language-'] {
 .token.important,
 .token.variable {
   color: rgb(234 179 8);
+}
+
+.anchor {
+  padding-right: 8px;
+}
+
+.code-line {
+  padding-left: 8px;
+}
+
+.header {
+  padding: 0 16px;
+
+  @media (max-width: 768px) {
+    padding: 0 8px;
+  }
 }

@@ -18,16 +18,14 @@ export function generateMetadata(): Metadata {
 }
 
 export default async function BlogPage() {
-  let posts: Post[] | null = null;
+  let posts: Post[] | null = [];
   let error: string | null = null;
 
   try {
     const client = getClient(false);
     posts = await client.fetch(`*[_type == "post"]`);
-    error = null;
   } catch (err: any) {
     error = err?.message as string;
-    posts = null;
   }
 
   return (
@@ -37,7 +35,13 @@ export default async function BlogPage() {
           Oops! {error}
         </Text>
       )}
-      {posts && error === null && posts?.length > 0 && <Blog posts={posts} />}
+      {posts && posts?.length > 0 ? (
+        <Blog posts={posts} />
+      ) : (
+        <Text marginTop={200} textAlign="center">
+          No posts available.
+        </Text>
+      )}
     </>
   );
 }

@@ -17,7 +17,8 @@ export const Blog = ({ posts }: BlogProps) => {
       initial={{ x: '-100vw' }}
       paddingX={[0, 4, 4, 8]}
       paddingY={8}
-      height="60vh"
+      minHeight="60vh" // Changed height to minHeight to prevent footer overlap
+      marginBottom="80px" // Added margin to ensure space for footer
     >
       <Text
         fontWeight="bold"

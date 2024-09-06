@@ -1,3 +1,4 @@
+import { Spinner } from 'components/Common/Spinner';
 import { TopTracks } from 'components/TopTracks';
 import { getTopTracks } from 'lib/spotify/spotify';
 
@@ -16,9 +17,10 @@ export default async function TracksPage() {
     title: track.name,
   }));
 
-  return (
-    <>
-      {tracks && tracks.length > 0 && <TopTracks items={tracks} next={next} />}
-    </>
-  );
+  // Show loading component while data is being fetched
+  if (!items) {
+    return <Spinner />;
+  }
+
+  return <>{tracks.length > 0 && <TopTracks items={tracks} next={next} />}</>;
 }
