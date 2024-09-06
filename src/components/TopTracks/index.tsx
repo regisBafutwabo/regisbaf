@@ -1,13 +1,27 @@
 'use client';
-import { useEffect, useState } from 'react';
+import {
+  useEffect,
+  useState,
+} from 'react';
 
 import { Spinner } from 'components/Common/Spinner';
 import { CONTENTS } from 'constants/content';
-import { MotionButton, MotionListItem } from 'lib/Motion';
-import { getTopTracks, getTracks } from 'lib/spotify/spotify';
+import {
+  MotionButton,
+  MotionListItem,
+} from 'lib/Motion';
+import {
+  getTopTracks,
+  getTracks,
+} from 'lib/spotify/spotify';
 import { Song } from 'lib/spotify/types/spotify';
 
-import { Box, Link, OrderedList, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Link,
+  OrderedList,
+  Text,
+} from '@chakra-ui/react';
 
 type TopTracksProps = {
   items: Song[];
@@ -89,7 +103,7 @@ export const TopTracks = ({ items, next }: TopTracksProps) => {
                 ))}
               </OrderedList>
             )}
-            {nextOffset && (
+            {nextOffset && tracks?.length < 50 && (
               <MotionButton
                 marginTop={8}
                 _hover={{
