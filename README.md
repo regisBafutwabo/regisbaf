@@ -3,7 +3,7 @@
 This is my personal website which contains a list of blogs and some of the music I enjoy at the moment.
 
 ## Content Templates
-In case you want to use it as your template, 
+In case you want to use it as a template, 
 - Create a `.env` file 
 - Copy the content of `.env.example` to your newly created `.env` file.
 - Fill up the `.env` file
