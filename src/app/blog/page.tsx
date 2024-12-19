@@ -1,4 +1,5 @@
 import { Blog } from 'components/Blog';
+import { SEO_CONTENT } from 'constants/content';
 import { getClient } from 'lib/sanity';
 import { Metadata } from 'next';
 import { Post } from 'typings/Blog';
@@ -7,7 +8,7 @@ import { Text } from '@chakra-ui/react';
 
 export function generateMetadata(): Metadata {
   return {
-    title: 'Regis Bafutwabo - Blog',
+    title: `${SEO_CONTENT.name} - Blog`,
     alternates: {
       canonical: '/blog',
       languages: {
@@ -23,7 +24,11 @@ export default async function BlogPage() {
 
   try {
     const client = getClient(false);
-    posts = await client.fetch(`*[_type == "post"]`);
+    posts = await client.fetch(
+      `*[_type == "post"]`,
+      {},
+      { next: { revalidate: 60 } }
+    );
   } catch (err: any) {
     error = err?.message as string;
   }

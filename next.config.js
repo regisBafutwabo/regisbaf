@@ -14,7 +14,16 @@ const withMDX = require('@next/mdx')({
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['cdn.sanity.io', 'regisbaf.s3.ap-northeast-2.amazonaws.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
+      {
+        protocol: 'https',
+        hostname: 'regisbaf.s3.ap-northeast-2.amazonaws.com',
+      },
+    ],
   },
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
 };

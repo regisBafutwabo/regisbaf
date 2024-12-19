@@ -179,3 +179,24 @@ export const CONTENTS = {
     title: 'My Current Top Tracks List',
   },
 };
+
+export const SEO_CONTENT = {
+  name: 'Regis Bafutwabo',
+  title: 'Regis Bafutwabo – Software Developer',
+  description: 'Front-end Developer, and sometimes Full-stack Developer',
+  robots: 'follow, index',
+  openGraph: {
+    type: 'website',
+    url: `${process.env.NEXT_PUBLIC_URL}`,
+    title: 'Regis Bafutwabo – Software Developer',
+    description: 'Front-end Developer, and sometimes Full-stack Seveloper',
+    images: [{ url: '/profile.webp', alt: 'Regis Baf' }],
+  },
+  twitter: {
+    siteId: '@regiswareja',
+    site: `${process.env.NEXT_PUBLIC_URL}`,
+    title: 'Regis Bafutwabo – Software Developer',
+    description: 'Front-end Developer, and sometimes Full-stack Seveloper',
+    images: [{ url: '/profile.webp', alt: 'Regis Baf' }],
+  },
+};

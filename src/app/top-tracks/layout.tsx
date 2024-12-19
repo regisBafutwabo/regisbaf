@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 
+import { SEO_CONTENT } from 'constants/content';
 import { Metadata } from 'next';
 
 type LayoutProps = {
@@ -8,7 +9,7 @@ type LayoutProps = {
 
 export function generateMetadata(): Metadata {
   return {
-    title: 'Regis Bafutwabo - Top Tracks',
+    title: `${SEO_CONTENT.name} - Top Tracks`,
     alternates: {
       canonical: '/top-tracks',
       languages: {

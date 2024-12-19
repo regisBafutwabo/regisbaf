@@ -1,5 +1,6 @@
-import createImageUrlBuilder from '@sanity/image-url';
 import { createClient } from 'next-sanity';
+
+import createImageUrlBuilder from '@sanity/image-url';
 
 import { sanityConfig } from './config';
 
@@ -7,7 +8,6 @@ export const sanityClient = createClient(sanityConfig);
 
 export const previewClient = createClient({
   ...sanityConfig,
-  useCdn: false,
 });
 
 export const getClient = (preview: boolean) =>
