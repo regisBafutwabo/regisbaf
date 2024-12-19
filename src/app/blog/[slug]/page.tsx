@@ -54,7 +54,6 @@ export default async function SlugPage({ params }: any) {
     `*[_type == "post" && slug.current=="${params.slug}"]`,
     {
       revalidate: 60,
-      useCache: true,
     }
   );
   const post = posts[0];

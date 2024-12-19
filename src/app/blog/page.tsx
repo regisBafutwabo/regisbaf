@@ -26,7 +26,6 @@ export default async function BlogPage() {
     const client = getClient(false);
     posts = await client.fetch(`*[_type == "post"]`, {
       revalidate: 60,
-      useCache: true,
     });
   } catch (err: any) {
     error = err?.message as string;
