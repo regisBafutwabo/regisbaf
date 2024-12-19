@@ -14,9 +14,8 @@ export async function generateMetadata({
   const client = getClient(false);
   const posts: Post[] = await client.fetch(
     `*[_type == "post" && slug.current=="${params.slug}"]`,
-    {
-      revalidate: 60,
-    }
+    {},
+    { next: { revalidate: 60 } }
   );
 
   if (!posts[0]) {
@@ -52,9 +51,8 @@ export default async function SlugPage({ params }: any) {
   const client = getClient(false);
   const posts = await client.fetch(
     `*[_type == "post" && slug.current=="${params.slug}"]`,
-    {
-      revalidate: 60,
-    }
+    {},
+    { next: { revalidate: 60 } }
   );
   const post = posts[0];
   const { html, readingTime } = await mdxToHtml(post.content);
