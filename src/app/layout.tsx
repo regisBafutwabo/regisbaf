@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 
 import { Footer, Header } from 'components/AppLayout/components';
 import { theme } from 'config/theme';
+import { SEO_CONTENT } from 'constants/content';
 import { Metadata, Viewport } from 'next';
 import { Martel } from 'next/font/google';
 import Script from 'next/script';
@@ -31,23 +32,7 @@ export const metadata: Metadata = {
       'en-US': '/',
     },
   },
-  title: 'Regis Bafutwabo – Software Developer',
-  description: 'Front-end Developer, and sometimes Full-stack Developer',
-  robots: 'follow, index',
-  openGraph: {
-    type: 'website',
-    url: `${process.env.NEXT_PUBLIC_URL}`,
-    title: 'Regis Bafutwabo – Software Developer',
-    description: 'Front-end Developer, and sometimes Full-stack Seveloper',
-    images: [{ url: '/profile.webp', alt: 'Regis Baf' }],
-  },
-  twitter: {
-    siteId: '@regiswareja',
-    site: `${process.env.NEXT_PUBLIC_URL}`,
-    title: 'Regis Bafutwabo – Software Developer',
-    description: 'Front-end Developer, and sometimes Full-stack Seveloper',
-    images: [{ url: '/profile.webp', alt: 'Regis Baf' }],
-  },
+  ...SEO_CONTENT,
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -58,7 +43,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           name="keywords"
           content="HTML, CSS, JavaScript, NextJS, React, Nextjs, react, React-native"
         />
-        <meta name="author" content="Regis Bafutwabo" />
+        <meta name="author" content={SEO_CONTENT.name} />
         {/* Global Site Tag (gtag.js) - Google Analytics */}
         <Script
           async

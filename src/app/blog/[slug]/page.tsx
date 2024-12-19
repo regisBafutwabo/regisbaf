@@ -1,5 +1,6 @@
 import { BlogContent } from 'components/BlogContent';
 import { PostSkeleton } from 'components/Common/Skeletons';
+import { CONTENTS } from 'constants/content';
 import { mdxToHtml } from 'lib/Mdx';
 import { getClient } from 'lib/sanity';
 import { Metadata } from 'next';
@@ -12,11 +13,15 @@ export async function generateMetadata({
 }: any): Promise<Metadata | undefined> {
   const client = getClient(false);
   const posts: Post[] = await client.fetch(
-    `*[_type == "post" && slug.current=="${params.slug}"]`
+    `*[_type == "post" && slug.current=="${params.slug}"]`,
+    {
+      revalidate: 60,
+      useCache: true,
+    }
   );
 
   if (!posts[0]) {
-    return { title: 'Regis Bafutwabo - Blog' };
+    return { title: `${CONTENTS.about.profileAlt} - Blog` };
   }
 
   const { title, _updatedAt: publishedTime, description } = posts[0];
@@ -47,7 +52,11 @@ export async function generateMetadata({
 export default async function SlugPage({ params }: any) {
   const client = getClient(false);
   const posts = await client.fetch(
-    `*[_type == "post" && slug.current=="${params.slug}"]`
+    `*[_type == "post" && slug.current=="${params.slug}"]`,
+    {
+      revalidate: 60,
+      useCache: true,
+    }
   );
   const post = posts[0];
   const { html, readingTime } = await mdxToHtml(post.content);
