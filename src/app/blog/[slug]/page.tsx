@@ -16,7 +16,6 @@ export async function generateMetadata({
     `*[_type == "post" && slug.current=="${params.slug}"]`,
     {
       revalidate: 60,
-      useCache: true,
     }
   );
 
