@@ -6,18 +6,18 @@ import { Footer, Header } from 'components/AppLayout/components';
 import { theme } from 'config/theme';
 import { SEO_CONTENT } from 'constants/content';
 import { Metadata, Viewport } from 'next';
-import { Martel } from 'next/font/google';
+// import { Martel } from 'next/font/google';
 import Script from 'next/script';
 
 import { Box, ColorModeScript, Container } from '@chakra-ui/react';
 
 import Providers from './providers';
 
-const martel = Martel({
-  subsets: ['latin'],
-  variable: '--chakra-fonts-body',
-  weight: '200',
-});
+// const martel = Martel({
+//   subsets: ['latin'],
+//   variable: '--chakra-fonts-body',
+//   weight: '200',
+// });
 
 export const viewport: Viewport = {
   width: 'device-width',

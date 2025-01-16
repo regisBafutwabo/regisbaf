@@ -189,14 +189,14 @@ export const SEO_CONTENT = {
     type: 'website',
     url: `${process.env.NEXT_PUBLIC_URL}`,
     title: 'Regis Bafutwabo – Software Developer',
-    description: 'Front-end Developer, and sometimes Full-stack Seveloper',
+    description: 'Front-end Developer, and sometimes Full-stack Developer',
     images: [{ url: '/profile.webp', alt: 'Regis Baf' }],
   },
   twitter: {
     siteId: '@regiswareja',
     site: `${process.env.NEXT_PUBLIC_URL}`,
     title: 'Regis Bafutwabo – Software Developer',
-    description: 'Front-end Developer, and sometimes Full-stack Seveloper',
+    description: 'Front-end Developer, and sometimes Full-stack Developer',
     images: [{ url: '/profile.webp', alt: 'Regis Baf' }],
   },
 };

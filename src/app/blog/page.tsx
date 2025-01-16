@@ -9,11 +9,19 @@ import { Text } from '@chakra-ui/react';
 export function generateMetadata(): Metadata {
   return {
     title: `${SEO_CONTENT.name} - Blog`,
+    description:
+      'Read my latest thoughts on web development, React, and software engineering',
     alternates: {
       canonical: '/blog',
       languages: {
         'en-US': '/blog',
       },
+    },
+    openGraph: {
+      title: `${SEO_CONTENT.name} - Blog`,
+      description:
+        'Read my latest thoughts on web development, React, and software engineering',
+      url: '/blog',
     },
   };
 }

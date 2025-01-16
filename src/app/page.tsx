@@ -1,6 +1,19 @@
 import { AboutMe, MainHeader } from 'components/Main';
 
 import { Box } from '@chakra-ui/react';
+import { SEO_CONTENT } from 'constants/content';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  metadataBase: new URL(`${process.env.NEXT_PUBLIC_URL}`),
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en-US': '/',
+    },
+  },
+  ...SEO_CONTENT,
+};
 
 export default function MainPage() {
   return (
