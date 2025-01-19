@@ -3,7 +3,11 @@ import { useEffect, useState } from 'react';
 
 import theme from 'styles/theme';
 
-import { ChakraProvider, extendTheme, ThemeConfig } from '@chakra-ui/react';
+import {
+  ChakraProvider,
+  type ThemeConfig,
+  extendTheme,
+} from '@chakra-ui/react';
 import { MDXProvider } from '@mdx-js/react';
 import { Analytics } from '@vercel/analytics/react';
 

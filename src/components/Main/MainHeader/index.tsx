@@ -1,7 +1,6 @@
 import { CONTENTS } from 'constants/content';
 import { MotionBox } from 'lib/Motion';
 import Image from 'next/image';
-
 export const MainHeader = () => {
   const {
     about: { profileAlt, profilePic },
@@ -18,6 +17,7 @@ export const MainHeader = () => {
         height={150}
         src={profilePic}
         alt={profileAlt}
+        placeholder="blur"
         priority
         // fill
         style={{

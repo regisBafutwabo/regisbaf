@@ -2,7 +2,7 @@ import { AboutMe, MainHeader } from 'components/Main';
 
 import { Box } from '@chakra-ui/react';
 import { SEO_CONTENT } from 'constants/content';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${process.env.NEXT_PUBLIC_URL}`),

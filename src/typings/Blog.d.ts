@@ -31,7 +31,7 @@ export type Post = {
     {
       label: string;
       value: string;
-    }
+    },
   ];
   title: string;
 };

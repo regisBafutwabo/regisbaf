@@ -1,3 +1,4 @@
+import { Img } from '@chakra-ui/react';
 import Image from 'next/image';
 import { DiReact } from 'react-icons/di';
 import {
@@ -15,9 +16,8 @@ import {
   SiTypescript,
   SiVercel,
 } from 'react-icons/si';
-import { TechListType } from 'typings/techList';
-
-import { Img } from '@chakra-ui/react';
+import type { TechListType } from 'typings/techList';
+import profilePic from '/public/profile.webp';
 
 const links = [
   {
@@ -164,7 +164,7 @@ export const CONTENTS = {
     github: 'https://github.com/regisBafutwabo',
   },
   about: {
-    profilePic: '/profile.webp',
+    profilePic,
     profileAlt: 'Regis Bafutwabo',
     salutation: `Hi, I'm Regis,`,
     briefDescription: ` a dedicated software developer specializing in web application development using React and Next.js. I strive to write clean, readable code that even my dog could understand (if he cared to look). Passionate about staying updated on the latest web technologies, I'm like a sponge for new features - though I promise not to squeeze this knowledge over your head uninvited. Comfortable with both frontend and backend, but I have a soft spot for frontend work. After all, someone needs to make sure our apps don't look like they're straight out of the 90s!`,
