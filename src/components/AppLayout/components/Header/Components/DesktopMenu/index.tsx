@@ -13,7 +13,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { Box, Text, useBreakpointValue } from '@chakra-ui/react';
 
-import { DesktopMenuProps } from './DesktopMenu.interface';
+import type { DesktopMenuProps } from './DesktopMenu.interface';
 
 export const DesktopMenu = (props: DesktopMenuProps) => {
   const { toggleMode, colorMode, openModal, IconVariant } = props;
