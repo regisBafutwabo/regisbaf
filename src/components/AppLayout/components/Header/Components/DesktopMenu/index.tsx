@@ -44,7 +44,6 @@ export const DesktopMenu = (props: DesktopMenuProps) => {
           display={['none', 'none', 'none', 'flex']}
           flexDir="row"
           alignItems={'center'}
-          mt={2}
         >
           {CONTENTS.navbar.links.map((linkData) => (
             <Box mr={5} key={linkData.value}>
