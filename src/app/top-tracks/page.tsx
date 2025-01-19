@@ -1,8 +1,9 @@
+import { Box, Text } from '@chakra-ui/react';
 import { Spinner } from 'components/Common/Spinner';
 import { TopTracks } from 'components/TopTracks';
-import { SEO_CONTENT } from 'constants/content';
+import { CONTENTS, SEO_CONTENT } from 'constants/content';
 import { getTopTracks } from 'lib/spotify/spotify';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
 export function generateMetadata(): Metadata {
   return {
@@ -25,6 +26,9 @@ export function generateMetadata(): Metadata {
 }
 
 export default async function TracksPage() {
+  const {
+    topTracks: { title },
+  } = CONTENTS;
   const data = await getTopTracks({
     limit: 10,
     offset: 0,
@@ -44,5 +48,12 @@ export default async function TracksPage() {
     return <Spinner />;
   }
 
-  return <>{tracks.length > 0 && <TopTracks items={tracks} next={next} />}</>;
+  return (
+    <Box padding={[4, 4, 0, 10]}>
+      <Text fontFamily="heading" fontSize="2xl">
+        {title}
+      </Text>
+      {tracks?.length > 0 && <TopTracks items={tracks} next={next} />}
+    </Box>
+  );
 }

@@ -5,7 +5,7 @@ import { Spinner } from 'components/Common/Spinner';
 import { CONTENTS } from 'constants/content';
 import { MotionButton, MotionListItem } from 'lib/Motion';
 import { getTopTracks, getTracks } from 'lib/spotify/spotify';
-import { Song } from 'lib/spotify/types/spotify';
+import type { Song } from 'lib/spotify/types/spotify';
 
 import { Box, Link, OrderedList, Text } from '@chakra-ui/react';
 
@@ -15,9 +15,6 @@ type TopTracksProps = {
 };
 
 export const TopTracks = ({ items, next }: TopTracksProps) => {
-  const {
-    topTracks: { title },
-  } = CONTENTS;
 
   const [loading, setLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -32,8 +29,8 @@ export const TopTracks = ({ items, next }: TopTracksProps) => {
     const url = new URL(nextOffset);
     const params = new URLSearchParams(url.search);
     return {
-      offset: parseInt(params.get('offset') || '0', 10),
-      limit: parseInt(params.get('limit') || '10', 10),
+      offset: Number.parseInt(params.get('offset') || '0', 10),
+      limit: Number.parseInt(params.get('limit') || '10', 10),
       time_range: params.get('time_range') as
         | 'short_term'
         | 'long_term'
@@ -62,12 +59,8 @@ export const TopTracks = ({ items, next }: TopTracksProps) => {
 
   // Ensure consistent rendering between server and client
   const isLoading = loading || hasError;
-
+  
   return (
-    <Box padding={[4, 4, 0, 10]}>
-      <Text fontFamily="heading" fontSize="2xl">
-        {title}
-      </Text>
       <Box marginTop={8}>
         {hasError ? (
           <Text>Oops! Something went wrong. Please try again later.</Text>
@@ -108,6 +101,5 @@ export const TopTracks = ({ items, next }: TopTracksProps) => {
           </>
         )}
       </Box>
-    </Box>
   );
 };
