@@ -8,26 +8,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Fetch all blog posts from Sanity
   const posts = await client.fetch(`
     *[_type == "post"] {
-      slug,
+      "slug": slug.current,
       _updatedAt
     }
   `);
 
   const routes = [
     {
-      url: `${process.env.NEXT_PUBLIC_URL}`,
+      url: `${baseUrl}`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 1,
     },
     {
-      url: `${process.env.NEXT_PUBLIC_URL}/blog`,
+      url: `${baseUrl}/blog`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.5,
     },
     {
-      url: `${process.env.NEXT_PUBLIC_URL}/top-tracks`,
+      url: `${baseUrl}/top-tracks`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.5,

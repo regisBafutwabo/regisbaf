@@ -1,8 +1,8 @@
 import { Blog } from 'components/Blog';
 import { SEO_CONTENT } from 'constants/content';
 import { getClient } from 'lib/sanity';
-import { Metadata } from 'next';
-import { Post } from 'typings/Blog';
+import type { Metadata } from 'next';
+import type { Post } from 'typings/Blog';
 
 import { Text } from '@chakra-ui/react';
 
@@ -10,7 +10,7 @@ export function generateMetadata(): Metadata {
   return {
     title: `${SEO_CONTENT.name} - Blog`,
     description:
-      'Read my latest thoughts on web development, React, and software engineering',
+      'Read my latest thoughts on web development, and software engineering',
     alternates: {
       canonical: '/blog',
       languages: {
@@ -20,7 +20,7 @@ export function generateMetadata(): Metadata {
     openGraph: {
       title: `${SEO_CONTENT.name} - Blog`,
       description:
-        'Read my latest thoughts on web development, React, and software engineering',
+        'Read my latest thoughts on web development, and software engineering',
       url: '/blog',
     },
   };
@@ -35,7 +35,7 @@ export default async function BlogPage() {
     posts = await client.fetch(
       `*[_type == "post"]`,
       {},
-      { next: { revalidate: 60 } }
+      { next: { revalidate: 60 } },
     );
   } catch (err: any) {
     error = err?.message as string;

@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 import { Box, Text, useColorMode } from '@chakra-ui/react';
 
-import { PostProps } from './Post.types';
+import type { PostProps } from './Post.types';
 
 export const BlogContent = ({ post, source, readingTime }: PostProps) => {
   const { colorMode } = useColorMode();
@@ -45,7 +45,7 @@ export const BlogContent = ({ post, source, readingTime }: PostProps) => {
       >
         <Text fontWeight="bold">{`Last Updated: ${format(
           new Date(post._updatedAt),
-          'yyyy-MM-dd'
+          'yyyy-MM-dd',
         )}`}</Text>
         <Text fontWeight="bold">{readingTime}</Text>
       </Box>

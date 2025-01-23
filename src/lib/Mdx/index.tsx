@@ -7,6 +7,13 @@ import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 
 export async function mdxToHtml(content: any) {
+  if (!content) {
+    return {
+      html: null,
+      tweetIDs: [],
+      readingTime: '0 min read',
+    };
+  }
   const mdxSource = await serialize(content, {
     mdxOptions: {
       remarkPlugins: [remarkGfm],

@@ -41,7 +41,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <meta
           name="keywords"
-          content="HTML, CSS, JavaScript, NextJS, React, Nextjs, react, React-native"
+          content="HTML, CSS, JavaScript, React, Next.js, React-native"
         />
         <meta name="author" content={SEO_CONTENT.name} />
       </head>
