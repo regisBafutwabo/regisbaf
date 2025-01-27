@@ -17,7 +17,19 @@ export async function mdxToHtml(content: any) {
 
   const mdxSource = await serialize(content, {
     mdxOptions: {
-      remarkPlugins: [remarkGfm, [mdxMermaid, { output: 'svg' }]],
+      remarkPlugins: [
+        remarkGfm,
+        [
+          mdxMermaid,
+          {
+            output: 'svg',
+            puppeteerConfig: {
+              executablePath: process.env.CHROME_PATH || undefined,
+              args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            },
+          },
+        ],
+      ],
       rehypePlugins: [
         rehypeSlug,
         rehypeCodeTitles,

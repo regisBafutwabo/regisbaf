@@ -113,7 +113,9 @@ export default async function SlugPage({ params }: any) {
     const mdxResult = await mdxToHtml(post?.content);
     html = mdxResult.html;
     readingTime = mdxResult.readingTime;
+    console.log('here', readingTime);
   } catch (error) {
+    console.log('here in error');
     console.error('Error converting MDX to HTML:', error);
     html = null;
     readingTime = '0 min read';
