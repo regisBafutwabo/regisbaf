@@ -1,6 +1,6 @@
+import mdxMermaid from 'mdx-mermaid';
 import { serialize } from 'next-mdx-remote/serialize';
 import readingTime from 'reading-time';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeCodeTitles from 'rehype-code-titles';
 import rehypePrism from 'rehype-prism-plus';
 import rehypeSlug from 'rehype-slug';
@@ -14,21 +14,22 @@ export async function mdxToHtml(content: any) {
       readingTime: '0 min read',
     };
   }
+
   const mdxSource = await serialize(content, {
     mdxOptions: {
-      remarkPlugins: [remarkGfm],
+      remarkPlugins: [remarkGfm, [mdxMermaid, { output: 'svg' }]],
       rehypePlugins: [
         rehypeSlug,
         rehypeCodeTitles,
-        rehypePrism,
-        [
-          rehypeAutolinkHeadings,
-          {
-            properties: {
-              className: ['anchor'],
-            },
-          },
-        ],
+        [rehypePrism, { ignoreMissing: true }],
+        // [
+        // rehypeAutolinkHeadings,
+        // {
+        //   properties: {
+        //     className: ['anchor'],
+        //   },
+        // },
+        // ],
       ],
       format: 'md',
     },

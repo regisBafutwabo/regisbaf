@@ -1,4 +1,8 @@
-import { Box, Text, UnorderedList } from '@chakra-ui/react';
+import {
+  Box,
+  Text,
+  UnorderedList,
+} from '@chakra-ui/react';
 import { MDXComponents } from '@mdx-js/react/lib';
 
 // This file is required to use @next/mdx in the `app` directory.
@@ -15,18 +19,18 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {props.children}
       </UnorderedList>
     ),
-    a: (props) => (
-      <a target="_blank" {...props}>
-        <Text
-          as="span"
-          bgGradient="linear(to-r,#007BD3, #007311)"
-          rounded="sm"
-          padding={0.5}
-        >
-          {props.children}
-        </Text>
-      </a>
-    ),
+    // a: (props) => (
+    //   <a target="_blank" {...props}>
+    //     <Text
+    //       as="span"
+    //       bgGradient="linear(to-r,#007BD3, #007311)"
+    //       rounded="sm"
+    //       padding={0.5}
+    //     >
+    //       {props.children}
+    //     </Text>
+    //   </a>
+    // ),
     p: (props) => (
       <p style={{ marginTop: 16, marginBottom: 16 }} {...props}>
         {props.children}

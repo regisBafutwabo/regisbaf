@@ -6,7 +6,10 @@ import { getClient } from 'lib/sanity';
 import type { Metadata } from 'next';
 import type { Post } from 'typings/Blog';
 
-import { Box } from '@chakra-ui/react';
+import {
+  Box,
+  Text,
+} from '@chakra-ui/react';
 
 export async function generateMetadata({
   params,
@@ -102,14 +105,41 @@ export default async function SlugPage({ params }: any) {
   );
   const post = posts[0];
 
-  const { html, readingTime } = await mdxToHtml(post?.content);
+  let html: any = null;
+  let readingTime = '0 min read';
+  let errorMessage: string | null = null;
+
+  try {
+    const mdxResult = await mdxToHtml(post?.content);
+    html = mdxResult.html;
+    readingTime = mdxResult.readingTime;
+  } catch (error) {
+    console.error('Error converting MDX to HTML:', error);
+    html = null;
+    readingTime = '0 min read';
+    errorMessage =
+      'Sorry, there was an error loading this post content. Please try again later.';
+  }
 
   return (
     <Box>
       {post && html ? (
         <BlogContent readingTime={readingTime} post={post} source={html} />
       ) : (
-        <PostSkeleton />
+        <>
+          {errorMessage ? (
+            <Text
+              as="p"
+              color="red.500"
+              my={32}
+              className="text-red-500 text-lg text-center my-8"
+            >
+              {errorMessage}
+            </Text>
+          ) : (
+            <PostSkeleton />
+          )}
+        </>
       )}
     </Box>
   );

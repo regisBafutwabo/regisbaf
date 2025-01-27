@@ -2,14 +2,22 @@ import 'styles/globals.css';
 
 import type { ReactNode } from 'react';
 
-import { Footer, Header } from 'components/AppLayout/components';
+import {
+  Footer,
+  Header,
+} from 'components/AppLayout/components';
 import { theme } from 'config/theme';
 import { SEO_CONTENT } from 'constants/content';
-import type { Metadata, Viewport } from 'next';
-// import { Martel } from 'next/font/google';
-import Script from 'next/script';
+import type {
+  Metadata,
+  Viewport,
+} from 'next';
 
-import { Box, ColorModeScript, Container } from '@chakra-ui/react';
+import {
+  Box,
+  ColorModeScript,
+  Container,
+} from '@chakra-ui/react';
 
 import Providers from './providers';
 
@@ -48,7 +56,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <Providers>
-          <Box display="flex" flexDirection="column" overflowY="auto">
+          <Box
+            display="flex"
+            flexDirection="column"
+            minHeight="100vh"
+            overflowY="auto"
+          >
             <Header />
             <Container maxW="container.lg" flex={1}>
               {children}

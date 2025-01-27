@@ -55,6 +55,7 @@ code {
   border-width: 1px;
   border-color: rgb(243 244 246);
   border-radius: 0.5rem;
+
 }
 
 .chakra-ui-dark code {
@@ -77,9 +78,11 @@ code[class*='language-'],
 pre[class*='language-'] {
   color: rgb(31 41 55);
   margin-bottom: 16px;
-  overflow-x: auto;
+  overflow: auto;
   border-radius: 0.375rem;
   background-color: rgb(243 244 246);
+  /* width: 100%; */
+  display: block;
 }
 
 .chakra-ui-dark code[class*='language-'],
@@ -145,7 +148,7 @@ pre[class*='language-'] {
 .chakra-ui-dark .token.prolog,
 .chakra-ui-dark .token.doctype,
 .chakra-ui-dark .token.cdata {
-  color: rgb(209 213 219);
+  color: #7b7d7f;
 }
 
 .token.punctuation {
@@ -205,7 +208,10 @@ pre[class*='language-'] {
 }
 
 .code-line {
+  font-size: 14px;
   padding-left: 8px;
+  font-family: monospace;
+  line-height: 32px;
 }
 
 .header {
@@ -214,4 +220,37 @@ pre[class*='language-'] {
   @media (max-width: 768px) {
     padding: 0 8px;
   }
+}
+
+table {
+  margin: 16px;
+  border: 1px solid #7b7d7f;
+  border-collapse: collapse;
+
+}
+
+table th {
+  padding: 12px;
+  text-align: left;
+  background-color: rgb(243 244 246);
+  border: 1px solid #7b7d7f;
+  font-weight: 600;
+}
+
+table td {
+  padding: 12px;
+  border: 1px solid #7b7d7f;
+}
+
+.chakra-ui-dark table th {
+  background-color: rgb(17 24 39);
+  border-color: rgb(55 65 81);
+}
+
+.chakra-ui-dark table td {
+  border-color: rgb(55 65 81);
+}
+
+.chakra-ui-dark table {
+  border-color: rgb(55 65 81);
 }
