@@ -1,4 +1,3 @@
-import mdxMermaid from 'mdx-mermaid';
 import { serialize } from 'next-mdx-remote/serialize';
 import readingTime from 'reading-time';
 import rehypeCodeTitles from 'rehype-code-titles';
@@ -19,19 +18,20 @@ export async function mdxToHtml(content: any) {
     mdxOptions: {
       remarkPlugins: [
         remarkGfm,
-        [
-          mdxMermaid,
-          {
-            output: 'svg',
-            puppeteerConfig: {
-              executablePath: process.env.CHROME_PATH || undefined,
-              args: ['--no-sandbox', '--disable-setuid-sandbox'],
-            },
-          },
-        ],
+        // [
+        //   mdxMermaid,
+        //   {
+        //     output: 'svg',
+        //     puppeteerConfig: {
+        //       executablePath: process.env.CHROME_PATH || undefined,
+        //       args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        //     },
+        //   },
+        // ],
       ],
       rehypePlugins: [
         rehypeSlug,
+
         rehypeCodeTitles,
         [rehypePrism, { ignoreMissing: true }],
         // [
