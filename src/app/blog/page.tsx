@@ -1,5 +1,6 @@
-import { Blog } from 'components/Blog';
+import { Blog } from 'app/blog/components/Blog';
 import { SEO_CONTENT } from 'constants/content';
+import { MotionBox } from 'lib/Motion';
 import { getClient } from 'lib/sanity';
 import type { Metadata } from 'next';
 import type { Post } from 'typings/Blog';
@@ -32,6 +33,8 @@ export default async function BlogPage() {
 
   try {
     const client = getClient(false);
+    if (!client) throw new Error('Sanity Client is missing');
+
     posts = await client.fetch(
       `*[_type == "post"]`,
       {},
@@ -41,20 +44,39 @@ export default async function BlogPage() {
     error = err?.message as string;
   }
 
-  return (
-    <>
-      {error && (
+  if (error) {
+    return (
+      <MotionBox
+        animate={{ x: 0 }}
+        initial={{ x: '-100vw' }}
+        paddingX={[0, 4, 4, 10]}
+        paddingY={8}
+        minHeight="60vh" // Changed height to minHeight to prevent footer overlap
+        marginBottom="80px" // Added margin to ensure space for footer
+      >
         <Text marginTop={200} textAlign="center" color="red.500">
           Oops! {error}
         </Text>
-      )}
-      {posts && posts?.length > 0 ? (
-        <Blog posts={posts} />
-      ) : (
-        <Text marginTop={200} textAlign="center">
-          No posts available.
-        </Text>
-      )}
-    </>
+      </MotionBox>
+    );
+  }
+
+  if (posts && posts.length > 0) {
+    return <Blog posts={posts} />;
+  }
+
+  return (
+    <MotionBox
+      animate={{ x: 0 }}
+      initial={{ x: '-100vw' }}
+      paddingX={[0, 4, 4, 10]}
+      paddingY={8}
+      minHeight="60vh" // Changed height to minHeight to prevent footer overlap
+      marginBottom="80px" // Added margin to ensure space for footer
+    >
+      <Text marginTop={200} textAlign="center">
+        No posts available.
+      </Text>
+    </MotionBox>
   );
 }

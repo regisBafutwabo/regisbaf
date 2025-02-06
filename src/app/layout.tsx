@@ -2,22 +2,12 @@ import 'styles/globals.css';
 
 import type { ReactNode } from 'react';
 
-import {
-  Footer,
-  Header,
-} from 'components/AppLayout/components';
+import { Footer, Header } from 'components/AppLayout/components';
 import { theme } from 'config/theme';
 import { SEO_CONTENT } from 'constants/content';
-import type {
-  Metadata,
-  Viewport,
-} from 'next';
+import type { Metadata, Viewport } from 'next';
 
-import {
-  Box,
-  ColorModeScript,
-  Container,
-} from '@chakra-ui/react';
+import { Box, ColorModeScript, Container } from '@chakra-ui/react';
 
 import Providers from './providers';
 
@@ -52,6 +42,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           content="HTML, CSS, JavaScript, React, Next.js, React-native"
         />
         <meta name="author" content={SEO_CONTENT.name} />
+        <meta
+          name="theme-color"
+          media="(prefers-color-scheme: light)"
+          content="#FFFFFF"
+        />
       </head>
       <body>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />

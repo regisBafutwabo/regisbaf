@@ -1,12 +1,15 @@
 'use client';
-import { useEffect, useState } from 'react';
+import {
+  useEffect,
+  useState,
+} from 'react';
 
-import theme from 'styles/theme';
+import { theme } from 'config/theme';
 
 import {
   ChakraProvider,
-  type ThemeConfig,
   extendTheme,
+  type ThemeConfig,
 } from '@chakra-ui/react';
 import { MDXProvider } from '@mdx-js/react';
 import { Analytics } from '@vercel/analytics/react';
@@ -15,8 +18,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   const [colorMode, setColorMode] = useState<'dark' | 'light'>('dark');
 
   const config: ThemeConfig = {
-    initialColorMode: colorMode,
-    useSystemColorMode: false,
+    initialColorMode: colorMode || 'system',
+    useSystemColorMode: true,
   };
 
   const updatedTheme = extendTheme({

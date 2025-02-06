@@ -1,15 +1,17 @@
 import { CONTENTS } from 'constants/content';
 import { MotionBox } from 'lib/Motion';
 import Image from 'next/image';
+
 export const MainHeader = () => {
   const {
     about: { profileAlt, profilePic },
   } = CONTENTS;
+
   return (
     <MotionBox
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 0.3 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.5 }}
       boxSize={['100px', '200px', '200px', '200px']}
     >
       <Image

@@ -3,10 +3,19 @@ import { RenderHtml } from 'components/Common/Mdx';
 import { format } from 'date-fns';
 import { urlForImage } from 'lib/sanity';
 import Image from 'next/image';
+import type { Post } from 'typings/Blog';
 
-import { Box, Text, useColorMode } from '@chakra-ui/react';
+import {
+  Box,
+  Text,
+  useColorMode,
+} from '@chakra-ui/react';
 
-import type { PostProps } from './Post.types';
+type PostProps = {
+  post: Post;
+  source: any;
+  readingTime: string;
+};
 
 export const BlogContent = ({ post, source, readingTime }: PostProps) => {
   const { colorMode } = useColorMode();
@@ -26,7 +35,7 @@ export const BlogContent = ({ post, source, readingTime }: PostProps) => {
           rounded="md"
         >
           <Image
-            src={urlForImage(post.cover).url()}
+            src={urlForImage(post.cover)?.url() || ''}
             alt="cover"
             width={500}
             height={500}

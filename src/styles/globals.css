@@ -6,8 +6,9 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Geist Sans', 'Martel Sans', 'Nunito', sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', Helvetica Neue;
 }
+
 
 a {
   color: inherit;
@@ -24,14 +25,10 @@ a {
   height: 8;
 }
 
-;
-
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.25);
   border-radius: 7;
 }
-
-;
 
 pre {
   border-color: rgb(234 234 234);

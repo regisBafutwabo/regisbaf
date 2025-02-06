@@ -1,16 +1,7 @@
 import { CONTENTS } from 'constants/content';
-import {
-  MotionBox,
-  MotionText,
-} from 'lib/Motion';
+import { MotionBox, MotionText } from 'lib/Motion';
 
-import {
-  Box,
-  Link,
-  ListItem,
-  Text,
-  UnorderedList,
-} from '@chakra-ui/react';
+import { Box, Link, ListItem, Text, UnorderedList } from '@chakra-ui/react';
 
 export const AboutMe = () => {
   const {
@@ -18,8 +9,11 @@ export const AboutMe = () => {
   } = CONTENTS;
   return (
     <MotionBox
-      animate={{ marginTop: 50 }}
+      initial={{ opacity: 0.3 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
       width={['100%', '100%', '100%', '80%']}
+      marginTop={'50'}
     >
       <MotionBox>
         <span

@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 
 import { Spinner } from 'components/Common/Spinner';
-import { CONTENTS } from 'constants/content';
 import { MotionButton, MotionListItem } from 'lib/Motion';
 import { getTopTracks, getTracks } from 'lib/spotify/spotify';
 import type { Song } from 'lib/spotify/types/spotify';
@@ -15,7 +14,6 @@ type TopTracksProps = {
 };
 
 export const TopTracks = ({ items, next }: TopTracksProps) => {
-
   const [loading, setLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [nextOffset, setNextOffset] = useState(next);
@@ -59,47 +57,46 @@ export const TopTracks = ({ items, next }: TopTracksProps) => {
 
   // Ensure consistent rendering between server and client
   const isLoading = loading || hasError;
-  
+
   return (
-      <Box marginTop={8}>
-        {hasError ? (
-          <Text>Oops! Something went wrong. Please try again later.</Text>
-        ) : (
-          <>
-            {tracks.length > 0 && (
-              <OrderedList spacing={4} display="flex" flexDirection="column">
-                {tracks.map((track: Song) => (
-                  <MotionListItem
-                    key={track.songUrl}
-                    transition={{ type: 'spring', stiffness: 300 }}
-                    whileHover={{ scale: 1.03, originX: 0 }}
-                    whileTap={{ scale: 0.8 }}
-                  >
-                    <Link href={track.songUrl} rel="noopener noreferrer">
-                      {`${track.title} - ${track.artist}`}
-                    </Link>
-                  </MotionListItem>
-                ))}
-              </OrderedList>
-            )}
-            {nextOffset && tracks?.length < 50 && (
-              <MotionButton
-                marginTop={8}
-                _hover={{
-                  backgroundImage:
-                    'linear-gradient(to right, #007BD3, #007311)',
-                }}
-                bgGradient="linear(to-r, #007BD3, #007311)"
-                disabled={isLoading}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={loadMore}
-              >
-                {isLoading ? <Spinner height={100} width={100} /> : 'Load More'}
-              </MotionButton>
-            )}
-          </>
-        )}
-      </Box>
+    <Box marginTop={8}>
+      {hasError ? (
+        <Text>Oops! Something went wrong. Please try again later.</Text>
+      ) : (
+        <>
+          {tracks.length > 0 && (
+            <OrderedList spacing={4} display="flex" flexDirection="column">
+              {tracks.map((track: Song) => (
+                <MotionListItem
+                  key={track.songUrl}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                  whileHover={{ scale: 1.03, originX: 0 }}
+                  whileTap={{ scale: 0.8 }}
+                >
+                  <Link href={track.songUrl} rel="noopener noreferrer">
+                    {`${track.title} - ${track.artist}`}
+                  </Link>
+                </MotionListItem>
+              ))}
+            </OrderedList>
+          )}
+          {nextOffset && tracks?.length < 50 && (
+            <MotionButton
+              marginTop={8}
+              _hover={{
+                backgroundImage: 'linear-gradient(to right, #007BD3, #007311)',
+              }}
+              bgGradient="linear(to-r, #007BD3, #007311)"
+              disabled={isLoading}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={loadMore}
+            >
+              {isLoading ? <Spinner height={100} width={100} /> : 'Load More'}
+            </MotionButton>
+          )}
+        </>
+      )}
+    </Box>
   );
 };

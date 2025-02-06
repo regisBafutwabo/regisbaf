@@ -1,4 +1,4 @@
-import { BlogContent } from 'components/BlogContent';
+import { BlogContent } from 'app/blog/components/BlogContent';
 import { PostSkeleton } from 'components/Common/Skeletons';
 import { CONTENTS } from 'constants/content';
 import { mdxToHtml } from 'lib/Mdx';
@@ -6,10 +6,7 @@ import { getClient } from 'lib/sanity';
 import type { Metadata } from 'next';
 import type { Post } from 'typings/Blog';
 
-import {
-  Box,
-  Text,
-} from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 
 export async function generateMetadata({
   params,

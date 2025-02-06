@@ -1,10 +1,13 @@
 import { PostCard } from 'components/Common/PostCard';
 import { CONTENTS } from 'constants/content';
 import { MotionBox } from 'lib/Motion';
+import type { Post } from 'typings/Blog';
 
 import { Box, Text } from '@chakra-ui/react';
 
-import { BlogProps } from './Blog.types';
+type BlogProps = {
+  posts: Post[];
+};
 
 export const Blog = ({ posts }: BlogProps) => {
   const {

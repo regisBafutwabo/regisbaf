@@ -4,16 +4,60 @@ import createImageUrlBuilder from '@sanity/image-url';
 
 import { sanityConfig } from './config';
 
-export const sanityClient = createClient(sanityConfig);
+export const getSanityClient = () => {
+  try {
+    if (!sanityConfig) {
+      throw new Error('Sanity Config is missing!');
+    }
+    const client = createClient(sanityConfig);
+    if (!client) {
+      throw new Error('Failed to create Sanity client');
+    }
+    return client;
+  } catch (error) {
+    console.error('Error creating Sanity client:', error);
+    return null;
+  }
+};
 
-export const previewClient = createClient({
-  ...sanityConfig,
-});
+export const previewClient = (() => {
+  try {
+    if (!sanityConfig) {
+      throw new Error('Sanity Config is missing!');
+    }
+    return createClient({
+      ...sanityConfig,
+    });
+  } catch (error) {
+    console.error('Error creating preview client:', error);
+    return null;
+  }
+})();
 
-export const getClient = (preview: boolean) =>
-  preview ? previewClient : sanityClient;
+export const getClient = (preview: boolean) => {
+  return preview ? previewClient : getSanityClient();
+};
 
-export const imageBuilder = createImageUrlBuilder(sanityConfig);
+export const imageBuilder = (() => {
+  try {
+    if (!sanityConfig) {
+      throw new Error('Sanity Config is missing!');
+    }
+    return createImageUrlBuilder(sanityConfig);
+  } catch (error) {
+    console.error('Error creating image builder:', error);
+    return null;
+  }
+})();
 
-export const urlForImage = (source: any) =>
-  imageBuilder.image(source).auto('format').fit('max');
+export const urlForImage = (source: any) => {
+  try {
+    if (!imageBuilder) {
+      throw new Error('Image builder is not initialized');
+    }
+    return imageBuilder.image(source).auto('format').fit('max') || '';
+  } catch (error) {
+    console.error('Error creating image URL:', error);
+    return null;
+  }
+};

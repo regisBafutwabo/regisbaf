@@ -2,9 +2,13 @@
 
 import { useEffect } from 'react';
 
-import { Button, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Text,
+} from '@chakra-ui/react';
 
-export default function Error({
+export default function TopTracksError({
   error,
   reset,
 }: {
@@ -17,15 +21,14 @@ export default function Error({
   }, [error]);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        gap: '24px',
-      }}
+    <Box
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      height="100vh"
+      suppressHydrationWarning
+      padding={[4, 4, 0, 10]}
     >
       <h2>Something went wrong!</h2>
       <Text color="red">{`${error.message}`}</Text>
@@ -37,6 +40,6 @@ export default function Error({
       >
         Try again
       </Button>
-    </div>
+    </Box>
   );
 }

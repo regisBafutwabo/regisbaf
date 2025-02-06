@@ -6,7 +6,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const client = getClient(false);
 
   // Fetch all blog posts from Sanity
-  const posts = await client.fetch(`
+  const posts = await client?.fetch(`
     *[_type == "post"] {
       "slug": slug.current,
       _updatedAt
