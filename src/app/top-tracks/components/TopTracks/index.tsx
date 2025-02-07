@@ -1,12 +1,27 @@
 'use client';
-import { useEffect, useState } from 'react';
+import {
+  useEffect,
+  useState,
+} from 'react';
 
+import { ErrorBoundary } from 'components/Common/ErrorBoundary';
 import { Spinner } from 'components/Common/Spinner';
-import { MotionButton, MotionListItem } from 'lib/Motion';
-import { getTopTracks, getTracks } from 'lib/spotify/spotify';
+import {
+  MotionButton,
+  MotionListItem,
+} from 'lib/Motion';
+import {
+  getTopTracks,
+  getTracks,
+} from 'lib/spotify/spotify';
 import type { Song } from 'lib/spotify/types/spotify';
 
-import { Box, Link, OrderedList, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Link,
+  OrderedList,
+  Text,
+} from '@chakra-ui/react';
 
 type TopTracksProps = {
   items: Song[];
@@ -48,8 +63,9 @@ export const TopTracks = ({ items, next }: TopTracksProps) => {
 
       setTracks((prevTracks) => [...prevTracks, ...(newTracks || [])]);
       setNextOffset(next);
-    } catch {
+    } catch (error) {
       setHasError(true);
+      throw error; // This will be caught by ErrorBoundary
     } finally {
       setLoading(false);
     }
@@ -59,44 +75,47 @@ export const TopTracks = ({ items, next }: TopTracksProps) => {
   const isLoading = loading || hasError;
 
   return (
-    <Box marginTop={8}>
-      {hasError ? (
-        <Text>Oops! Something went wrong. Please try again later.</Text>
-      ) : (
-        <>
-          {tracks.length > 0 && (
-            <OrderedList spacing={4} display="flex" flexDirection="column">
-              {tracks.map((track: Song) => (
-                <MotionListItem
-                  key={track.songUrl}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                  whileHover={{ scale: 1.03, originX: 0 }}
-                  whileTap={{ scale: 0.8 }}
-                >
-                  <Link href={track.songUrl} rel="noopener noreferrer">
-                    {`${track.title} - ${track.artist}`}
-                  </Link>
-                </MotionListItem>
-              ))}
-            </OrderedList>
-          )}
-          {nextOffset && tracks?.length < 50 && (
-            <MotionButton
-              marginTop={8}
-              _hover={{
-                backgroundImage: 'linear-gradient(to right, #007BD3, #007311)',
-              }}
-              bgGradient="linear(to-r, #007BD3, #007311)"
-              disabled={isLoading}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={loadMore}
-            >
-              {isLoading ? <Spinner height={100} width={100} /> : 'Load More'}
-            </MotionButton>
-          )}
-        </>
-      )}
-    </Box>
+    <ErrorBoundary>
+      <Box marginTop={8}>
+        {hasError ? (
+          <Text>Oops! Something went wrong. Please try again later.</Text>
+        ) : (
+          <>
+            {tracks.length > 0 && (
+              <OrderedList spacing={4} display="flex" flexDirection="column">
+                {tracks.map((track: Song) => (
+                  <MotionListItem
+                    key={track.songUrl}
+                    transition={{ type: 'spring', stiffness: 300 }}
+                    whileHover={{ scale: 1.03, originX: 0 }}
+                    whileTap={{ scale: 0.8 }}
+                  >
+                    <Link href={track.songUrl} rel="noopener noreferrer">
+                      {`${track.title} - ${track.artist}`}
+                    </Link>
+                  </MotionListItem>
+                ))}
+              </OrderedList>
+            )}
+            {nextOffset && tracks?.length < 50 && (
+              <MotionButton
+                marginTop={8}
+                _hover={{
+                  backgroundImage:
+                    'linear-gradient(to right, #007BD3, #007311)',
+                }}
+                bgGradient="linear(to-r, #007BD3, #007311)"
+                disabled={isLoading}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={loadMore}
+              >
+                {isLoading ? <Spinner height={100} width={100} /> : 'Load More'}
+              </MotionButton>
+            )}
+          </>
+        )}
+      </Box>
+    </ErrorBoundary>
   );
 };

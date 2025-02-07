@@ -1,5 +1,4 @@
-import { BlogContent } from 'app/blog/components/BlogContent';
-import { PostSkeleton } from 'components/Common/Skeletons';
+import { RenderHtml } from 'components/Common/Mdx';
 import { CONTENTS } from 'constants/content';
 import { mdxToHtml } from 'lib/Mdx';
 import { getClient } from 'lib/sanity';
@@ -19,13 +18,13 @@ export async function generateMetadata({
   }
 
   try {
-    const posts: Post[] = await client.fetch(
+    const posts: Post[] | undefined = await client?.fetch(
       `*[_type == "post" && slug.current=="${params.slug}"]`,
       {},
       { next: { revalidate: 60 } },
     );
 
-    if (!posts[0]) {
+    if (!posts || posts.length === 0) {
       return { title: `${CONTENTS.about.profileAlt} - Blog` };
     }
 
@@ -62,84 +61,91 @@ export async function generateStaticParams() {
   try {
     const client = getClient(false);
 
+    if (!client) {
+      throw new Error('Sanity client is not initialized');
+    }
+
     type SlugResponse = { slug: { current: string } }[];
 
-    // Fetch all blog post slugs
     const slugs = await client.fetch<SlugResponse>(
       `*[_type == "post"] { "slug": slug }`,
       {},
     );
 
-    // Add null check and error handling
     if (!slugs || !Array.isArray(slugs)) {
       console.log('No slugs found or invalid response');
       return [];
     }
 
     return slugs
-      ?.filter((slug) => slug?.slug?.current)
-      ?.map((post) => ({
+      .filter((slug) => slug?.slug?.current)
+      .map((post) => ({
         slug: post.slug.current,
       }));
   } catch (error) {
-    // Log error but don't fail build
     console.log('Error generating static params:', error);
     return [];
   }
 }
 
-export default async function SlugPage({ params }: any) {
+export default async function BlogPost({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const client = getClient(false);
+
+  if (!client) {
+    throw new Error('Sanity client is not initialized');
+  }
 
   if (!params.slug) {
     throw new Error('Slug is missing');
   }
 
-  const posts = await client.fetch(
+  const posts = await client.fetch<Post[]>(
     `*[_type == "post" && slug.current=="${params.slug}"]`,
     {},
     { next: { revalidate: 60 } },
   );
-  const post = posts[0];
 
-  let html: any = null;
-  let readingTime = '0 min read';
-  let errorMessage: string | null = null;
-
-  try {
-    const mdxResult = await mdxToHtml(post?.content);
-    html = mdxResult.html;
-    readingTime = mdxResult.readingTime;
-    console.log('here', readingTime);
-  } catch (error) {
-    console.log('here in error');
-    console.error('Error converting MDX to HTML:', error);
-    html = null;
-    readingTime = '0 min read';
-    errorMessage =
-      'Sorry, there was an error loading this post content. Please try again later.';
+  if (!posts || posts.length === 0) {
+    throw new Error('Post not found');
   }
 
-  return (
-    <Box>
-      {post && html ? (
-        <BlogContent readingTime={readingTime} post={post} source={html} />
-      ) : (
-        <>
-          {errorMessage ? (
-            <Text
-              as="p"
-              color="red.500"
-              my={32}
-              className="text-red-500 text-lg text-center my-8"
-            >
-              {errorMessage}
-            </Text>
-          ) : (
-            <PostSkeleton />
-          )}
-        </>
-      )}
-    </Box>
-  );
+  const post = posts[0];
+
+  if (!post.content) {
+    throw new Error('Post content is missing');
+  }
+
+  try {
+    const mdxResult = await mdxToHtml(post.content);
+    if (!mdxResult || !mdxResult.html) {
+      throw new Error('Failed to process post content');
+    }
+
+    return (
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="flex-start"
+        width="100%"
+        marginY={8}
+      >
+        <Text
+          as="h1"
+          fontSize={['3xl', '4xl']}
+          marginBottom={4}
+          fontWeight="bold"
+        >
+          {post.title}
+        </Text>
+        <RenderHtml content={mdxResult.html} />
+      </Box>
+    );
+  } catch (error) {
+    console.error('Error processing MDX content:', error);
+    throw new Error('Failed to process blog post content');
+  }
 }

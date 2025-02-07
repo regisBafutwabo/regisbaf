@@ -14,12 +14,13 @@ import {
   UList,
 } from 'components/Common/Mdx/components';
 import { Paragraph } from 'components/Common/Mdx/components/Paragraph';
-import { Mermaid } from 'mdx-mermaid/lib/Mermaid';
-// import { MDXRemote } from 'next-mdx-remote';
+import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import dynamic from 'next/dynamic';
 
+import { Spinner } from '../Spinner';
+
 // Create a loading fallback component
-const MDXLoading = () => <div>Loading content...</div>;
+const MDXLoading = () => <Spinner />;
 
 // Dynamically import MDXRemote
 const MDXRemote = dynamic<any>(
@@ -43,26 +44,20 @@ const MDXComponents = {
   b: Bold,
   pre: Pre,
   code: (props: any) => {
-    const language = props.className?.replace('language-', '');
-    language.includes('mermaid') && console.log('LANGUAGE', props.children);
-    if (language.includes('mermaid')) {
-      return (
-        <Mermaid
-          chart={props.children}
-          config={{
-            output: 'svg',
-            mermaid: { securityLevel: 'loose', logLevel: 'error' },
-          }}
-        />
-      );
-    }
-
     return <code {...props} />;
   },
   svg: SvgImage,
 };
 
-export const RenderHtml = ({ content }: { content: any }) => {
+interface RenderHtmlProps {
+  content: MDXRemoteSerializeResult;
+}
+
+export const RenderHtml = ({ content }: RenderHtmlProps) => {
+  if (!content) {
+    return <div>No content available</div>;
+  }
+
   return (
     <Suspense fallback={<MDXLoading />}>
       <MDXRemote {...content} components={MDXComponents} />

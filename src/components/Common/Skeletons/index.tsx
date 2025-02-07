@@ -1,4 +1,8 @@
-import { Box, Skeleton, Stack } from '@chakra-ui/react';
+import {
+  Box,
+  Skeleton,
+  Stack,
+} from '@chakra-ui/react';
 
 export const PostSkeleton = () => {
   return (
@@ -19,7 +23,6 @@ export const PostSkeleton = () => {
         <Skeleton height="30px" width={'20%'} fadeDuration={1} />
         <Skeleton height="30px" width={'20%'} fadeDuration={1} />
       </Box>
-
       <Skeleton
         height="30px"
         width="100%"

@@ -18,9 +18,10 @@ export function Header2(props: any) {
       as="h2"
       fontSize="22.4px"
       fontWeight="bold"
-      paddingBottom={3}
+      paddingBottom={2}
       marginBottom={3}
       borderBottom={`1px solid ${colorMode === 'light' ? '#eee' : '#828282'}`}
+      width="100%"
       {...props}
     >
       {props.children}
@@ -32,12 +33,13 @@ export function Header1(props: any) {
   const { colorMode } = useColorMode();
   return (
     <Text
-      as="h2"
+      as="h1"
       fontSize="28px"
       fontWeight="bold"
       paddingBottom={3}
       marginBottom={3}
       borderBottom={`1px solid ${colorMode === 'light' ? '#eee' : '#828282'}`}
+      width="100%"
       {...props}
     >
       {props.children}
