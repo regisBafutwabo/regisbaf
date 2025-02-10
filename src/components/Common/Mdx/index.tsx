@@ -44,11 +44,6 @@ const MDXComponents = {
   b: Bold,
   pre: Pre,
   code: (props: any) => {
-    // const language = props.className?.replace('language-', '');
-    // console.log('LANGUAGE', language);
-    // if (language?.includes('mermaid')) {
-    //   return <Mermaid chart={props.children} />;
-    // }
     return <code {...props} />;
   },
   svg: SvgImage,

@@ -16,21 +16,7 @@ export async function mdxToHtml(content: any) {
 
   const mdxSource = await serialize(content, {
     mdxOptions: {
-      remarkPlugins: [
-        remarkGfm,
-        // [
-        //   mermaidPlugin,
-        //   {
-        //     output: 'svg',
-        //     mermaidConfig: {
-        //       theme: 'default',
-        //       themeVariables: { fontSize: '16px' },
-        //       securityLevel: 'loose',
-        //       startOnLoad: true,
-        //     },
-        //   },
-        // ],
-      ],
+      remarkPlugins: [remarkGfm],
       rehypePlugins: [
         rehypeSlug,
         rehypeCodeTitles,
