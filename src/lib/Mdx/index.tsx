@@ -1,4 +1,4 @@
-import mdxMermaid from 'mdx-mermaid';
+import mermaidPlugin from 'mdx-mermaid';
 import { serialize } from 'next-mdx-remote/serialize';
 import readingTime from 'reading-time';
 import rehypeCodeTitles from 'rehype-code-titles';
@@ -19,11 +19,16 @@ export async function mdxToHtml(content: any) {
     mdxOptions: {
       remarkPlugins: [
         remarkGfm,
-
         [
-          mdxMermaid,
+          mermaidPlugin,
           {
             output: 'svg',
+            mermaidConfig: {
+              theme: 'default',
+              themeVariables: { fontSize: '16px' },
+              securityLevel: 'loose',
+              startOnLoad: true,
+            },
           },
         ],
       ],

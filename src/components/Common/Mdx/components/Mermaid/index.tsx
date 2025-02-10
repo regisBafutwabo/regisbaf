@@ -1,10 +1,6 @@
 'use client';
 // TODO: fix mermaid views
-import {
-  useEffect,
-  useState,
-} from 'react';
-
+import { useEffect, useRef, useState } from 'react';
 import mermaid from 'mermaid';
 
 interface MermaidProps {
@@ -12,23 +8,44 @@ interface MermaidProps {
 }
 
 export function Mermaid({ chart }: MermaidProps) {
-  const [isMounted, setIsMounted] = useState(false);
+  const [svgContent, setSvgContent] = useState<string>('');
+  const mermaidRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setIsMounted(true);
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: 'dark',
-      securityLevel: 'loose',
-    });
-    mermaid.contentLoaded();
-  }, []);
+    const initializeMermaid = async () => {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'default',
+          securityLevel: 'loose',
+          themeVariables: {
+            fontSize: '16px',
+          },
+        });
 
-  if (!isMounted) return null;
+        const { svg } = await mermaid.render('mermaid-svg', chart);
+        setSvgContent(svg);
+      } catch (error) {
+        console.error('Mermaid initialization failed:', error);
+      }
+    };
+
+    initializeMermaid();
+  }, [chart]);
+
+  if (!svgContent) {
+    return <div>Loading diagram...</div>;
+  }
 
   return (
-    <div className="mermaid" style={{ backgroundColor: 'transparent' }}>
-      {chart}
-    </div>
+    <div
+      ref={mermaidRef}
+      className="mermaid-diagram"
+      dangerouslySetInnerHTML={{ __html: svgContent }}
+      style={{
+        backgroundColor: 'transparent',
+        margin: '1rem 0',
+      }}
+    />
   );
 }

@@ -20,20 +20,20 @@ export const getTweets = async (ids: any[]) => {
       headers: {
         Authorization: `Bearer ${process.env.TWITTER_API_KEY}`,
       },
-    }
+    },
   );
 
   const tweets = await response.json();
 
   const getAuthorInfo = (author_id: string) => {
-    return tweets.includes.users.find((user: any) => user.id === author_id);
+    return tweets?.includes.users.find((user: any) => user.id === author_id);
   };
 
   const getReferencedTweets = (mainTweet: any) => {
     return (
       mainTweet?.referenced_tweets?.map((referencedTweet: any) => {
         const fullReferencedTweet = tweets.includes.tweets.find(
-          (tweet: any) => tweet.id === referencedTweet.id
+          (tweet: any) => tweet.id === referencedTweet.id,
         );
 
         return {
@@ -51,13 +51,14 @@ export const getTweets = async (ids: any[]) => {
         ...tweet,
         media:
           tweet?.attachments?.media_keys.map((key: any) =>
-            tweets.includes.media.find((media: any) => media.media_key === key)
+            tweets.includes.media.find((media: any) => media.media_key === key),
           ) || [],
         referenced_tweets: getReferencedTweets(tweet),
         author: getAuthorInfo(tweet.author_id),
       };
 
-      return [tweetWithAuthor, ...allTweets];
+      allTweets.push(tweetWithAuthor);
+      return allTweets;
     }, []) || [] // If the Twitter API key isn't set, don't break the build
   );
 };
