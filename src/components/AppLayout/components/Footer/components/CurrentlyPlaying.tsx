@@ -18,7 +18,6 @@ export default function CurrentlyPlaying() {
     title: string;
   }>('/api/currently-playing', fetcher, {
     refreshWhenHidden: false,
-    refreshWhenOffline: false,
   });
 
   const animationDuration = 20;
