@@ -5,10 +5,11 @@ import type { Metadata } from 'next';
 import type { Post } from 'typings/Blog';
 
 export function generateMetadata(): Metadata {
+  const description =
+    'Read my latest thoughts on web development, and software engineering';
   return {
     title: `${SEO_CONTENT.name} - Blog`,
-    description:
-      'Read my latest thoughts on web development, and software engineering',
+    description,
     alternates: {
       canonical: `${process.env.NEXT_PUBLIC_URL}/blog`,
       languages: {
@@ -25,8 +26,7 @@ export function generateMetadata(): Metadata {
     },
     openGraph: {
       title: `${SEO_CONTENT.name} - Blog`,
-      description:
-        'Read my latest thoughts on web development, and software engineering',
+      description,
       url: `${process.env.NEXT_PUBLIC_URL}/blog`,
       type: 'website',
       siteName: SEO_CONTENT.name,
@@ -34,8 +34,7 @@ export function generateMetadata(): Metadata {
     twitter: {
       card: 'summary_large_image',
       title: `${SEO_CONTENT.name} - Blog`,
-      description:
-        'Read my latest thoughts on web development, and software engineering',
+      description,
     },
   };
 }

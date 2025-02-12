@@ -11,10 +11,13 @@ import {
   MotionListItem,
 } from 'lib/Motion';
 import {
-  getTopTracks,
-  getTracks,
+  formatTracks,
+  spotifyApi,
 } from 'lib/spotify/spotify';
-import type { Song } from 'lib/spotify/types/spotify';
+import type {
+  SimplifiedTrack,
+  SpotifyTimeRange,
+} from 'lib/spotify/types';
 
 import {
   Box,
@@ -24,55 +27,40 @@ import {
 } from '@chakra-ui/react';
 
 type TopTracksProps = {
-  items: Song[];
-  next: string;
+  tracks: SimplifiedTrack[];
 };
 
-export const TopTracks = ({ items, next }: TopTracksProps) => {
+export const TopTracks = ({ tracks: initialTracks }: TopTracksProps) => {
   const [loading, setLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const [nextOffset, setNextOffset] = useState(next);
-  const [tracks, setTracks] = useState<Song[]>(items);
+  const [offset, setOffset] = useState(10);
+  const [tracks, setTracks] = useState<SimplifiedTrack[]>(initialTracks);
 
   useEffect(() => {
-    setTracks(items);
-  }, [items]);
-
-  const getNextParams = () => {
-    const url = new URL(nextOffset);
-    const params = new URLSearchParams(url.search);
-    return {
-      offset: Number.parseInt(params.get('offset') || '0', 10),
-      limit: Number.parseInt(params.get('limit') || '10', 10),
-      time_range: params.get('time_range') as
-        | 'short_term'
-        | 'long_term'
-        | 'medium_term',
-    };
-  };
+    setTracks(initialTracks);
+  }, [initialTracks]);
 
   const loadMore = async () => {
     setLoading(true);
     setHasError(false);
 
     try {
-      const params = getNextParams();
-      const res = await getTopTracks({ nextList: nextOffset, ...params });
-      const { items, next } = await res.json();
-      const newTracks = getTracks(items);
+      const response = await spotifyApi.getTopTracks({
+        limit: 10,
+        offset,
+        time_range: 'short_term' as SpotifyTimeRange,
+      });
 
-      setTracks((prevTracks) => [...prevTracks, ...(newTracks || [])]);
-      setNextOffset(next);
+      const newTracks = formatTracks(response.items);
+      setTracks((prevTracks) => [...prevTracks, ...newTracks]);
+      setOffset((prev) => prev + 10);
     } catch (error) {
       setHasError(true);
-      throw error; // This will be caught by ErrorBoundary
+      console.error('Error loading more tracks:', error);
     } finally {
       setLoading(false);
     }
   };
-
-  // Ensure consistent rendering between server and client
-  const isLoading = loading || hasError;
 
   return (
     <ErrorBoundary>
@@ -83,21 +71,25 @@ export const TopTracks = ({ items, next }: TopTracksProps) => {
           <>
             {tracks.length > 0 && (
               <OrderedList spacing={4} display="flex" flexDirection="column">
-                {tracks.map((track: Song) => (
+                {tracks.map((track) => (
                   <MotionListItem
                     key={track.songUrl}
                     transition={{ type: 'spring', stiffness: 300 }}
                     whileHover={{ scale: 1.03, originX: 0 }}
                     whileTap={{ scale: 0.8 }}
                   >
-                    <Link href={track.songUrl} rel="noopener noreferrer">
+                    <Link
+                      href={track.songUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       {`${track.title} - ${track.artist}`}
                     </Link>
                   </MotionListItem>
                 ))}
               </OrderedList>
             )}
-            {nextOffset && tracks?.length < 50 && (
+            {tracks.length > 0 && tracks.length < 50 && (
               <MotionButton
                 marginTop={8}
                 _hover={{
@@ -105,12 +97,12 @@ export const TopTracks = ({ items, next }: TopTracksProps) => {
                     'linear-gradient(to right, #007BD3, #007311)',
                 }}
                 bgGradient="linear(to-r, #007BD3, #007311)"
-                disabled={isLoading}
+                disabled={loading}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={loadMore}
               >
-                {isLoading ? <Spinner height={100} width={100} /> : 'Load More'}
+                {loading ? <Spinner height={100} width={100} /> : 'Load More'}
               </MotionButton>
             )}
           </>

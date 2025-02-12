@@ -1,70 +1,147 @@
-import { getTopTracksParams } from 'lib/spotify/types/spotify';
+import type {
+  SimplifiedTrack,
+  SpotifyError,
+  SpotifyTokenResponse,
+  SpotifyTrack,
+  TopTracksParams,
+} from './types';
 
-const client_id = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || '';
-const client_secret = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET || '';
-const refresh_token = process.env.NEXT_PUBLIC_SPOTIFY_REFRESH_TOKEN || '';
+class SpotifyAPI {
+  private static instance: SpotifyAPI;
+  private readonly clientId: string;
+  private readonly clientSecret: string;
+  private readonly refreshToken: string;
+  private readonly baseUrl = 'https://api.spotify.com/v1';
+  private readonly tokenEndpoint = 'https://accounts.spotify.com/api/token';
+  private isInitialized = false;
 
-const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
-const NOW_PLAYING_ENDPOINT =
-  'https://api.spotify.com/v1/me/player/currently-playing';
-const TOP_TRACKS_ENDPOINT = 'https://api.spotify.com/v1/me/top/tracks';
-const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token';
+  private constructor() {
+    this.clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID || '';
+    this.clientSecret = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET || '';
+    this.refreshToken = process.env.NEXT_PUBLIC_SPOTIFY_REFRESH_TOKEN || '';
 
-const getAccessToken = async () => {
-  const response = await fetch(TOKEN_ENDPOINT, {
-    method: 'POST',
-    cache: 'no-cache',
-    headers: {
-      Authorization: `Basic ${basic}`,
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: new URLSearchParams({
-      grant_type: 'refresh_token',
-      refresh_token,
-    }),
-  });
+    this.isInitialized = Boolean(
+      this.clientId && this.clientSecret && this.refreshToken,
+    );
+  }
 
-  return response.json();
-};
-
-export const getNowPlaying = async () => {
-  const { access_token } = await getAccessToken();
-
-  return fetch(NOW_PLAYING_ENDPOINT, {
-    cache: 'no-cache',
-    headers: {
-      Authorization: `Bearer ${access_token}`,
-    },
-  });
-};
-
-export const getTopTracks = async ({
-  limit,
-  time_range,
-  offset,
-  nextList,
-}: getTopTracksParams) => {
-  const { access_token } = await getAccessToken();
-  return fetch(
-    nextList
-      ? nextList
-      : `${TOP_TRACKS_ENDPOINT}?offset=${offset}&limit=${limit}&time_range=${time_range}`,
-    {
-      cache: 'no-cache',
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-        'Content-Type': 'application/json',
-      },
+  public static getInstance(): SpotifyAPI {
+    if (!SpotifyAPI.instance) {
+      SpotifyAPI.instance = new SpotifyAPI();
     }
-  );
-};
+    return SpotifyAPI.instance;
+  }
 
-export const getTracks = (items: any[]) => {
-  const tracks = items?.map((track: any) => ({
-    artist: track.artists.map((_artist: any) => _artist?.name).join(', '),
-    songUrl: track.external_urls.spotify,
-    title: track.name,
-  }));
+  private checkInitialization() {
+    if (!this.isInitialized) {
+      throw new Error(
+        'Spotify API is not initialized. Missing required credentials.',
+      );
+    }
+  }
 
-  return tracks;
-};
+  private get basicAuth(): string {
+    this.checkInitialization();
+    return Buffer.from(`${this.clientId}:${this.clientSecret}`).toString(
+      'base64',
+    );
+  }
+
+  private async getAccessToken(): Promise<string> {
+    this.checkInitialization();
+
+    try {
+      const response = await fetch(this.tokenEndpoint, {
+        method: 'POST',
+        headers: {
+          Authorization: `Basic ${this.basicAuth}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          grant_type: 'refresh_token',
+          refresh_token: this.refreshToken,
+        }),
+        cache: 'no-store',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get access token');
+      }
+
+      const data = (await response.json()) as SpotifyTokenResponse;
+      return data.access_token;
+    } catch (error) {
+      console.error('Error getting Spotify access token:', error);
+      throw error;
+    }
+  }
+
+  private async fetchFromSpotify<T>(
+    endpoint: string,
+    accessToken: string,
+  ): Promise<T> {
+    this.checkInitialization();
+
+    const response = await fetch(`${this.baseUrl}${endpoint}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      const error = (await response.json()) as SpotifyError;
+      throw new Error(error.error.message);
+    }
+
+    return response.json() as Promise<T>;
+  }
+
+  public async getNowPlaying() {
+    try {
+      const accessToken = await this.getAccessToken();
+      return this.fetchFromSpotify('/me/player/currently-playing', accessToken);
+    } catch (error) {
+      console.error('Error getting now playing:', error);
+      return null;
+    }
+  }
+
+  public async getTopTracks({
+    limit,
+    time_range,
+    offset = 0,
+    nextList,
+  }: TopTracksParams) {
+    this.checkInitialization();
+
+    try {
+      const accessToken = await this.getAccessToken();
+      const endpoint = nextList
+        ? nextList.replace(this.baseUrl, '')
+        : `/me/top/tracks?limit=${limit}&offset=${offset}&time_range=${time_range}`;
+
+      return this.fetchFromSpotify<{ items: SpotifyTrack[] }>(
+        endpoint,
+        accessToken,
+      );
+    } catch (error) {
+      console.error('Error getting top tracks:', error);
+      throw error;
+    }
+  }
+
+  public static formatTracks(tracks: SpotifyTrack[]): SimplifiedTrack[] {
+    return tracks.map((track) => ({
+      artist: track.artists.map((artist) => artist.name).join(', '),
+      songUrl: track.external_urls.spotify,
+      title: track.name,
+    }));
+  }
+}
+
+// Export a singleton instance
+export const spotifyApi = SpotifyAPI.getInstance();
+
+// Export utility functions
+export const { formatTracks } = SpotifyAPI;
