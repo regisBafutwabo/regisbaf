@@ -1,6 +1,7 @@
 import type {
   SimplifiedTrack,
   SpotifyError,
+  SpotifyNowPlaying,
   SpotifyTokenResponse,
   SpotifyTrack,
   TopTracksParams,
@@ -100,7 +101,10 @@ class SpotifyAPI {
   public async getNowPlaying() {
     try {
       const accessToken = await this.getAccessToken();
-      return this.fetchFromSpotify('/me/player/currently-playing', accessToken);
+      return this.fetchFromSpotify(
+        '/me/player/currently-playing',
+        accessToken,
+      ) as SpotifyNowPlaying;
     } catch (error) {
       console.error('Error getting now playing:', error);
       return null;

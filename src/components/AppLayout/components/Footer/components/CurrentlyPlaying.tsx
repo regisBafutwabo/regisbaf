@@ -1,7 +1,7 @@
 'use client';
 import fetcher from 'lib/fetcher/fetcher';
 import { MotionText } from 'lib/Motion';
-import { CurrentlySong } from 'lib/spotify/types/spotify';
+// import { CurrentlySong } from 'lib/spotify/types';
 import { BsSpotify } from 'react-icons/bs';
 import useSWR from 'swr';
 
@@ -9,10 +9,19 @@ import { Box, Link, Text, useColorMode } from '@chakra-ui/react';
 
 export default function CurrentlyPlaying() {
   const { colorMode } = useColorMode();
-  const { data } = useSWR<CurrentlySong>('/api/currently-playing', fetcher, {
+  const { data } = useSWR<{
+    album: string;
+    albumImageUrl: string;
+    artist: string;
+    isPlaying: boolean;
+    songUrl: string;
+    title: string;
+  }>('/api/currently-playing', fetcher, {
     refreshWhenHidden: false,
     refreshWhenOffline: false,
   });
+
+  const animationDuration = 20;
 
   return (
     <Box
@@ -29,30 +38,38 @@ export default function CurrentlyPlaying() {
         gap={2}
       >
         {data?.songUrl ? (
-          <Link
-            href={data.songUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            fontWeight={'bold'}
-          >
-            <MotionText
-              whileHover={{
-                scale: 1.1,
-                textShadow: `0px 0px 8px ${
-                  colorMode === 'light' ? 'rgb(0,0,0)' : 'rgb(255,255,255)'
-                }`,
-              }}
-              fontSize="md"
-              cursor={'pointer'}
+          <Box maxW="250px" overflow="hidden" whiteSpace="nowrap">
+            <Link
+              href={data.songUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              fontWeight={'bold'}
             >
-              {data.title}
-            </MotionText>
-          </Link>
+              <MotionText
+                display="inline-block"
+                initial={{ x: '0%' }}
+                animate={{ x: ['0%', '-100%'] }}
+                transition={{
+                  ease: 'linear',
+
+                  duration: animationDuration,
+                  repeat: Number.POSITIVE_INFINITY,
+                }}
+                whileHover={{
+                  textShadow: `0px 0px 8px ${
+                    colorMode === 'light' ? 'rgb(0,0,0)' : 'rgb(255,255,255)'
+                  }`,
+                }}
+                fontSize="md"
+                cursor={'pointer'}
+              >
+                {`${data.title} – ${data?.artist}`}
+              </MotionText>
+            </Link>
+          </Box>
         ) : (
-          <Text fontFamily={'body'}>Not Playing</Text>
+          <Text fontFamily={'body'}>Not Playing - Spotify</Text>
         )}
-        <Text display={['none', 'block']}>{' – '}</Text>
-        <Text fontFamily={'body'}>{data?.artist ?? 'Spotify'}</Text>
       </Box>
     </Box>
   );
