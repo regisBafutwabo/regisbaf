@@ -9,9 +9,9 @@ export default function Template({ children }: { children: ReactNode }) {
       intial={{ y: 1000 }}
       transition={{ duration: 100.5, type: 'spring', stiffness: 600 }}
       maxWidth={1080}
-      mr={[4, 4, 4, 'auto']}
+      mr={[0, 4, 4, 'auto']}
       pr={[0, 0, 0, 8]}
-      ml={[4, 4, 4, 'auto']}
+      ml={[0, 4, 4, 'auto']}
       pl={[0, 0, 0, 8]}
     >
       {children}

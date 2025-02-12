@@ -5,7 +5,12 @@ import { MotionText } from 'lib/Motion';
 import { BsSpotify } from 'react-icons/bs';
 import useSWR from 'swr';
 
-import { Box, Link, Text, useColorMode } from '@chakra-ui/react';
+import {
+  Box,
+  Link,
+  Text,
+  useColorMode,
+} from '@chakra-ui/react';
 
 export default function CurrentlyPlaying() {
   const { colorMode } = useColorMode();
@@ -17,10 +22,12 @@ export default function CurrentlyPlaying() {
     songUrl: string;
     title: string;
   }>('/api/currently-playing', fetcher, {
-    refreshWhenHidden: false,
+    errorRetryCount: 2,
+    refreshInterval: 60000,
+    refreshWhenHidden: true,
   });
 
-  const animationDuration = 20;
+  const animationDuration = 15;
 
   return (
     <Box

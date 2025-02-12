@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 import { Box } from '@chakra-ui/react';
-import Image from 'next/image';
 
 export const MotionBox = motion(Box);
 
