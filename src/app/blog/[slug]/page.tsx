@@ -33,9 +33,17 @@ export async function generateMetadata({
       title,
       description,
       alternates: {
-        canonical: `/blog/${params.slug}`,
+        canonical: `${process.env.NEXT_PUBLIC_URL}/blog/${params.slug}`,
         languages: {
           'en-US': `/blog/${params.slug}`,
+        },
+      },
+      robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
         },
       },
       openGraph: {
@@ -44,6 +52,7 @@ export async function generateMetadata({
         publishedTime,
         type: 'article',
         url: `${process.env.NEXT_PUBLIC_URL}/blog/${params.slug}`,
+        siteName: CONTENTS.about.profileAlt,
       },
       twitter: {
         title,

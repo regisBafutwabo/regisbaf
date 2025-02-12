@@ -1,4 +1,4 @@
-import { Img } from '@chakra-ui/react';
+import profilePic from '/public/profile.webp';
 import Image from 'next/image';
 import { DiReact } from 'react-icons/di';
 import {
@@ -17,7 +17,8 @@ import {
   SiVercel,
 } from 'react-icons/si';
 import type { TechListType } from 'typings/techList';
-import profilePic from '/public/profile.webp';
+
+import { Img } from '@chakra-ui/react';
 
 const links = [
   {

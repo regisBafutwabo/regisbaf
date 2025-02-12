@@ -10,16 +10,32 @@ export function generateMetadata(): Metadata {
     description:
       'Read my latest thoughts on web development, and software engineering',
     alternates: {
-      canonical: '/blog',
+      canonical: `${process.env.NEXT_PUBLIC_URL}/blog`,
       languages: {
         'en-US': '/blog',
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
       },
     },
     openGraph: {
       title: `${SEO_CONTENT.name} - Blog`,
       description:
         'Read my latest thoughts on web development, and software engineering',
-      url: '/blog',
+      url: `${process.env.NEXT_PUBLIC_URL}/blog`,
+      type: 'website',
+      siteName: SEO_CONTENT.name,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${SEO_CONTENT.name} - Blog`,
+      description:
+        'Read my latest thoughts on web development, and software engineering',
     },
   };
 }
