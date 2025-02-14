@@ -1,13 +1,30 @@
 'use client';
-import { useEffect, useState } from 'react';
+import {
+  useEffect,
+  useState,
+} from 'react';
 
 import { ErrorBoundary } from 'components/Common/ErrorBoundary';
 import { Spinner } from 'components/Common/Spinner';
-import { MotionButton, MotionListItem } from 'lib/Motion';
-import { formatTracks, spotifyApi } from 'lib/spotify/spotify';
-import type { SimplifiedTrack, SpotifyTimeRange } from 'lib/spotify/types';
+import {
+  MotionButton,
+  MotionListItem,
+} from 'lib/Motion';
+import {
+  formatTracks,
+  spotifyApi,
+} from 'lib/spotify/spotify';
+import type {
+  SimplifiedTrack,
+  SpotifyTimeRange,
+} from 'lib/spotify/types';
 
-import { Box, Link, OrderedList, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Link,
+  OrderedList,
+  Text,
+} from '@chakra-ui/react';
 
 type TopTracksProps = {
   tracks: SimplifiedTrack[];
@@ -24,6 +41,7 @@ export const TopTracks = ({ tracks: initialTracks }: TopTracksProps) => {
   }, [initialTracks]);
 
   const loadMore = async () => {
+    if (loading) return;
     setLoading(true);
     setHasError(false);
 
