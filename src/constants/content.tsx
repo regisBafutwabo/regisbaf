@@ -160,7 +160,6 @@ export const CONTENTS = {
     logo: 'Regis Bafutwabo',
   },
   footer: {
-    links,
     linkedin: 'https://www.linkedin.com/in/regis-bafutwabo/',
     github: 'https://github.com/regisBafutwabo',
   },

@@ -13,7 +13,14 @@ export const Footer = () => {
         marginTop: '32px',
       }}
     >
-      <Container maxW="container.lg">
+      <Container
+        maxW="container.lg"
+        display="flex"
+        flexDirection={['column', 'row']}
+        gap={[4, 8]}
+        paddingY={4}
+        justifyContent="space-between"
+      >
         <CurrentlyPlaying />
         <FooterLinks />
       </Container>

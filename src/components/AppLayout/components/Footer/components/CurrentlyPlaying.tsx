@@ -30,12 +30,7 @@ export default function CurrentlyPlaying() {
   const animationDuration = 15;
 
   return (
-    <Box
-      display="flex"
-      flexDirection="row"
-      alignItems={['flex-start', 'center']}
-      gap={2}
-    >
+    <Box display="flex" flexDirection="row" alignItems="flex-start" gap={2}>
       <BsSpotify color="#1ED760" size={20} />
       <Box
         display="flex"
@@ -74,7 +69,9 @@ export default function CurrentlyPlaying() {
             </Link>
           </Box>
         ) : (
-          <Text fontFamily={'body'}>Not Playing - Spotify</Text>
+          <Text fontFamily={'body'} whiteSpace="nowrap">
+            Not Playing - Spotify
+          </Text>
         )}
       </Box>
     </Box>
