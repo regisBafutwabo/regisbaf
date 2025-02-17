@@ -1,18 +1,11 @@
 'use client';
 import { useState } from 'react';
 
-import { CONTENTS } from 'constants/content';
-import { MotionIconButton } from 'lib/Motion';
-import Link from 'next/link';
-
-import { HamburgerIcon } from '@chakra-ui/icons';
-import {
-  Box,
-  Text,
-  useColorMode,
-} from '@chakra-ui/react';
+import { useColorMode } from '@chakra-ui/react';
 
 import { DesktopMenu } from './Components/DesktopMenu';
+import { Logo } from './Components/Logo';
+import { MenuButton } from './Components/MenuButton';
 import { MobileMenu } from './Components/MobileMenu';
 import { Nav } from './styles';
 
@@ -34,7 +27,6 @@ export const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Remove unnecessary window check; the component is client-side.
   const toggleMode = () => {
     if (colorMode === 'dark') {
       toggleColorMode();
@@ -66,34 +58,14 @@ export const Header = () => {
         pb={[4, 4, 4, 4]}
         justifyContent={{ base: 'space-between', lg: 'space-around' }}
       >
-        <Link href="/">
-          <Box mr={10} _hover={{ cursor: 'pointer' }}>
-            <Text
-              fontFamily={'heading'}
-              bgGradient="linear(to-r,#007BD3, #007311)"
-              bgClip="text"
-              fontSize="2xl"
-              fontWeight="extrabold"
-            >
-              {CONTENTS.navbar.logo}
-            </Text>
-          </Box>
-        </Link>
+        <Logo />
         <DesktopMenu
           toggleMode={toggleMode}
           colorMode={colorMode}
           openModal={openModal}
           IconVariant={IconVariant}
         />
-        <MotionIconButton
-          display={{ base: 'block', lg: 'none' }}
-          aria-label="hamburger-icon"
-          _focus={{ outline: 0 }}
-          backgroundColor="transparent"
-          onClick={openModal}
-        >
-          <HamburgerIcon w={8} h={8} />
-        </MotionIconButton>
+        <MenuButton openModal={openModal} />
         {isModalOpen && (
           <MobileMenu
             open={isModalOpen}
