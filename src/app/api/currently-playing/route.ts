@@ -3,7 +3,6 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   const song = await spotifyApi.getNowPlaying();
-
   if (!song?.item) {
     return NextResponse.json({ isPlaying: false });
   }

@@ -1,23 +1,27 @@
 'use client';
 import { Suspense } from 'react';
 
-import {
-  Bold,
-  Header,
-  Header1,
-  Header2,
-  Link,
-  OList,
-  Pre,
-  RoundedImage,
-  SvgImage,
-  UList,
-} from 'components/Common/Mdx/components';
 import { Paragraph } from 'components/Common/Mdx/components/Paragraph';
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import dynamic from 'next/dynamic';
 
 import { Spinner } from '../Spinner';
+import { Bold } from './components/Bold';
+import { Pre } from './components/Code';
+import {
+  Header,
+  Header1,
+  Header2,
+} from './components/Header';
+import { Link } from './components/Link';
+import {
+  OList,
+  UList,
+} from './components/List';
+import {
+  RoundedImage,
+  SvgImage,
+} from './components/RoundedImage';
 
 // Create a loading fallback component
 const MDXLoading = () => <Spinner />;

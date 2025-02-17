@@ -5,12 +5,7 @@ import { MotionText } from 'lib/Motion';
 import { BsSpotify } from 'react-icons/bs';
 import useSWR from 'swr';
 
-import {
-  Box,
-  Link,
-  Text,
-  useColorMode,
-} from '@chakra-ui/react';
+import { Box, Link, Text, useColorMode } from '@chakra-ui/react';
 
 export default function CurrentlyPlaying() {
   const { colorMode } = useColorMode();

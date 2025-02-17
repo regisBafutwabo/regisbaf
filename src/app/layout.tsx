@@ -2,20 +2,24 @@ import 'styles/globals.css';
 
 import type { ReactNode } from 'react';
 
-import { Footer, Header } from 'components/AppLayout/components';
+import {
+  Footer,
+  Header,
+} from 'components/AppLayout/components';
 import { theme } from 'config/theme';
 import { SEO_CONTENT } from 'constants/content';
-import type { Metadata, Viewport } from 'next';
+import type {
+  Metadata,
+  Viewport,
+} from 'next';
 
-import { Box, ColorModeScript, Container } from '@chakra-ui/react';
+import {
+  Box,
+  ColorModeScript,
+  Container,
+} from '@chakra-ui/react';
 
 import Providers from './providers';
-
-// const martel = Martel({
-//   subsets: ['latin'],
-//   variable: '--chakra-fonts-body',
-//   weight: '200',
-// });
 
 export const viewport: Viewport = {
   width: 'device-width',

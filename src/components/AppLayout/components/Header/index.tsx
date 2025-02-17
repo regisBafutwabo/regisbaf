@@ -3,7 +3,8 @@ import { useState } from 'react';
 
 import { useColorMode } from '@chakra-ui/react';
 
-import { DesktopMenu, MobileMenu } from './Components';
+import { DesktopMenu } from './Components/DesktopMenu';
+import { MobileMenu } from './Components/MobileMenu';
 import { Nav } from './styles';
 
 const IconVariant = {
@@ -12,7 +13,6 @@ const IconVariant = {
     height: 0,
     width: 0,
   },
-
   visible: {
     y: 0,
     width: 20,
@@ -25,11 +25,12 @@ export const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Remove unnecessary window check; the component is client-side.
   const toggleMode = () => {
-    if (colorMode === 'dark' && window) {
+    if (colorMode === 'dark') {
       toggleColorMode();
       window.localStorage.setItem('prefers-dark', 'false');
-    } else if (colorMode === 'light' && window) {
+    } else if (colorMode === 'light') {
       toggleColorMode();
       window.localStorage.setItem('prefers-dark', 'true');
     }
@@ -54,14 +55,7 @@ export const Header = () => {
       <Nav
         pt={[4, 4, 4, 8]}
         pb={[4, 4, 4, 4]}
-        // mx={[2, 2, '16px !important', '16px !important']}
-        justifyContent={[
-          'space-between',
-          'space-between',
-          'space-between',
-          'space-between',
-          'space-around',
-        ]}
+        justifyContent={{ base: 'space-between', lg: 'space-around' }}
       >
         <DesktopMenu
           toggleMode={toggleMode}
@@ -72,9 +66,7 @@ export const Header = () => {
         {isModalOpen && (
           <MobileMenu
             open={isModalOpen}
-            closeModal={() => {
-              setIsModalOpen(false);
-            }}
+            closeModal={() => setIsModalOpen(false)}
             toggleMode={toggleMode}
             colorMode={colorMode}
             IconVariant={IconVariant}

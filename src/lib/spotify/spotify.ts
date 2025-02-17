@@ -14,6 +14,8 @@ class SpotifyAPI {
   private readonly refreshToken: string;
   private readonly baseUrl = 'https://api.spotify.com/v1';
   private readonly tokenEndpoint = 'https://accounts.spotify.com/api/token';
+  private readonly currentlyPlaying = '/me/player/currently-playing';
+
   private isInitialized = false;
 
   private constructor() {
@@ -102,7 +104,7 @@ class SpotifyAPI {
     try {
       const accessToken = await this.getAccessToken();
       return this.fetchFromSpotify(
-        '/me/player/currently-playing',
+        this.currentlyPlaying,
         accessToken,
       ) as SpotifyNowPlaying;
     } catch (error) {

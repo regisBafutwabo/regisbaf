@@ -17,7 +17,16 @@ import {
   ModalOverlay,
 } from '@chakra-ui/react';
 
-import { MobileMenuProps } from './MobileMenu.interface';
+type MobileMenuProps = {
+  open: boolean;
+  colorMode: 'dark' | 'light';
+  closeModal: () => void;
+  toggleMode: () => void;
+  IconVariant: {
+    hidden: any;
+    visible: any;
+  };
+};
 
 export const MobileMenu = (props: MobileMenuProps) => {
   const { open, closeModal, toggleMode, colorMode, IconVariant } = props;

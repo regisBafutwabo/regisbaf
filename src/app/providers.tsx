@@ -28,15 +28,13 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   });
 
   useEffect(() => {
-    if (window) {
-      const isDark = window.localStorage.getItem('prefers-dark');
+    const isDark = window.localStorage.getItem('prefers-dark');
 
-      if (!isDark) {
-        window.localStorage.setItem('prefers-dark', 'false');
-        setColorMode('light');
-      } else {
-        setColorMode('dark');
-      }
+    if (!isDark) {
+      window.localStorage.setItem('prefers-dark', 'false');
+      setColorMode('light');
+    } else {
+      setColorMode('dark');
     }
   }, []);
 
