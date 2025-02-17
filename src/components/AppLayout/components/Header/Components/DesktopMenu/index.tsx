@@ -7,9 +7,15 @@ import {
   MotionText,
 } from 'lib/Motion';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import {
+  usePathname,
+  useRouter,
+} from 'next/navigation';
 
-import { Box, type ColorMode, Text } from '@chakra-ui/react';
+import {
+  Box,
+  type ColorMode,
+} from '@chakra-ui/react';
 
 type DesktopMenuProps = {
   toggleMode: () => void;
@@ -34,17 +40,6 @@ export const DesktopMenu = (props: DesktopMenuProps) => {
         justifyContent={'center'}
         flexDir={'row'}
       >
-        <Box mr={10} _hover={{ cursor: 'pointer' }} onClick={() => push('/')}>
-          <Text
-            fontFamily={'heading'}
-            bgGradient="linear(to-r,#007BD3, #007311)"
-            bgClip="text"
-            fontSize="2xl"
-            fontWeight="extrabold"
-          >
-            {CONTENTS.navbar.logo}
-          </Text>
-        </Box>
         <Box
           display={{ base: 'none', lg: 'flex' }}
           flexDir="row"
