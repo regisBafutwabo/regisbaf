@@ -1,4 +1,4 @@
-import { RenderHtml } from 'components/Common/Mdx';
+import { RenderHtml } from 'app/blog/components/Mdx';
 import { CONTENTS } from 'constants/content';
 import { mdxToHtml } from 'lib/Mdx';
 import { getClient } from 'lib/sanity';

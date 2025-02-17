@@ -1,15 +1,11 @@
 'use client';
-import { RenderHtml } from 'components/Common/Mdx';
+import { RenderHtml } from 'app/blog/components/Mdx';
 import { format } from 'date-fns';
 import { urlForImage } from 'lib/sanity';
 import Image from 'next/image';
 import type { Post } from 'typings/Blog';
 
-import {
-  Box,
-  Text,
-  useColorMode,
-} from '@chakra-ui/react';
+import { Box, Text, useColorMode } from '@chakra-ui/react';
 
 type PostProps = {
   post: Post;

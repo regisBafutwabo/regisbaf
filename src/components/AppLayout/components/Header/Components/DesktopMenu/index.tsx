@@ -1,41 +1,26 @@
 'use client';
 import { CONTENTS } from 'constants/content';
-import { MOBILE_SIZES } from 'constants/display';
-import {
-  MotionIconButton,
-  MotionMoonIcon,
-  MotionSunIcon,
-  MotionText,
-} from 'lib/Motion';
+import { MotionText } from 'lib/Motion';
 import Link from 'next/link';
-import {
-  usePathname,
-  useRouter,
-} from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
-import { HamburgerIcon } from '@chakra-ui/icons';
-import {
-  Box,
-  Text,
-  useBreakpointValue,
-} from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 
-import type { DesktopMenuProps } from './DesktopMenu.interface';
+import { ThemeToggle } from '../ThemeToggle';
 
-export const DesktopMenu = (props: DesktopMenuProps) => {
-  const { toggleMode, colorMode, openModal, IconVariant } = props;
+export const DesktopMenu = () => {
   const { push } = useRouter();
   const pathname = usePathname();
-  const variant = useBreakpointValue(['xs', 'sm', 'md', 'lg', 'xl', 'xxl']);
 
   return (
     <>
       <Box
-        display={'flex'}
+        display={{ base: 'none', lg: 'flex' }}
         alignItems="center"
         justifyContent={'center'}
         flexDir={'row'}
       >
+        {/* Logo */}
         <Box mr={10} _hover={{ cursor: 'pointer' }} onClick={() => push('/')}>
           <Text
             fontFamily={'heading'}
@@ -47,20 +32,15 @@ export const DesktopMenu = (props: DesktopMenuProps) => {
             {CONTENTS.navbar.logo}
           </Text>
         </Box>
-        <Box
-          display={['none', 'none', 'none', 'flex']}
-          flexDir="row"
-          alignItems={'center'}
-        >
+        {/* Navbar */}
+        <Box display="flex" flexDir="row" alignItems={'center'}>
           {CONTENTS.navbar.links.map((linkData) => (
             <Box mr={5} key={linkData.value}>
-              <Link href={linkData.value} passHref>
+              <Link href={linkData.value}>
                 <MotionText
                   whileHover={{
                     scale: 1.1,
-                    textShadow: `0px 0px 8px ${
-                      colorMode === 'light' ? 'rgb(0,0,0)' : 'rgb(255,255,255)'
-                    }`,
+                    textShadow: '0px 0px 8px rgb(0,0,0)',
                   }}
                   fontWeight={pathname === linkData.value ? 700 : 'semibold'}
                   fontSize="md"
@@ -79,40 +59,7 @@ export const DesktopMenu = (props: DesktopMenuProps) => {
           ))}
         </Box>
       </Box>
-      {MOBILE_SIZES?.includes(variant as string) ? (
-        <MotionIconButton
-          aria-label="hamburger-icon"
-          _focus={{ outline: 0 }}
-          backgroundColor="transparent"
-          onClick={openModal}
-        >
-          <HamburgerIcon w={8} h={8} />
-        </MotionIconButton>
-      ) : (
-        <Box display={['none', 'none', 'none', 'flex']}>
-          <MotionIconButton
-            transition={{ delay: 1.5 }}
-            aria-label="color-mode"
-            _focus={{ outline: 0, backgroundColor: 'transparent' }}
-            backgroundColor="transparent"
-            onClick={toggleMode}
-          >
-            {colorMode === 'light' ? (
-              <MotionMoonIcon
-                variants={IconVariant}
-                initial="hidden"
-                animate="visible"
-              />
-            ) : (
-              <MotionSunIcon
-                variants={IconVariant}
-                initial="hidden"
-                animate="visible"
-              />
-            )}
-          </MotionIconButton>
-        </Box>
-      )}
+      <ThemeToggle />
     </>
   );
 };

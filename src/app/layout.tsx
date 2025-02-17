@@ -3,11 +3,10 @@ import 'styles/globals.css';
 import type { ReactNode } from 'react';
 
 import { Footer, Header } from 'components/AppLayout/components';
-import { theme } from 'config/theme';
 import { SEO_CONTENT } from 'constants/content';
 import type { Metadata, Viewport } from 'next';
 
-import { Box, ColorModeScript, Container } from '@chakra-ui/react';
+import { Box, Container } from '@chakra-ui/react';
 
 import Providers from './providers';
 
@@ -24,6 +23,8 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${process.env.NEXT_PUBLIC_URL}`),
+  authors: [{ name: SEO_CONTENT.name }],
+  keywords: ['HTML', 'CSS', 'JavaScript', 'React', 'Next.js', 'React-native'],
   alternates: {
     canonical: '/',
     languages: {
@@ -35,21 +36,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <head>
-        <meta
-          name="keywords"
-          content="HTML, CSS, JavaScript, React, Next.js, React-native"
-        />
-        <meta name="author" content={SEO_CONTENT.name} />
-        <meta
-          name="theme-color"
-          media="(prefers-color-scheme: light)"
-          content="#FFFFFF"
-        />
-      </head>
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <Providers>
           <Box
             display="flex"

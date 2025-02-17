@@ -6,14 +6,8 @@ import {
 
 import { ErrorBoundary } from 'components/Common/ErrorBoundary';
 import { Spinner } from 'components/Common/Spinner';
-import {
-  MotionButton,
-  MotionListItem,
-} from 'lib/Motion';
-import {
-  formatTracks,
-  spotifyApi,
-} from 'lib/spotify/spotify';
+import { MotionButton } from 'lib/Motion';
+import { spotify } from 'lib/spotify/spotify';
 import type {
   SimplifiedTrack,
   SpotifyTimeRange,
@@ -21,18 +15,21 @@ import type {
 
 import {
   Box,
-  Link,
   OrderedList,
-  Text,
 } from '@chakra-ui/react';
+
+import { TrackItem } from '../TrackItem';
 
 type TopTracksProps = {
   tracks: SimplifiedTrack[];
 };
 
+const TRACKS_PER_PAGE = 10;
+const MAX_TRACKS = 50;
+
 export const TopTracks = ({ tracks: initialTracks }: TopTracksProps) => {
   const [loading, setLoading] = useState(false);
-  const [hasError, setHasError] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
   const [offset, setOffset] = useState(10);
   const [tracks, setTracks] = useState<SimplifiedTrack[]>(initialTracks);
 
@@ -41,23 +38,29 @@ export const TopTracks = ({ tracks: initialTracks }: TopTracksProps) => {
   }, [initialTracks]);
 
   const loadMore = async () => {
-    if (loading) return;
+    if (loading || tracks.length >= MAX_TRACKS) return;
     setLoading(true);
-    setHasError(false);
+    setError(null);
 
     try {
-      const response = await spotifyApi.getTopTracks({
-        limit: 10,
+      const response = await spotify.getTopTracks({
+        limit: TRACKS_PER_PAGE,
         offset,
         time_range: 'short_term' as SpotifyTimeRange,
       });
 
-      const newTracks = formatTracks(response.items);
+      if (!response?.items?.length) {
+        throw new Error('NO Tracks Found');
+      }
+
+      const newTracks = spotify.formatTracks(response.items);
       setTracks((prevTracks) => [...prevTracks, ...newTracks]);
-      setOffset((prev) => prev + 10);
+      setOffset((prev) => prev + TRACKS_PER_PAGE);
     } catch (error) {
-      setHasError(true);
       console.error('Error loading more tracks:', error);
+      setError(
+        error instanceof Error ? error : new Error('Failed to load tracks'),
+      );
     } finally {
       setLoading(false);
     }
@@ -66,31 +69,15 @@ export const TopTracks = ({ tracks: initialTracks }: TopTracksProps) => {
   return (
     <ErrorBoundary>
       <Box marginY={8}>
-        {hasError ? (
-          <Text>Oops! Something went wrong. Please try again later.</Text>
-        ) : (
+        {tracks.length > 0 && (
           <>
-            {tracks.length > 0 && (
-              <OrderedList spacing={4} display="flex" flexDirection="column">
-                {tracks.map((track) => (
-                  <MotionListItem
-                    key={track.songUrl}
-                    transition={{ type: 'spring', stiffness: 300 }}
-                    whileHover={{ scale: 1.03, originX: 0 }}
-                    whileTap={{ scale: 0.8 }}
-                  >
-                    <Link
-                      href={track.songUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {`${track.title} - ${track.artist}`}
-                    </Link>
-                  </MotionListItem>
-                ))}
-              </OrderedList>
-            )}
-            {tracks.length > 0 && tracks.length < 50 && (
+            <OrderedList spacing={4} display="flex" flexDirection="column">
+              {tracks.map((track) => (
+                <TrackItem track={track} key={track?.songUrl} />
+              ))}
+            </OrderedList>
+
+            {tracks.length < MAX_TRACKS && (
               <MotionButton
                 marginTop={8}
                 _hover={{

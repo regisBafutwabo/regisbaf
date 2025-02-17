@@ -1,5 +1,8 @@
-import { CONTENTS, SEO_CONTENT } from 'constants/content';
-import { formatTracks, spotifyApi } from 'lib/spotify/spotify';
+import {
+  CONTENTS,
+  SEO_CONTENT,
+} from 'constants/content';
+import { spotify } from 'lib/spotify/spotify';
 import type { SpotifyTimeRange } from 'lib/spotify/types';
 import type { Metadata } from 'next';
 
@@ -42,12 +45,15 @@ export function generateMetadata(): Metadata {
 }
 
 export default async function TracksPage() {
-  const response = await spotifyApi.getTopTracks({
+  const response = await spotify.getTopTracks({
     limit: 10,
     time_range: 'short_term' as SpotifyTimeRange,
   });
 
-  const tracks = formatTracks(response.items);
+  if (!response?.items?.length) {
+    return '';
+  }
+  const tracks = spotify.formatTracks(response?.items);
 
   return <TopTracks tracks={tracks} />;
 }

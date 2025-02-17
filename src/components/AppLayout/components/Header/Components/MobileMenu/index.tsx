@@ -1,9 +1,6 @@
 import { CONTENTS } from 'constants/content';
 import {
   MotionCloseIcon,
-  MotionIconButton,
-  MotionMoonIcon,
-  MotionSunIcon,
   MotionText,
 } from 'lib/Motion';
 
@@ -15,18 +12,24 @@ import {
   ModalContent,
   ModalFooter,
   ModalOverlay,
+  useColorMode,
 } from '@chakra-ui/react';
 
-import { MobileMenuProps } from './MobileMenu.interface';
+import { ThemeToggle } from '../ThemeToggle';
 
-export const MobileMenu = (props: MobileMenuProps) => {
-  const { open, closeModal, toggleMode, colorMode, IconVariant } = props;
+type MobileMenuProps = {
+  isOpen: boolean;
+  onClose: () => void;
+};
+
+export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
+  const { colorMode } = useColorMode();
 
   return (
     <Modal
-      onClose={closeModal}
+      onClose={onClose}
       size={'full'}
-      isOpen={open}
+      isOpen={isOpen}
       motionPreset="slideInRight"
     >
       <ModalOverlay />
@@ -51,7 +54,7 @@ export const MobileMenu = (props: MobileMenuProps) => {
         </ModalCloseButton>
         <ModalBody mt={100} display="flex" flexDir={'column'} gap={8}>
           {CONTENTS.navbar.links.map((link) => (
-            <Link href={link.value} onClick={closeModal} key={link.value}>
+            <Link href={link.value} onClick={onClose} key={link.value}>
               <MotionText
                 initial={{ x: '100vw' }}
                 animate={{ x: 0 }}
@@ -69,29 +72,7 @@ export const MobileMenu = (props: MobileMenuProps) => {
           display={'flex'}
           justifyContent="flex-start"
         >
-          <MotionIconButton
-            animate={{ opacity: 1 }}
-            initial={{ opacity: 0 }}
-            transition={{ delay: 1.1 }}
-            aria-label="color-mode"
-            _focus={{ outline: 0, backgroundColor: 'transparent' }}
-            backgroundColor="transparent"
-            onClick={toggleMode}
-          >
-            {colorMode === 'light' ? (
-              <MotionMoonIcon
-                variants={IconVariant}
-                initial="hidden"
-                animate="visible"
-              />
-            ) : (
-              <MotionSunIcon
-                variants={IconVariant}
-                initial="hidden"
-                animate="visible"
-              />
-            )}
-          </MotionIconButton>
+          <ThemeToggle />
         </ModalFooter>
       </ModalContent>
     </Modal>

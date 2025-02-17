@@ -12,12 +12,12 @@ import {
   RoundedImage,
   SvgImage,
   UList,
-} from 'components/Common/Mdx/components';
-import { Paragraph } from 'components/Common/Mdx/components/Paragraph';
+} from 'app/blog/components/Mdx/components';
+import { Paragraph } from 'app/blog/components/Mdx/components/Paragraph';
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import dynamic from 'next/dynamic';
 
-import { Spinner } from '../Spinner';
+import { Spinner } from '../../../../components/Common/Spinner';
 
 // Create a loading fallback component
 const MDXLoading = () => <Spinner />;

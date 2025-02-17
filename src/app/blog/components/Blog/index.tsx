@@ -1,4 +1,4 @@
-import { PostCard } from 'components/Common/PostCard';
+import { PostCard } from 'app/blog/components/PostCard';
 import { CONTENTS } from 'constants/content';
 import { MotionBox } from 'lib/Motion';
 import type { Post } from 'typings/Blog';

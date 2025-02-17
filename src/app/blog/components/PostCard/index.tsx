@@ -1,10 +1,17 @@
 'use client';
 import { MotionBox } from 'lib/Motion';
 import Link from 'next/link';
+import type { Post } from 'typings/Blog';
 
-import { Box, Text, useColorMode } from '@chakra-ui/react';
+import {
+  Box,
+  Text,
+  useColorMode,
+} from '@chakra-ui/react';
 
-import { PostCardProps } from './PostCard.types';
+export type PostCardProps = {
+  post: Post;
+};
 
 export const PostCard = ({ post }: PostCardProps) => {
   const { colorMode } = useColorMode();

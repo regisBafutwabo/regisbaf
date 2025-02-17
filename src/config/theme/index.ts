@@ -11,4 +11,12 @@ const fonts = {
   heading: 'Nunito',
 };
 
-export const theme = extendTheme({ colors, fonts });
+const config = {
+  initialColorMode: 'light',
+};
+
+export const theme = extendTheme({
+  config,
+  colors,
+  fonts,
+});

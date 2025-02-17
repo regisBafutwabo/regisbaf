@@ -1,27 +1,65 @@
-import { spotifyApi } from 'lib/spotify/spotify';
+import { spotify } from 'lib/spotify/spotify';
 import { NextResponse } from 'next/server';
 
+// Types
+interface SpotifyTrack {
+  name: string;
+  artists: Array<{ name: string }>;
+  album: {
+    name: string;
+    images: Array<{ url: string }>;
+  };
+  external_urls: {
+    spotify: string;
+  };
+}
+
+interface NowPlayingResponse {
+  is_playing: boolean;
+  item: SpotifyTrack | null;
+}
+
+interface ApiResponse {
+  isPlaying: boolean;
+  album?: string;
+  albumImageUrl?: string;
+  artist?: string;
+  songUrl?: string;
+  title?: string;
+}
+
 export async function GET() {
-  const song = await spotifyApi.getNowPlaying();
+  try {
+    const response = await spotify.getNowPlaying();
+    const song = response as NowPlayingResponse;
 
-  if (!song?.item) {
-    return NextResponse.json({ isPlaying: false });
+    if (!song?.item) {
+      return NextResponse.json<ApiResponse>({ isPlaying: false });
+    }
+
+    const {
+      is_playing,
+      item: {
+        name: title,
+        artists,
+        album: { name: albumName, images },
+        external_urls: { spotify: songUrl },
+      },
+    } = song;
+
+    return NextResponse.json<ApiResponse>({
+      isPlaying: is_playing ?? false,
+      title,
+      artist: artists?.map((artist) => artist.name).join(', '),
+      album: albumName,
+      albumImageUrl: images?.[0]?.url,
+      songUrl,
+    });
+  } catch (error) {
+    console.error('Error fetching now playing:', error);
+    return NextResponse.json<ApiResponse>(
+      { isPlaying: false },
+      { status: 500 },
+    );
   }
-
-  const isPlaying = song.is_playing ?? false;
-  const title = song.item?.name ?? '';
-  const artist =
-    song.item?.artists?.map((_artist) => _artist?.name)?.join(', ') ?? '';
-  const album = song.item?.album?.name ?? '';
-  const albumImageUrl = song.item?.album?.images?.[0]?.url ?? '';
-  const songUrl = song.item?.external_urls?.spotify ?? '';
-
-  return NextResponse.json({
-    album,
-    albumImageUrl,
-    artist,
-    isPlaying,
-    songUrl,
-    title,
-  });
 }
