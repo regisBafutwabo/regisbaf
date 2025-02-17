@@ -1,6 +1,5 @@
 import type {
   SimplifiedTrack,
-  SpotifyError,
   SpotifyNowPlaying,
   SpotifyTokenResponse,
   SpotifyTrack,
@@ -93,8 +92,11 @@ class SpotifyAPI {
     });
 
     if (!response.ok) {
-      const error = (await response.json()) as SpotifyError;
-      throw new Error(error.error.message);
+      throw new Error(response.statusText);
+    }
+
+    if (response.status === 204) {
+      throw 'Currently Not playing';
     }
 
     return response.json() as Promise<T>;
