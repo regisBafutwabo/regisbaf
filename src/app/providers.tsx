@@ -12,10 +12,16 @@ import {
   type ThemeConfig,
 } from '@chakra-ui/react';
 import { MDXProvider } from '@mdx-js/react';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 import { Analytics } from '@vercel/analytics/react';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const [colorMode, setColorMode] = useState<'dark' | 'light'>('dark');
+
+  const queryClient = new QueryClient();
 
   const config: ThemeConfig = {
     initialColorMode: colorMode || 'system',
@@ -40,10 +46,12 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 
   return (
     <ChakraProvider theme={updatedTheme}>
-      <MDXProvider>
-        {children}
-        <Analytics />
-      </MDXProvider>
+      <QueryClientProvider client={queryClient}>
+        <MDXProvider>
+          {children}
+          <Analytics />
+        </MDXProvider>
+      </QueryClientProvider>
     </ChakraProvider>
   );
 }

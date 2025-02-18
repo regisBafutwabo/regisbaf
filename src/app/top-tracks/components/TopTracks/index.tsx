@@ -4,7 +4,6 @@ import {
   useState,
 } from 'react';
 
-import { ErrorBoundary } from 'components/Common/ErrorBoundary';
 import { Spinner } from 'components/Common/Spinner';
 import {
   MotionButton,
@@ -64,51 +63,48 @@ export const TopTracks = ({ tracks: initialTracks }: TopTracksProps) => {
   };
 
   return (
-    <ErrorBoundary>
-      <Box marginY={8}>
-        {hasError ? (
-          <Text>Oops! Something went wrong. Please try again later.</Text>
-        ) : (
-          <>
-            {tracks.length > 0 && (
-              <OrderedList spacing={4} display="flex" flexDirection="column">
-                {tracks.map((track) => (
-                  <MotionListItem
-                    key={track.songUrl}
-                    transition={{ type: 'spring', stiffness: 300 }}
-                    whileHover={{ scale: 1.03, originX: 0 }}
-                    whileTap={{ scale: 0.8 }}
+    <Box marginY={8}>
+      {hasError ? (
+        <Text>Oops! Something went wrong. Please try again later.</Text>
+      ) : (
+        <>
+          {tracks.length > 0 && (
+            <OrderedList spacing={4} display="flex" flexDirection="column">
+              {tracks.map((track) => (
+                <MotionListItem
+                  key={track.songUrl}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                  whileHover={{ scale: 1.03, originX: 0 }}
+                  whileTap={{ scale: 0.8 }}
+                >
+                  <Link
+                    href={track.songUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <Link
-                      href={track.songUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {`${track.title} - ${track.artist}`}
-                    </Link>
-                  </MotionListItem>
-                ))}
-              </OrderedList>
-            )}
-            {tracks.length > 0 && tracks.length < 50 && (
-              <MotionButton
-                marginTop={8}
-                _hover={{
-                  backgroundImage:
-                    'linear-gradient(to right, #007BD3, #007311)',
-                }}
-                bgGradient="linear(to-r, #007BD3, #007311)"
-                disabled={loading}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={loadMore}
-              >
-                {loading ? <Spinner height={100} width={100} /> : 'Load More'}
-              </MotionButton>
-            )}
-          </>
-        )}
-      </Box>
-    </ErrorBoundary>
+                    {`${track.title} - ${track.artist}`}
+                  </Link>
+                </MotionListItem>
+              ))}
+            </OrderedList>
+          )}
+          {tracks.length > 0 && tracks.length < 50 && (
+            <MotionButton
+              marginTop={8}
+              _hover={{
+                backgroundImage: 'linear-gradient(to right, #007BD3, #007311)',
+              }}
+              bgGradient="linear(to-r, #007BD3, #007311)"
+              disabled={loading}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={loadMore}
+            >
+              {loading ? <Spinner height={100} width={100} /> : 'Load More'}
+            </MotionButton>
+          )}
+        </>
+      )}
+    </Box>
   );
 };

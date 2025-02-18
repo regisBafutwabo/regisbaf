@@ -81,25 +81,26 @@ class SpotifyAPI {
   private async fetchFromSpotify<T>(
     endpoint: string,
     accessToken: string,
-  ): Promise<T> {
+  ): Promise<any> {
     this.checkInitialization();
 
     const response = await fetch(`${this.baseUrl}${endpoint}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
-      cache: 'no-store',
+      next: {
+        revalidate: endpoint.includes('currently-playing') ? 60 : false, // Revalidate after 1 minute
+      },
     });
 
     if (!response.ok) {
       throw new Error(response.statusText);
     }
-
     if (response.status === 204) {
-      throw 'Currently Not playing';
+      return Promise.resolve({ is_playing: false });
     }
 
-    return response.json() as Promise<T>;
+    return response.json();
   }
 
   public async getNowPlaying() {

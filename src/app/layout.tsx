@@ -2,22 +2,13 @@ import 'styles/globals.css';
 
 import type { ReactNode } from 'react';
 
-import {
-  Footer,
-  Header,
-} from 'components/AppLayout/components';
+import { Footer, Header } from 'components/AppLayout/components';
 import { theme } from 'config/theme';
 import { SEO_CONTENT } from 'constants/content';
-import type {
-  Metadata,
-  Viewport,
-} from 'next';
+import { spotifyApi } from 'lib/spotify/spotify';
+import type { Metadata, Viewport } from 'next';
 
-import {
-  Box,
-  ColorModeScript,
-  Container,
-} from '@chakra-ui/react';
+import { Box, ColorModeScript, Container } from '@chakra-ui/react';
 
 import Providers from './providers';
 
@@ -37,7 +28,16 @@ export const metadata: Metadata = {
   ...SEO_CONTENT,
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({
+  children,
+}: { children: ReactNode }) {
+  let response: any;
+  try {
+    response = await spotifyApi.getNowPlaying();
+  } catch (error) {
+    console.log('ERROR ehen fetching currently playing', error);
+  }
+
   return (
     <html lang="en">
       <head>
@@ -65,7 +65,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <Container maxW="container.lg" flex={1}>
               {children}
             </Container>
-            <Footer />
+            <Footer currentlyPlaying={response} />
           </Box>
         </Providers>
       </body>
