@@ -1,4 +1,6 @@
 'use client';
+import './styles.css';
+
 import { Suspense } from 'react';
 
 import { Paragraph } from 'components/Common/Mdx/components/Paragraph';

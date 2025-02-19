@@ -1,7 +1,10 @@
 'use client';
 import { useState } from 'react';
 
-import { useColorMode } from '@chakra-ui/react';
+import {
+  Box,
+  useColorMode,
+} from '@chakra-ui/react';
 
 import { DesktopMenu } from './Components/DesktopMenu';
 import { Logo } from './Components/Logo';
@@ -42,20 +45,18 @@ export const Header = () => {
   };
 
   return (
-    <div
-      className="header"
-      style={{
-        width: '100%',
-        maxWidth: '100vw',
-        position: 'sticky',
-        top: 0,
-        backgroundColor: 'inherit',
-        zIndex: 2,
-      }}
+    <Box
+      padding={{ base: '0 8px', lg: '0 16px' }}
+      position="fixed"
+      width="100%"
+      maxW="100vw"
+      top={0}
+      bg={colorMode === 'dark' ? 'gray-800' : 'white'}
+      zIndex={2}
     >
       <Nav
-        pt={[4, 4, 4, 8]}
-        pb={[4, 4, 4, 4]}
+        pt={{ base: 4, lg: 8 }}
+        pb={4}
         justifyContent={{ base: 'space-between', lg: 'space-around' }}
       >
         <Logo />
@@ -76,6 +77,6 @@ export const Header = () => {
           />
         )}
       </Nav>
-    </div>
+    </Box>
   );
 };

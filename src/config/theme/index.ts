@@ -10,5 +10,14 @@ const fonts = {
   mono: `'Geist Mono', monospace`,
   heading: 'Nunito',
 };
-
-export const theme = extendTheme({ colors, fonts });
+export const theme = extendTheme({
+  colors,
+  fonts,
+  styles: {
+    global: (props: { colorMode: 'light' | 'dark' }) => ({
+      body: {
+        bg: props.colorMode === 'dark' ? 'gray.800' : 'white',
+      },
+    }),
+  },
+});

@@ -199,4 +199,9 @@ export const SEO_CONTENT = {
     description: 'Front-end Developer, and sometimes Full-stack Developer',
     images: [{ url: '/profile.webp', alt: 'Regis Baf' }],
   },
+  authors: {
+    url: 'https://github.com/regisBafutwabo',
+    name: 'Regis Bafutwabo',
+  },
+  keywords: ['HTML', 'CSS', 'JavaScript', 'React', 'Next.js', 'React-native'],
 };

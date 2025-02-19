@@ -34,12 +34,12 @@ export async function mdxToHtml(content: any) {
     },
   });
 
-  const tweetMatches = content.match(/<StaticTweet\sid="[0-9]+"\s\/>/g);
-  const tweetIDs = tweetMatches?.map((tweet: any) => tweet.match(/[0-9]+/g)[0]);
+  // const tweetMatches = content.match(/<StaticTweet\sid="[0-9]+"\s\/>/g);
+  // const tweetIDs = tweetMatches?.map((tweet: any) => tweet.match(/[0-9]+/g)[0]);
 
   return {
     html: mdxSource,
-    tweetIDs: tweetIDs || [],
+    // tweetIDs: tweetIDs || [],
     // wordCount: content.split(/\s+/gu).length,
     readingTime: readingTime(content).text,
   };

@@ -1,14 +1,12 @@
-import { RenderHtml } from 'components/Common/Mdx';
 import { CONTENTS } from 'constants/content';
 import { mdxToHtml } from 'lib/Mdx';
 import { getClient } from 'lib/sanity';
 import type { Metadata } from 'next';
 import type { Post } from 'typings/Blog';
 
-import {
-  Box,
-  Text,
-} from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
+
+import { BlogContent } from '../components/BlogContent';
 
 export async function generateMetadata({
   params,
@@ -148,15 +146,11 @@ export default async function BlogPost({
         width="100%"
         marginY={8}
       >
-        <Text
-          as="h1"
-          fontSize={['3xl', '4xl']}
-          marginBottom={4}
-          fontWeight="bold"
-        >
-          {post.title}
-        </Text>
-        <RenderHtml content={mdxResult.html} />
+        <BlogContent
+          post={post}
+          source={mdxResult.html}
+          readingTime={mdxResult.readingTime}
+        />
       </Box>
     );
   } catch (error) {
