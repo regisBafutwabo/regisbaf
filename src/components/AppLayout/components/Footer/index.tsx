@@ -1,9 +1,15 @@
+import type { SpotifyNowPlaying } from 'lib/spotify/types';
+
 import { Container } from '@chakra-ui/react';
 
 import CurrentlyPlaying from './components/CurrentlyPlaying';
 import { FooterLinks } from './components/FooterLinks';
 
-export const Footer = () => {
+type FooterProps = {
+  currentlyPlaying: SpotifyNowPlaying;
+};
+
+export const Footer = ({ currentlyPlaying }: FooterProps) => {
   return (
     <footer
       style={{
@@ -21,7 +27,7 @@ export const Footer = () => {
         paddingY={4}
         justifyContent="space-between"
       >
-        <CurrentlyPlaying />
+        <CurrentlyPlaying currentlyPlaying={currentlyPlaying} />
         <FooterLinks />
       </Container>
     </footer>

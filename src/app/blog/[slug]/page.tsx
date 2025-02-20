@@ -1,25 +1,29 @@
-import { RenderHtml } from 'app/blog/components/Mdx';
 import { CONTENTS } from 'constants/content';
 import { mdxToHtml } from 'lib/Mdx';
 import { getClient } from 'lib/sanity';
 import type { Metadata } from 'next';
 import type { Post } from 'typings/Blog';
 
-import { Box, Text } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
+
+import { BlogContent } from '../components/BlogContent';
 
 export async function generateMetadata({
   params,
-}: any): Promise<Metadata | undefined> {
-  const client = getClient(false);
+}: {
+  params: { slug: string };
+}): Promise<Metadata | null> {
+  const { slug } = params;
 
-  if (!params.slug) {
+  if (!slug) {
     console.error('Missing slug in params');
-    return undefined;
+    return null;
   }
 
   try {
+    const client = getClient(false);
     const posts: Post[] | undefined = await client?.fetch(
-      `*[_type == "post" && slug.current=="${params.slug}"]`,
+      `*[_type == "post" && slug.current=="${slug}"]`,
       {},
       { next: { revalidate: 60 } },
     );
@@ -33,9 +37,9 @@ export async function generateMetadata({
       title,
       description,
       alternates: {
-        canonical: `${process.env.NEXT_PUBLIC_URL}/blog/${params.slug}`,
+        canonical: `${process.env.NEXT_PUBLIC_URL}/blog/${slug}`,
         languages: {
-          'en-US': `/blog/${params.slug}`,
+          'en-US': `/blog/${slug}`,
         },
       },
       robots: {
@@ -51,7 +55,7 @@ export async function generateMetadata({
         description,
         publishedTime,
         type: 'article',
-        url: `${process.env.NEXT_PUBLIC_URL}/blog/${params.slug}`,
+        url: `${process.env.NEXT_PUBLIC_URL}/blog/${slug}`,
         siteName: CONTENTS.about.profileAlt,
       },
       twitter: {
@@ -62,7 +66,7 @@ export async function generateMetadata({
     };
   } catch (error) {
     console.error('Error fetching metadata:', error);
-    return undefined;
+    return null;
   }
 }
 
@@ -142,15 +146,11 @@ export default async function BlogPost({
         width="100%"
         marginY={8}
       >
-        <Text
-          as="h1"
-          fontSize={['3xl', '4xl']}
-          marginBottom={4}
-          fontWeight="bold"
-        >
-          {post.title}
-        </Text>
-        <RenderHtml content={mdxResult.html} />
+        <BlogContent
+          post={post}
+          source={mdxResult.html}
+          readingTime={mdxResult.readingTime}
+        />
       </Box>
     );
   } catch (error) {

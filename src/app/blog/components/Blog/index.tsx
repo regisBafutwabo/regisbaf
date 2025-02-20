@@ -1,6 +1,5 @@
 import { PostCard } from 'app/blog/components/PostCard';
 import { CONTENTS } from 'constants/content';
-import { MotionBox } from 'lib/Motion';
 import type { Post } from 'typings/Blog';
 
 import { Box, Text } from '@chakra-ui/react';
@@ -15,9 +14,7 @@ export const Blog = ({ posts }: BlogProps) => {
   } = CONTENTS;
 
   return (
-    <MotionBox
-      animate={{ x: 0 }}
-      initial={{ x: '-100vw' }}
+    <Box
       paddingX={[0, 4, 4, 8]}
       paddingY={8}
       minHeight="60vh" // Changed height to minHeight to prevent footer overlap
@@ -36,6 +33,6 @@ export const Blog = ({ posts }: BlogProps) => {
         {posts.length > 0 &&
           posts.map((post) => <PostCard post={post} key={post._id} />)}
       </Box>
-    </MotionBox>
+    </Box>
   );
 };

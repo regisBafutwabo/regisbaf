@@ -3,11 +3,7 @@ import { MotionBox } from 'lib/Motion';
 import Link from 'next/link';
 import type { Post } from 'typings/Blog';
 
-import {
-  Box,
-  Text,
-  useColorMode,
-} from '@chakra-ui/react';
+import { Box, Text, useColorMode } from '@chakra-ui/react';
 
 export type PostCardProps = {
   post: Post;
@@ -33,9 +29,11 @@ export const PostCard = ({ post }: PostCardProps) => {
           {post?.title}
         </Text>
       </Link>
-      <Text color={colorMode === 'dark' ? 'gray.400' : 'gray.600'}>
-        {post?.description}
-      </Text>
+      {post?.description && (
+        <Text color={colorMode === 'dark' ? 'gray.400' : 'gray.600'}>
+          {post.description}
+        </Text>
+      )}
       <Box flexDirection="row" flexWrap="wrap" display="flex">
         {post?.tags?.length &&
           post?.tags.map((tag: { label: string; value: string }) => (

@@ -1,20 +1,15 @@
-import 'styles/globals.css';
+import './globals.css';
 
 import type { ReactNode } from 'react';
 
 import { Footer, Header } from 'components/AppLayout/components';
 import { SEO_CONTENT } from 'constants/content';
+import { spotifyApi } from 'lib/spotify/spotify';
 import type { Metadata, Viewport } from 'next';
 
 import { Box, Container } from '@chakra-ui/react';
 
 import Providers from './providers';
-
-// const martel = Martel({
-//   subsets: ['latin'],
-//   variable: '--chakra-fonts-body',
-//   weight: '200',
-// });
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -23,8 +18,6 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${process.env.NEXT_PUBLIC_URL}`),
-  authors: [{ name: SEO_CONTENT.name }],
-  keywords: ['HTML', 'CSS', 'JavaScript', 'React', 'Next.js', 'React-native'],
   alternates: {
     canonical: '/',
     languages: {
@@ -34,9 +27,18 @@ export const metadata: Metadata = {
   ...SEO_CONTENT,
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({
+  children,
+}: { children: ReactNode }) {
+  let response: any;
+  try {
+    response = await spotifyApi.getNowPlaying();
+  } catch (error) {
+    console.log('ERROR ehen fetching currently playing', error);
+  }
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body>
         <Providers>
           <Box
@@ -46,10 +48,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             overflowY="auto"
           >
             <Header />
-            <Container maxW="container.lg" flex={1}>
+            <Container maxW="container.lg" flex={1} mt={20}>
               {children}
             </Container>
-            <Footer />
+            <Footer currentlyPlaying={response} />
           </Box>
         </Providers>
       </body>

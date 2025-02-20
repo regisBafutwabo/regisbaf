@@ -1,9 +1,11 @@
 'use client';
-import fetcher from 'lib/fetcher/fetcher';
-import { MotionText } from 'lib/Motion';
-// import { CurrentlySong } from 'lib/spotify/types';
+import {
+  MotionBox,
+  MotionText,
+} from 'lib/Motion';
+import type { SpotifyNowPlaying } from 'lib/spotify/types';
+import Image from 'next/image';
 import { BsSpotify } from 'react-icons/bs';
-import useSWR from 'swr';
 
 import {
   Box,
@@ -12,36 +14,67 @@ import {
   useColorMode,
 } from '@chakra-ui/react';
 
-export default function CurrentlyPlaying() {
-  const { colorMode } = useColorMode();
-  const { data } = useSWR<{
-    album: string;
-    albumImageUrl: string;
-    artist: string;
-    isPlaying: boolean;
-    songUrl: string;
-    title: string;
-  }>('/api/currently-playing', fetcher, {
-    errorRetryCount: 2,
-    refreshInterval: 60000,
-    refreshWhenHidden: true,
-  });
+const ANIMATION_DURATION = 15;
 
-  const animationDuration = 15;
+type CurrentlyPlayingProps = {
+  currentlyPlaying: SpotifyNowPlaying;
+};
+
+export default function CurrentlyPlaying({
+  currentlyPlaying,
+}: CurrentlyPlayingProps) {
+  const { colorMode } = useColorMode();
+
+  const title = currentlyPlaying?.item?.name ?? '';
+  const artist =
+    currentlyPlaying?.item?.artists
+      ?.map((_artist) => _artist?.name)
+      ?.join(', ') ?? '';
+  const album = currentlyPlaying?.item?.album?.name ?? '';
+  const albumImageUrl = currentlyPlaying?.item?.album?.images?.[0]?.url ?? '';
+  const songUrl = currentlyPlaying?.item?.external_urls?.spotify ?? '';
 
   return (
-    <Box display="flex" flexDirection="row" alignItems="flex-start" gap={2}>
-      <BsSpotify color="#1ED760" size={20} />
+    <Box
+      display="flex"
+      flexDirection="row"
+      alignItems="flex-start"
+      gap={2}
+      bg="transparent"
+    >
+      {albumImageUrl && currentlyPlaying?.is_playing ? (
+        <MotionBox
+          borderRadius="50%"
+          overflow="hidden"
+          width={'30px'}
+          height={'30px'}
+          animate={{ rotate: 360 }}
+          transition={{
+            duration: 10,
+            ease: 'linear',
+            repeat: Number.POSITIVE_INFINITY,
+          }}
+        >
+          <Image
+            src={albumImageUrl}
+            alt={album || title}
+            width={30}
+            height={30}
+          />
+        </MotionBox>
+      ) : (
+        <BsSpotify color="#1ED760" size={20} />
+      )}
       <Box
         display="flex"
         flexDirection={['column', 'row']}
         alignItems={['flex-start', 'center']}
         gap={2}
       >
-        {data?.songUrl ? (
+        {currentlyPlaying?.is_playing ? (
           <Box maxW="250px" overflow="hidden" whiteSpace="nowrap">
             <Link
-              href={data.songUrl}
+              href={songUrl}
               target="_blank"
               rel="noopener noreferrer"
               fontWeight={'bold'}
@@ -53,7 +86,7 @@ export default function CurrentlyPlaying() {
                 transition={{
                   ease: 'linear',
 
-                  duration: animationDuration,
+                  duration: ANIMATION_DURATION,
                   repeat: Number.POSITIVE_INFINITY,
                 }}
                 whileHover={{
@@ -64,7 +97,7 @@ export default function CurrentlyPlaying() {
                 fontSize="md"
                 cursor={'pointer'}
               >
-                {`${data.title} – ${data?.artist}`}
+                {`${title} – ${artist}`}
               </MotionText>
             </Link>
           </Box>

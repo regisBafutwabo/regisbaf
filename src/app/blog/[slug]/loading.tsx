@@ -1,5 +1,6 @@
-import { PostSkeleton } from 'components/Common/Skeletons';
 import { MotionBox } from 'lib/Motion';
+
+import { PostSkeleton } from '../components/Skeletons';
 
 export default function BlogPostLoading() {
   return (

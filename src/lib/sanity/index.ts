@@ -4,7 +4,7 @@ import createImageUrlBuilder from '@sanity/image-url';
 
 import { sanityConfig } from './config';
 
-export const getSanityClient = () => {
+const getSanityClient = () => {
   try {
     if (!sanityConfig) {
       throw new Error('Sanity Config is missing!');
@@ -20,7 +20,7 @@ export const getSanityClient = () => {
   }
 };
 
-export const previewClient = (() => {
+const previewClient = (() => {
   try {
     if (!sanityConfig) {
       throw new Error('Sanity Config is missing!');
@@ -38,7 +38,7 @@ export const getClient = (preview: boolean) => {
   return preview ? previewClient : getSanityClient();
 };
 
-export const imageBuilder = (() => {
+const imageBuilder = (() => {
   try {
     if (!sanityConfig) {
       throw new Error('Sanity Config is missing!');

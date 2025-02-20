@@ -1,8 +1,5 @@
 import { CONTENTS } from 'constants/content';
-import {
-  MotionCloseIcon,
-  MotionText,
-} from 'lib/Motion';
+import { MotionCloseIcon, MotionText } from 'lib/Motion';
 
 import {
   Link,

@@ -35,6 +35,7 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.log('Client side DOM:', document.body.innerHTML);
     console.error('Error caught by ErrorBoundary:', error, errorInfo);
   }
 

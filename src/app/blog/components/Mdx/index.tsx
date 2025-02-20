@@ -1,26 +1,17 @@
 'use client';
-import { Suspense } from 'react';
+import './styles.css';
 
-import {
-  Bold,
-  Header,
-  Header1,
-  Header2,
-  Link,
-  OList,
-  Pre,
-  RoundedImage,
-  SvgImage,
-  UList,
-} from 'app/blog/components/Mdx/components';
-import { Paragraph } from 'app/blog/components/Mdx/components/Paragraph';
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import dynamic from 'next/dynamic';
 
-import { Spinner } from '../../../../components/Common/Spinner';
-
-// Create a loading fallback component
-const MDXLoading = () => <Spinner />;
+import { Bold } from './components/Bold';
+import { Pre } from './components/Code';
+import { Header, Header1, Header2 } from './components/Header';
+import { Link } from './components/Link';
+import { OList, UList } from './components/List';
+import { MDXLoading } from './components/Loading';
+import { Paragraph } from './components/Paragraph';
+import { RoundedImage, SvgImage } from './components/RoundedImage';
 
 // Dynamically import MDXRemote
 const MDXRemote = dynamic<any>(
@@ -58,9 +49,5 @@ export const RenderHtml = ({ content }: RenderHtmlProps) => {
     return <div>No content available</div>;
   }
 
-  return (
-    <Suspense fallback={<MDXLoading />}>
-      <MDXRemote {...content} components={MDXComponents} />
-    </Suspense>
-  );
+  return <MDXRemote {...content} components={MDXComponents} />;
 };
