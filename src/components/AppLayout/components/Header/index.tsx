@@ -1,10 +1,7 @@
 'use client';
 import { useState } from 'react';
 
-import {
-  Box,
-  useColorMode,
-} from '@chakra-ui/react';
+import { Box, useColorMode } from '@chakra-ui/react';
 
 import { DesktopMenu } from './Components/DesktopMenu';
 import { Logo } from './Components/Logo';
@@ -51,7 +48,7 @@ export const Header = () => {
       width="100%"
       maxW="100vw"
       top={0}
-      bg={colorMode === 'dark' ? 'gray-800' : 'white'}
+      bgColor={colorMode === 'dark' ? 'rgb(26, 32, 44)' : 'white'}
       zIndex={2}
     >
       <Nav
