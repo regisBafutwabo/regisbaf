@@ -9,33 +9,9 @@ import { MenuButton } from './Components/MenuButton';
 import { MobileMenu } from './Components/MobileMenu';
 import { Nav } from './styles';
 
-const IconVariant = {
-  hidden: {
-    y: '-10vh',
-    height: 0,
-    width: 0,
-  },
-  visible: {
-    y: 0,
-    width: 20,
-    height: 20,
-    transition: { type: 'spring', stiffness: 600 },
-  },
-};
-
 export const Header = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode } = useColorMode();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const toggleMode = () => {
-    if (colorMode === 'dark') {
-      toggleColorMode();
-      window.localStorage.setItem('prefers-dark', 'false');
-    } else if (colorMode === 'light') {
-      toggleColorMode();
-      window.localStorage.setItem('prefers-dark', 'true');
-    }
-  };
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -54,23 +30,15 @@ export const Header = () => {
       <Nav
         pt={{ base: 4, lg: 8 }}
         pb={4}
-        justifyContent={{ base: 'space-between', lg: 'space-around' }}
+        justifyContent={{ base: 'space-between' }}
       >
         <Logo />
-        <DesktopMenu
-          toggleMode={toggleMode}
-          colorMode={colorMode}
-          openModal={openModal}
-          IconVariant={IconVariant}
-        />
+        <DesktopMenu />
         <MenuButton openModal={openModal} />
         {isModalOpen && (
           <MobileMenu
             open={isModalOpen}
             closeModal={() => setIsModalOpen(false)}
-            toggleMode={toggleMode}
-            colorMode={colorMode}
-            IconVariant={IconVariant}
           />
         )}
       </Nav>

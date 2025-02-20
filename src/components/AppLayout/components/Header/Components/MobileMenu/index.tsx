@@ -1,11 +1,5 @@
 import { CONTENTS } from 'constants/content';
-import {
-  MotionCloseIcon,
-  MotionIconButton,
-  MotionMoonIcon,
-  MotionSunIcon,
-  MotionText,
-} from 'lib/Motion';
+import { MotionCloseIcon, MotionText } from 'lib/Motion';
 
 import {
   Link,
@@ -15,21 +9,19 @@ import {
   ModalContent,
   ModalFooter,
   ModalOverlay,
+  useColorMode,
 } from '@chakra-ui/react';
+
+import { ThemeToggle } from '../../../../../Common/ThemeToggle';
 
 type MobileMenuProps = {
   open: boolean;
-  colorMode: 'dark' | 'light';
   closeModal: () => void;
-  toggleMode: () => void;
-  IconVariant: {
-    hidden: any;
-    visible: any;
-  };
 };
 
 export const MobileMenu = (props: MobileMenuProps) => {
-  const { open, closeModal, toggleMode, colorMode, IconVariant } = props;
+  const { open, closeModal } = props;
+  const { colorMode } = useColorMode();
 
   return (
     <Modal
@@ -78,29 +70,7 @@ export const MobileMenu = (props: MobileMenuProps) => {
           display={'flex'}
           justifyContent="flex-start"
         >
-          <MotionIconButton
-            animate={{ opacity: 1 }}
-            initial={{ opacity: 0 }}
-            transition={{ delay: 1.1 }}
-            aria-label="color-mode"
-            _focus={{ outline: 0, backgroundColor: 'transparent' }}
-            backgroundColor="transparent"
-            onClick={toggleMode}
-          >
-            {colorMode === 'light' ? (
-              <MotionMoonIcon
-                variants={IconVariant}
-                initial="hidden"
-                animate="visible"
-              />
-            ) : (
-              <MotionSunIcon
-                variants={IconVariant}
-                initial="hidden"
-                animate="visible"
-              />
-            )}
-          </MotionIconButton>
+          <ThemeToggle />
         </ModalFooter>
       </ModalContent>
     </Modal>
