@@ -21,7 +21,6 @@ export const MainHeader = () => {
         alt={profileAlt}
         placeholder="blur"
         priority
-        // fill
         style={{
           borderRadius: 100,
           height: 'auto',

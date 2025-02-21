@@ -2,7 +2,10 @@ import { PostCard } from 'app/blog/components/PostCard';
 import { CONTENTS } from 'constants/content';
 import type { Post } from 'typings/Blog';
 
-import { Box, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Text,
+} from '@chakra-ui/react';
 
 type BlogProps = {
   posts: Post[];
@@ -17,8 +20,8 @@ export const Blog = ({ posts }: BlogProps) => {
     <Box
       paddingX={[0, 4, 4, 8]}
       paddingY={8}
-      minHeight="60vh" // Changed height to minHeight to prevent footer overlap
-      marginBottom="80px" // Added margin to ensure space for footer
+      minHeight="60vh"
+      marginBottom="80px"
     >
       <Text
         fontWeight="bold"

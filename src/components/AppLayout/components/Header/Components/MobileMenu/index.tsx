@@ -16,15 +16,16 @@ import { ThemeToggle } from '../ThemeToggle';
 
 type MobileMenuProps = {
   isOpen: boolean;
-  onClose: () => void;
+  closeModal: () => void;
 };
 
-export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
+export const MobileMenu = (props: MobileMenuProps) => {
+  const { isOpen, closeModal } = props;
   const { colorMode } = useColorMode();
 
   return (
     <Modal
-      onClose={onClose}
+      onClose={closeModal}
       size={'full'}
       isOpen={isOpen}
       motionPreset="slideInRight"
@@ -51,7 +52,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
         </ModalCloseButton>
         <ModalBody mt={100} display="flex" flexDir={'column'} gap={8}>
           {CONTENTS.navbar.links.map((link) => (
-            <Link href={link.value} onClick={onClose} key={link.value}>
+            <Link href={link.value} onClick={closeModal} key={link.value}>
               <MotionText
                 initial={{ x: '100vw' }}
                 animate={{ x: 0 }}

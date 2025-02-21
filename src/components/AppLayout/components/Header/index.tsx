@@ -1,10 +1,7 @@
 'use client';
 import { useState } from 'react';
 
-import {
-  Box,
-  useColorMode,
-} from '@chakra-ui/react';
+import { Box, useColorMode } from '@chakra-ui/react';
 
 import { DesktopMenu } from './Components/DesktopMenu';
 import { Logo } from './Components/Logo';
@@ -27,7 +24,7 @@ export const Header = () => {
       width="100%"
       maxW="100vw"
       top={0}
-      bgColor={colorMode === 'dark' ? 'rgb(26, 32, 44)' : 'white'}
+      bgColor={colorMode === 'dark' ? '#1a202c' : 'white'}
       zIndex={2}
     >
       <Nav
@@ -41,7 +38,7 @@ export const Header = () => {
         {isModalOpen && (
           <MobileMenu
             isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
+            closeModal={() => setIsModalOpen(false)}
           />
         )}
       </Nav>
