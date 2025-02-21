@@ -24,7 +24,7 @@ export const Header = () => {
       width="100%"
       maxW="100vw"
       top={0}
-      bgColor={colorMode === 'dark' ? 'rgb(26, 32, 44)' : 'white'}
+      bgColor={colorMode === 'dark' ? '#1a202c' : 'white'}
       zIndex={2}
     >
       <Nav
@@ -37,7 +37,7 @@ export const Header = () => {
         <MenuButton openModal={openModal} />
         {isModalOpen && (
           <MobileMenu
-            open={isModalOpen}
+            isOpen={isModalOpen}
             closeModal={() => setIsModalOpen(false)}
           />
         )}

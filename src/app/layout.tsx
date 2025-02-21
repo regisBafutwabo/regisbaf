@@ -2,23 +2,12 @@ import './globals.css';
 
 import type { ReactNode } from 'react';
 
-import {
-  Footer,
-  Header,
-} from 'components/AppLayout/components';
-import { theme } from 'config/theme';
+import { Footer, Header } from 'components/AppLayout/components';
 import { SEO_CONTENT } from 'constants/content';
 import { spotifyApi } from 'lib/spotify/spotify';
-import type {
-  Metadata,
-  Viewport,
-} from 'next';
+import type { Metadata, Viewport } from 'next';
 
-import {
-  Box,
-  ColorModeScript,
-  Container,
-} from '@chakra-ui/react';
+import { Box, ColorModeScript, Container } from '@chakra-ui/react';
 
 import Providers from './providers';
 
@@ -50,8 +39,20 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="theme-color"
+          media="(prefers-color-scheme: light)"
+          content="#FFFFFF"
+        />
+        <meta
+          name="theme-color"
+          media="(prefers-color-scheme: dark)"
+          content="#1a202c"
+        />
+      </head>
       <body>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+        <ColorModeScript initialColorMode={'system'} />
         <Providers>
           <Box
             display="flex"

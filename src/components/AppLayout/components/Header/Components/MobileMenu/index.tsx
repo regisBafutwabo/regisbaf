@@ -15,19 +15,19 @@ import {
 import { ThemeToggle } from '../../../../../Common/ThemeToggle';
 
 type MobileMenuProps = {
-  open: boolean;
+  isOpen: boolean;
   closeModal: () => void;
 };
 
 export const MobileMenu = (props: MobileMenuProps) => {
-  const { open, closeModal } = props;
+  const { isOpen, closeModal } = props;
   const { colorMode } = useColorMode();
 
   return (
     <Modal
       onClose={closeModal}
       size={'full'}
-      isOpen={open}
+      isOpen={isOpen}
       motionPreset="slideInRight"
     >
       <ModalOverlay />
