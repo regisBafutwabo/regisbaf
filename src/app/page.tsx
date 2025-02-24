@@ -22,10 +22,15 @@ export default function MainPage() {
       paddingX={[0, 4, 4, 4]}
       display="flex"
       flexDirection="column"
-      alignItems={'center'}
+      alignItems="center"
+      justifyContent="center"
     >
-      <MainHeader />
-      <AboutMe />
+      <section>
+        <MainHeader />
+      </section>
+      <section>
+        <AboutMe />
+      </section>
     </Box>
   );
 }

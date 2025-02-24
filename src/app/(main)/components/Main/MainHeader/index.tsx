@@ -12,6 +12,7 @@ export const MainHeader = () => {
       initial={{ opacity: 0.3 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
+      width="100%"
       boxSize={['100px', '200px', '200px', '200px']}
     >
       <Image

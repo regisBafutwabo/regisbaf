@@ -2,12 +2,21 @@ import './globals.css';
 
 import type { ReactNode } from 'react';
 
-import { Footer, Header } from 'components/AppLayout/components';
+import {
+  Footer,
+  Header,
+} from 'components/AppLayout/components';
 import { SEO_CONTENT } from 'constants/content';
 import { spotifyApi } from 'lib/spotify/spotify';
-import type { Metadata, Viewport } from 'next';
+import type {
+  Metadata,
+  Viewport,
+} from 'next';
 
-import { Box, ColorModeScript, Container } from '@chakra-ui/react';
+import {
+  ColorModeScript,
+  Container,
+} from '@chakra-ui/react';
 
 import Providers from './providers';
 
@@ -54,18 +63,15 @@ export default async function RootLayout({
       <body>
         <ColorModeScript initialColorMode={'system'} />
         <Providers>
-          <Box
-            display="flex"
-            flexDirection="column"
-            minHeight="100vh"
-            overflowY="auto"
-          >
+          <header>
             <Header />
+          </header>
+          <main style={{ minHeight: '100vh' }}>
             <Container maxW="container.lg" flex={1} mt={20}>
               {children}
             </Container>
-            <Footer currentlyPlaying={response} />
-          </Box>
+          </main>
+          <Footer currentlyPlaying={response} />
         </Providers>
       </body>
     </html>
