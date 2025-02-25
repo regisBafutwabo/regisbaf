@@ -1,4 +1,8 @@
-import { MotionIconButton, MotionMoonIcon, MotionSunIcon } from 'lib/Motion';
+import {
+  MotionIconButton,
+  MotionMoonIcon,
+  MotionSunIcon,
+} from 'lib/Motion';
 
 import { useColorMode } from '@chakra-ui/react';
 
@@ -37,6 +41,7 @@ export const ThemeToggle = () => {
         _focus={{ outline: 0, backgroundColor: 'transparent' }}
         backgroundColor="transparent"
         onClick={toggleMode}
+        type="button"
       >
         {colorMode === 'light' ? (
           <MotionMoonIcon

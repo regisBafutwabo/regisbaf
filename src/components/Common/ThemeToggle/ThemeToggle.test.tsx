@@ -18,7 +18,7 @@ describe('ThemeToggle', () => {
     expect(toggleButton).toBeTruthy();
   });
 
-  it('toggles theme when clicked', () => {
+  it('toggles theme when clicked', async () => {
     const { getByRole } = render(
       <ChakraProvider>
         <ThemeToggle />
@@ -26,8 +26,10 @@ describe('ThemeToggle', () => {
     );
 
     const toggleButton = getByRole('button');
-    userEvent.click(toggleButton);
+    await userEvent.click(toggleButton);
 
-    // Additional assertions based on your implementation
+    const prefersDark = localStorage.getItem('prefers-dark');
+
+    expect(prefersDark).toBeTruthy();
   });
 });
