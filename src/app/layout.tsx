@@ -2,21 +2,13 @@ import './globals.css';
 
 import type { ReactNode } from 'react';
 
-import {
-  Footer,
-  Header,
-} from 'components/AppLayout/components';
+import { Footer } from 'components/AppLayout/Footer';
+import { Header } from 'components/AppLayout/Header';
 import { SEO_CONTENT } from 'constants/content';
 import { spotifyApi } from 'lib/spotify/spotify';
-import type {
-  Metadata,
-  Viewport,
-} from 'next';
+import type { Metadata, Viewport } from 'next';
 
-import {
-  ColorModeScript,
-  Container,
-} from '@chakra-ui/react';
+import { ColorModeScript, Container } from '@chakra-ui/react';
 
 import Providers from './providers';
 

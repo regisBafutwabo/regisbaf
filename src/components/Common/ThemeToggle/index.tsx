@@ -22,10 +22,10 @@ export const ThemeToggle = () => {
   const toggleMode = () => {
     if (colorMode === 'dark') {
       toggleColorMode();
-      window.localStorage.setItem('prefers-dark', 'false');
+      localStorage.setItem('prefers-dark', 'false');
     } else if (colorMode === 'light') {
       toggleColorMode();
-      window.localStorage.setItem('prefers-dark', 'true');
+      localStorage.setItem('prefers-dark', 'true');
     }
   };
 

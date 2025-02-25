@@ -1,5 +1,8 @@
 import { CONTENTS } from 'constants/content';
-import { MotionCloseIcon, MotionText } from 'lib/Motion';
+import {
+  MotionCloseIcon,
+  MotionText,
+} from 'lib/Motion';
 
 import {
   Link,
@@ -12,7 +15,7 @@ import {
   useColorMode,
 } from '@chakra-ui/react';
 
-import { ThemeToggle } from '../../../../../Common/ThemeToggle';
+import { ThemeToggle } from '../../../../Common/ThemeToggle';
 
 type MobileMenuProps = {
   isOpen: boolean;
@@ -42,6 +45,7 @@ export const MobileMenu = (props: MobileMenuProps) => {
           _focus={{ outline: 0 }}
           p={8}
           backgroundColor="transparent"
+          aria-label="Close navigation menu"
         >
           <MotionCloseIcon
             _focus={{ outline: 0 }}

@@ -41,6 +41,10 @@ export function generateMetadata(): Metadata {
 
 export default async function BlogPage() {
   const client = getClient(false);
+  if (!client) {
+    throw new Error('Failed to initialize Sanity client');
+  }
+
   const posts = await client?.fetch<Post[]>(
     `*[_type == "post"] | order(_createdAt desc)`,
     {},
