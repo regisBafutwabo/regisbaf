@@ -58,7 +58,7 @@ export default async function RootLayout({
           <header>
             <Header />
           </header>
-          <main style={{ minHeight: '100vh' }}>
+          <main style={{ minHeight: '80vh' }}>
             <Container maxW="container.lg" flex={1} mt={20}>
               {children}
             </Container>
